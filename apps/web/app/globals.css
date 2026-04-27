@@ -1,0 +1,96 @@
+/* Foundations base */
+@import '@systemspecs/foundations/styles.css';
+/* STSL brand variable bindings */
+@import '@systemspecs/brand-stsl/styles.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Type bindings — Plus Jakarta drives display (matches the wordmark).
+ * Geist drives body (replaces Inter; skill bans Inter as a generic default).
+ * Source Serif 4 is available as `font-serif` for editorial pull-quotes,
+ * lede paragraphs, and case-study callouts. JetBrains Mono for tokens & code.
+ */
+:root {
+  --font-display:   var(--font-jakarta), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-sans:      var(--font-geist),   -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-serif:     var(--font-serif),   'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono:      var(--font-jb-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Editorial Luxury surface — warm cream, not white. Paper-feel. */
+  --paper-tint: #FBF8F2;
+  --paper-grain-opacity: 0.045;
+}
+
+[data-theme='dark'] {
+  --paper-tint: #0A0B0E;
+  --paper-grain-opacity: 0.07;
+}
+
+/* Repaint the canvas tone so the whole page reads as warm paper, not
+   off-the-shelf white. The brand keeps surface-raised + surface-muted as
+   neutrals; only the page floor moves. */
+html, body {
+  background-color: var(--paper-tint);
+}
+
+/*
+ * Fixed paper-grain overlay. Lives on a fixed pseudo-element so it never
+ * triggers reflow on scroll (skill perf rule). Opacity tuned for a barely-
+ * perceptible texture — the kind you only notice when it's gone.
+ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: var(--paper-grain-opacity);
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+}
+[data-theme='dark'] body::before {
+  mix-blend-mode: screen;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Scroll-reveal — applied via [data-reveal]. CSS-only via animation-timeline:
+     view(); browsers without view-timeline (Firefox/Safari at present) fall
+     back to a static, in-place state — never broken, just less choreographed. */
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: ds-reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+  }
+  @keyframes ds-reveal-up {
+    from { opacity: 0; transform: translate3d(0, 24px, 0); filter: blur(6px); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0);    filter: blur(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] { animation: none; }
+  }
+}
+
+/* Accordion radix transitions — matches the foundations cubic-bezier. */
+@keyframes accordion-open {
+  from { height: 0; opacity: 0; }
+  to   { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+@keyframes accordion-close {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to   { height: 0; opacity: 0; }
+}
+.animate-accordion-open  { animation: accordion-open  280ms cubic-bezier(0.32, 0.72, 0, 1); }
+.animate-accordion-close { animation: accordion-close 220ms cubic-bezier(0.4,  0.0, 1, 1); }

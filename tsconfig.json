@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/foundations" },
+    { "path": "./packages/brand-stsl" },
+    { "path": "./apps/web" }
+  ]
+}

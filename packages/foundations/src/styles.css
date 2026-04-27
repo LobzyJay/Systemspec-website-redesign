@@ -1,0 +1,65 @@
+/*
+ * Foundations base layer. Apps import this once at the top of their global
+ * stylesheet. Defines reset-ish base behavior that's brand-agnostic.
+ *
+ * Brand color values are NOT defined here — those live in the brand package.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset browser-default heading boldness so each text-{size} token's own
+   fontWeight wins. Without this, h1 → bold (700) overrides text-display-md's
+   intended 500. */
+h1, h2, h3, h4, h5, h6 { font-weight: inherit; }
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* Anchors inherit color + drop default decoration. Link styling lives on
+   the Link primitive (and cases where consumers explicitly opt in). This
+   stops link styling from bleeding into card-wrapping anchors that should
+   read as cards, not links. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-emphasis);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

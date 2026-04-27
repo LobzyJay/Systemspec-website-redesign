@@ -1,0 +1,102 @@
+/*
+ * STSL brand variable bindings. Sets every system token defined in
+ * @systemspecs/foundations to its STSL value. Apps import this once after
+ * the foundations base styles.
+ */
+
+:root {
+  /* Backgrounds — Editorial Luxury palette. The page floor is a warm cream
+     (#FBF8F2, set in apps/web/app/globals.css as --paper-tint). Canvas/surface
+     match so cards on the page float seamlessly; surface-raised carries a
+     slightly cooler tint for nested cores; surface-muted is the recessed
+     inset-card tone (deeper warm grey). */
+  --bg-canvas: #FBF8F2;
+  --bg-surface: #FFFFFF;
+  --bg-surface-raised: #F5F1E8;
+  --bg-surface-muted: #ECE6D7;
+  --bg-inverse: #0B0C0F;
+
+  /* Text */
+  --text-primary: #16181c;
+  --text-secondary: #41464e;
+  --text-muted: #7a828d;
+  --text-on-accent: #ffffff;
+  --text-on-inverse: #f7f8f9;
+  --text-link: #0c604c;
+
+  /* Borders — warm-toned hairlines that match the cream paper instead of
+     reading as cold 1px greys (a skill anti-pattern). */
+  --border-subtle: #E6DFCE;
+  --border-default: #D4CCB6;
+  --border-strong: #6F6B5F;
+  --border-accent: #017A6A;
+
+  /* Accent — anchor teal + supporting ink for high-emphasis editorial.
+     Teal hex values sampled directly from the SystemSpecs Holdings parent
+     mark dot motif (deep dot #017A6A).
+
+     accent-default-hover stays in the teal hue (deeper, not a different
+     hue) so interactive feedback feels like a state change, not a color
+     swap. Earlier this was bound to the navy ink, which read as a hue
+     jump on every primary-button hover. */
+  --accent-default: #017a6a;
+  --accent-default-hover: #014e44;
+  --accent-emphasis: #1a356a;
+  --accent-subtle: #e6f4f1;
+  --accent-contrast: #ffffff;
+
+  /* Brand teal trio — sampled from the parent dot motif. Available to brand
+     marks that need the literal source teals rather than the system accent
+     (e.g. <DotMark> in brand tone). UI components should keep using
+     --accent-* so theme swaps remain a single rebind. */
+  --brand-teal:       #017a6a;
+  --brand-teal-light: #83bfb7;
+  --brand-teal-pale:  #b6d8d4;
+
+  /* Extended SystemSpecs ecosystem palette — sampled from the
+     Children's Day Essay Competition poster. Marketing/event surfaces,
+     celebration moments, NOT core UI. Use sparingly. */
+  --brand-forest:        #0e5e3d;  /* deep editorial surface */
+  --brand-forest-deep:   #0a4530;  /* even deeper, for dark stages */
+  --brand-gold:          #d4a82c;  /* awards, celebration */
+  --brand-cream:         #f8e89a;  /* callout / highlight strip */
+
+  /* Feedback */
+  --feedback-success: #2e8b57;
+  --feedback-success-subtle: #e7f6ec;
+  --feedback-warning: #d99a00;
+  --feedback-warning-subtle: #fff8e7;
+  --feedback-danger: #c0353a;
+  --feedback-danger-subtle: #fdebec;
+  --feedback-info: #2769c4;
+  --feedback-info-subtle: #e7f0fb;
+
+  /* Type — placeholder stack. The app overrides these with next/font in
+     apps/web/app/globals.css (Plus Jakarta + Geist + Source Serif 4). */
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans:    "Geist", "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-serif:   "Source Serif 4", "Source Serif Pro", Georgia, serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+[data-theme='dark'] {
+  /* Dark mode mirrors the editorial restraint — espresso ink, not neon black.
+     Cards lift on a slightly warmer surface so the hierarchy still reads. */
+  --bg-canvas: #0A0B0E;
+  --bg-surface: #14161B;
+  --bg-surface-raised: #1B1E24;
+  --bg-surface-muted: #20242C;
+  --bg-inverse: #FBF8F2;
+  --text-primary: #F4F0E6;
+  --text-secondary: #C8C2B2;
+  --text-muted: #847E70;
+  --text-on-inverse: #16181C;
+  --text-link: #83BFB7;
+  --border-subtle: #232730;
+  --border-default: #353A45;
+  --border-strong: #6F6B5F;
+  --accent-default: #2FB893;
+  --accent-default-hover: #59D1AC;
+  --accent-emphasis: #7E9FD4;
+  --accent-subtle: #04221C;
+}

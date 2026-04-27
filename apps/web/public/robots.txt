@@ -1,0 +1,5 @@
+# SystemSpecs Technology Solutions Limited
+User-agent: *
+Allow: /
+
+Sitemap: /sitemap.xml
