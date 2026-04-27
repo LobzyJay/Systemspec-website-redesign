@@ -1,0 +1,117 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "color": {
+    "$type": "color",
+    "brand": {
+      "teal": {
+        "deep":  { "$value": "#017A6A" },
+        "light": { "$value": "#83BFB7" },
+        "pale":  { "$value": "#B6D8D4" }
+      },
+      "forest":      { "$value": "#0E5E3D" },
+      "forest-deep": { "$value": "#0A4530" },
+      "gold":        { "$value": "#D4A82C" },
+      "cream":       { "$value": "#F8E89A" }
+    },
+    "accent": {
+      "default":       { "$value": "#017A6A" },
+      "default-hover": { "$value": "#014E44" },
+      "emphasis":      { "$value": "#1A356A" },
+      "subtle":        { "$value": "#E6F4F1" }
+    },
+    "bg": {
+      "canvas":         { "$value": "#FBF8F2" },
+      "surface":        { "$value": "#FFFFFF" },
+      "surface-raised": { "$value": "#F5F1E8" },
+      "surface-muted":  { "$value": "#ECE6D7" },
+      "inverse":        { "$value": "#0B0C0F" }
+    },
+    "text": {
+      "primary":    { "$value": "#16181C" },
+      "secondary":  { "$value": "#41464E" },
+      "muted":      { "$value": "#7A828D" },
+      "on-accent":  { "$value": "#FFFFFF" },
+      "on-inverse": { "$value": "#F7F8F9" },
+      "link":       { "$value": "#0C604C" }
+    },
+    "border": {
+      "subtle":  { "$value": "#E6DFCE" },
+      "default": { "$value": "#D4CCB6" },
+      "strong":  { "$value": "#6F6B5F" },
+      "accent":  { "$value": "#017A6A" }
+    },
+    "feedback": {
+      "success":         { "$value": "#2E8B57" },
+      "success-subtle":  { "$value": "#E7F6EC" },
+      "warning":         { "$value": "#D99A00" },
+      "warning-subtle":  { "$value": "#FFF8E7" },
+      "danger":          { "$value": "#C0353A" },
+      "danger-subtle":   { "$value": "#FDEBEC" },
+      "info":            { "$value": "#2769C4" },
+      "info-subtle":     { "$value": "#E7F0FB" }
+    },
+    "product": {
+      "pouchii":    { "$value": "#5C6BFF" },
+      "fundacause": { "$value": "#2F80ED" },
+      "monicenta":  { "$value": "#F26524" }
+    }
+  },
+  "spacing": {
+    "$type": "dimension",
+    "1":  { "$value": "4px"  },
+    "2":  { "$value": "8px"  },
+    "3":  { "$value": "12px" },
+    "4":  { "$value": "16px" },
+    "5":  { "$value": "20px" },
+    "6":  { "$value": "24px" },
+    "8":  { "$value": "32px" },
+    "10": { "$value": "40px" },
+    "12": { "$value": "48px" },
+    "16": { "$value": "64px" },
+    "20": { "$value": "80px" },
+    "24": { "$value": "96px" },
+    "32": { "$value": "128px" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "sm":   { "$value": "4px"  },
+    "md":   { "$value": "8px"  },
+    "lg":   { "$value": "12px" },
+    "xl":   { "$value": "16px" },
+    "2xl":  { "$value": "24px" },
+    "3xl":  { "$value": "28px" },
+    "pill": { "$value": "9999px" }
+  },
+  "type": {
+    "family": {
+      "$type": "fontFamily",
+      "display": { "$value": "Plus Jakarta Sans" },
+      "sans":    { "$value": "Geist" },
+      "serif":   { "$value": "Source Serif 4" },
+      "mono":    { "$value": "JetBrains Mono" }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular":  { "$value": 400 },
+      "medium":   { "$value": 500 },
+      "semibold": { "$value": 600 },
+      "bold":     { "$value": 700 }
+    },
+    "size": {
+      "$type": "dimension",
+      "display-2xl": { "$value": "72px" },
+      "display-xl":  { "$value": "56px" },
+      "display-lg":  { "$value": "44px" },
+      "display-md":  { "$value": "36px" },
+      "heading-1":   { "$value": "30px" },
+      "heading-2":   { "$value": "24px" },
+      "heading-3":   { "$value": "20px" },
+      "heading-4":   { "$value": "18px" },
+      "body-lg":     { "$value": "18px" },
+      "body":        { "$value": "16px" },
+      "body-sm":     { "$value": "14px" },
+      "caption":     { "$value": "13px" },
+      "overline":    { "$value": "12px" }
+    }
+  }
+}

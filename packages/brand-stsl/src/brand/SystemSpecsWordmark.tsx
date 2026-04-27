@@ -10,6 +10,7 @@
 //                            of theme — e.g. the GroupBlock forest band).
 
 import type { ImgHTMLAttributes } from 'react';
+import { asset } from '../utils/asset';
 
 interface SystemSpecsWordmarkProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> {
   height?: number;
@@ -33,7 +34,7 @@ export function SystemSpecsWordmark({
   if (tone === 'mono') {
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={WHITE} alt={alt} height={height} width={width} className={className} {...props} />
+      <img src={asset(WHITE)} alt={alt} height={height} width={width} className={className} {...props} />
     );
   }
 
@@ -43,7 +44,7 @@ export function SystemSpecsWordmark({
     <span className="inline-block" style={{ height, width }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={BLACK}
+        src={asset(BLACK)}
         alt={alt}
         height={height}
         width={width}
@@ -52,7 +53,7 @@ export function SystemSpecsWordmark({
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={WHITE}
+        src={asset(WHITE)}
         alt=""
         aria-hidden="true"
         height={height}

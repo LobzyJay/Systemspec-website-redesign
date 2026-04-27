@@ -1,4 +1,5 @@
 import { ArrowUpRight } from '../icons';
+import { asset } from '../utils/asset';
 
 interface ProductCardProps {
   name: string;
@@ -46,7 +47,7 @@ export function ProductCard({
         >
           {logo ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={logo} alt={name} className="max-h-9 w-auto max-w-[55%] object-contain" />
+            <img src={asset(logo)} alt={name} className="max-h-9 w-auto max-w-[55%] object-contain" />
           ) : (
             <span className="font-display text-display-md text-fg-muted/40">{name[0]}</span>
           )}

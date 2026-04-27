@@ -7,6 +7,7 @@
 // cleanly on any surface (paper canvas, dark inverse, brand forest).
 
 import type { ImgHTMLAttributes } from 'react';
+import { asset } from '../../utils/asset';
 
 interface GlobeAssetProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> {
   alt?: string;
@@ -16,7 +17,7 @@ export function GlobeAsset({ className, alt = 'SystemSpecs coverage globe', ...p
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/brand/globe-asset.jpg"
+      src={asset('/brand/globe-asset.jpg')}
       alt={alt}
       className={['block w-full h-auto select-none pointer-events-none', className]
         .filter(Boolean)

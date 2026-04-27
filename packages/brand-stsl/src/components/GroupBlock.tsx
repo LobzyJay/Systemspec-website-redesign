@@ -1,6 +1,7 @@
 import { Container, Section } from '@systemspecs/foundations/layout';
 import { ArrowUpRight } from '../icons';
 import { SystemSpecsWordmark } from '../brand';
+import { asset } from '../utils/asset';
 
 interface GroupCompany {
   name: string;
@@ -86,7 +87,7 @@ export function GroupBlock({
                 {c.logo ? (
                   <div className="h-14 flex items-center mb-8">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={c.logo} alt={c.name} className="h-7 w-auto max-w-[180px] object-contain" />
+                    <img src={asset(c.logo)} alt={c.name} className="h-7 w-auto max-w-[180px] object-contain" />
                   </div>
                 ) : (
                   <div className="h-14 mb-8" />
