@@ -442,45 +442,80 @@ export default function DesignPage() {
 
       <p className="text-overline uppercase text-fg-muted font-mono tracking-widest mt-8 mb-3">Social card · 1.91:1</p>
       <Stage flush>
-        <div className="aspect-[1200/628] grid grid-cols-[1fr_auto] items-center gap-6 p-6 md:p-10 bg-bg-inverse text-fg-on-inverse rounded-lg">
-          <div className="min-w-0">
-            <SystemSpecsWordmark height={28} tone="mono" />
-            <p className="mt-4 font-display text-heading-1 md:text-display-md text-fg-on-inverse text-balance">
-              Built in Nigeria. Operating since 1992.
-            </p>
+        <div className="relative aspect-[1200/628] grid grid-cols-[1fr_auto] items-stretch gap-0 bg-bg-inverse text-fg-on-inverse overflow-hidden shadow-e2">
+          {/* Text column */}
+          <div className="relative flex flex-col justify-between min-w-0 p-8 md:p-12 lg:p-14">
+            <div className="flex items-center gap-3">
+              <SystemSpecsWordmark height={26} tone="mono" />
+              <span aria-hidden="true" className="inline-block h-3 w-px bg-white/20" />
+              <span className="inline-flex items-center h-6 px-2.5 rounded-pill ring-1 ring-white/15 text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-fg-on-inverse/80">
+                Est. 1992
+              </span>
+            </div>
+            <h3 className="font-display text-heading-1 md:text-display-md leading-[1.05] tracking-[-0.012em] text-fg-on-inverse text-balance max-w-[28ch]">
+              Africa's payment, government &amp; financial infrastructure.
+            </h3>
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-caption font-mono uppercase tracking-[0.18em] text-fg-on-inverse/60">
+                systemspecs.com.ng
+              </span>
+              <span className="inline-flex items-center gap-2 text-caption font-mono uppercase tracking-[0.18em] text-fg-on-inverse/80">
+                Learn more
+                <ArrowUpRight size={14} />
+              </span>
+            </div>
           </div>
-          <div className="aspect-square" style={{ width: '40%' }}>
-            <DocsGlobe />
+          {/* Globe column — clipped bleed for editorial cropping */}
+          <div className="relative w-[44%] self-stretch">
+            <div
+              className="absolute top-1/2 -translate-y-1/2 aspect-square"
+              style={{ right: '-8%', width: '108%' }}
+            >
+              <DocsGlobe />
+            </div>
           </div>
         </div>
       </Stage>
 
       <p className="text-overline uppercase text-fg-muted font-mono tracking-widest mt-8 mb-3">Banner · 728 × 90</p>
       <Stage flush>
-        <div className="overflow-x-auto -mx-4 px-4">
+        <div className="overflow-x-auto -mx-4 px-4 py-4">
           <div
-            className="mx-auto rounded-md overflow-hidden bg-bg-inverse text-fg-on-inverse grid grid-cols-[90px_1fr_auto] items-center gap-4 p-3"
+            className="group/banner relative mx-auto bg-bg-inverse text-fg-on-inverse grid grid-cols-[90px_1fr_auto] items-center gap-5 pr-3 shadow-e2"
             style={{ width: 728, height: 90 }}
           >
-            <div className="h-full aspect-square">
-              <DocsGlobe />
+            {/* Globe panel — static dotted variant for 90px clarity + perf */}
+            <div className="relative h-full w-[90px] grid place-items-center bg-white/[0.03]">
+              <div className="w-[74px] h-[74px]">
+                <DottedGlobe variant="filled" />
+              </div>
+              {/* Editorial hairline accent on the right edge of the globe panel */}
+              <span aria-hidden="true" className="absolute top-3 bottom-3 right-0 w-px bg-white/15" />
             </div>
-            <div className="min-w-0">
-              <SystemSpecsWordmark height={16} tone="mono" />
-              <p className="mt-1 text-caption text-fg-on-inverse/70 truncate">
-                Infrastructure that institutions trust.
+            {/* Wordmark + caption — proper leading, tucked just under */}
+            <div className="min-w-0 flex flex-col justify-center gap-1.5">
+              <SystemSpecsWordmark height={18} tone="mono" />
+              <p className="text-[11px] leading-[1.3] font-mono uppercase tracking-[0.16em] text-fg-on-inverse/65 truncate">
+                Infrastructure that institutions trust
               </p>
             </div>
+            {/* Button-in-button CTA — pill with nested arrow chip */}
             <a
               href="#"
-              className="shrink-0 text-caption !text-white bg-accent rounded-pill px-4 py-1.5 whitespace-nowrap"
+              className="shrink-0 inline-flex items-center gap-2 h-10 pl-4 pr-1.5 rounded-pill bg-accent !text-white text-[12px] font-medium tracking-tight whitespace-nowrap transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-px active:scale-[0.98]"
             >
               Learn more
+              <span
+                aria-hidden="true"
+                className="inline-grid place-items-center h-7 w-7 rounded-full bg-white/15 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/banner:translate-x-[2px] group-hover/banner:-translate-y-[1px]"
+              >
+                <ArrowUpRight size={12} />
+              </span>
             </a>
           </div>
         </div>
-        <Caption>Fixed 728×90 leaderboard.</Caption>
       </Stage>
+      <Caption>Fixed 728×90 leaderboard. Static dotted globe for crisp rendering at 90px.</Caption>
 
       <p className="text-overline uppercase text-fg-muted font-mono tracking-widest mt-8 mb-3">Newsletter · 600 wide</p>
       <Stage flush>
