@@ -22,8 +22,8 @@ interface HeroProps {
 export function Hero({ eyebrow, headline, subhead, primary, secondary, visual }: HeroProps) {
   return (
     <section className="relative overflow-hidden bg-bg-canvas">
-      <Container size="wide" className="pt-20 pb-16 md:pt-28 md:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <Container size="wide" className="pt-12 pb-10 md:pt-24 md:pb-20 lg:pt-36 lg:pb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
           <div className="lg:col-span-7" data-reveal>
             {eyebrow ? (
               <span className="inline-flex items-center h-6 px-3 rounded-pill bg-accent-subtle text-accent text-[10px] uppercase tracking-[0.22em] font-mono font-medium ring-1 ring-[color:var(--accent-default)]/15 mb-6">
@@ -31,13 +31,13 @@ export function Hero({ eyebrow, headline, subhead, primary, secondary, visual }:
                 {eyebrow}
               </span>
             ) : null}
-            <h1 className="font-display font-medium text-display-md md:text-display-lg text-fg-primary text-balance tracking-[-0.02em] leading-[1.05]">
+            <h1 className="font-display font-medium text-display-md md:text-display-lg lg:text-display-xl text-fg-primary text-balance tracking-[-0.02em] leading-[1.05]">
               {headline}
             </h1>
-            <p className="mt-5 text-body-lg text-fg-secondary text-pretty max-w-xl">
+            <p className="mt-4 md:mt-5 text-body md:text-body-lg text-fg-secondary text-pretty max-w-xl">
               {subhead}
             </p>
-            <Stack direction="row" gap={3} className="mt-8" wrap>
+            <Stack direction="row" gap={3} className="mt-6 md:mt-8" wrap>
               <HeroButton href={primary.href} label={primary.label} variant="primary" />
               {secondary ? (
                 <HeroButton href={secondary.href} label={secondary.label} variant="secondary" />
@@ -47,8 +47,9 @@ export function Hero({ eyebrow, headline, subhead, primary, secondary, visual }:
 
           {visual ? (
             // Visual frame — Doppelrand vocabulary so the hero matches the
-            // card system. The visual itself owns its 1:1 aspect.
-            <div className="lg:col-span-5 lg:pl-6" data-reveal>
+            // card system. The visual itself owns its 1:1 aspect. Capped on
+            // mobile so the square doesn't dominate the viewport when stacked.
+            <div className="lg:col-span-5 lg:pl-6 mx-auto w-full max-w-md lg:max-w-none" data-reveal>
               <div className="rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
                               bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
                               shadow-e2">

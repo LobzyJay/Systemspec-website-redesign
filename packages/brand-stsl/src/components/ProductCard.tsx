@@ -62,9 +62,9 @@ export function ProductCard({
 
         {/* Paper panel — info + CTA. flex-col + mt-auto on CTA pins button
             row to bottom; padding kept identical to SolutionCard / InsightCard. */}
-        <div className="flex flex-col flex-1 p-7 md:p-8">
+        <div className="flex flex-col flex-1 p-6 md:p-8">
           <div className="flex items-baseline justify-between gap-3">
-            <h3 className="font-display font-medium text-heading-1 text-fg-primary leading-tight tracking-[-0.005em]">
+            <h3 className="font-display font-medium text-heading-2 md:text-heading-1 text-fg-primary leading-tight tracking-[-0.005em]">
               {name}
             </h3>
             {tag ? (

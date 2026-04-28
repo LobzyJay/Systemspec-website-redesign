@@ -90,7 +90,27 @@ export default function DesignLayout({ children }: { children: ReactNode }) {
         </Container>
       </header>
 
-      <Container size="wide" className="grid grid-cols-1 lg:grid-cols-[15rem_minmax(0,1fr)_12rem] gap-12 py-16 md:py-24">
+      {/* Mobile section nav — sticky pill rail just under the header. Hidden on
+          lg+ where the left sidebar handles section jumps. Horizontal scroll
+          for narrow viewports, tap targets ≥32px. */}
+      <div className="lg:hidden sticky top-16 z-30 bg-[color-mix(in_srgb,var(--bg-canvas)_85%,transparent)] backdrop-blur-md border-b border-[color:var(--border-subtle)] overflow-x-auto">
+        <Container size="wide">
+          <nav aria-label="Sections" className="flex items-center gap-2 py-3 whitespace-nowrap">
+            {sections.map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                className="inline-flex items-center h-8 px-4 rounded-pill bg-bg-surface-raised ring-1 ring-[color:var(--border-subtle)] text-[10px] font-mono uppercase tracking-[0.18em] font-medium text-fg-secondary hover:text-fg-primary transition-colors duration-base ease-expressive"
+              >
+                <span className="text-fg-muted mr-1.5">{s.number}</span>
+                {s.title}
+              </a>
+            ))}
+          </nav>
+        </Container>
+      </div>
+
+      <Container size="wide" className="grid grid-cols-1 lg:grid-cols-[15rem_minmax(0,1fr)_12rem] gap-8 md:gap-10 lg:gap-12 py-10 md:py-16 lg:py-24">
         <aside className="hidden lg:block">
           <nav aria-label="Sections" className="sticky top-24 flex flex-col gap-8">
             {sections.map((s) => (

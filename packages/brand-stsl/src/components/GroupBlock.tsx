@@ -34,12 +34,12 @@ export function GroupBlock({
     <Section surface="surface" density="lg">
       <Container size="wide">
         {/* Header — editorial statement. */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end pb-12 border-b border-[color:var(--border-subtle)]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-end pb-10 md:pb-12 border-b border-[color:var(--border-subtle)]">
           <div className="lg:col-span-7">
             <span className="inline-flex items-center h-6 px-3 rounded-pill bg-bg-surface-raised text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-fg-muted ring-1 ring-[color:var(--border-subtle)] mb-6">
               Group
             </span>
-            <h2 className="font-display font-medium text-display-lg text-fg-primary text-balance leading-[1.05] tracking-[-0.02em]">
+            <h2 className="font-display font-medium text-display-md md:text-display-lg text-fg-primary text-balance leading-[1.05] tracking-[-0.02em]">
               {intro}
             </h2>
           </div>
@@ -69,7 +69,7 @@ export function GroupBlock({
         </div>
 
         {/* Lineup — three columns, hairline dividers between. */}
-        <ul className="mt-12 grid grid-cols-1 md:grid-cols-3">
+        <ul className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3">
           {companies.map((c, i) => (
             <li
               key={c.href}

@@ -15,7 +15,7 @@ export function CapabilityStrip({ eyebrow, headline, body, capabilities }: Capab
   return (
     <Section surface="surface" density="lg">
       <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           <div className="lg:col-span-5">
             {eyebrow ? (
               <span className="inline-flex items-center h-6 px-3 rounded-pill bg-accent-subtle text-accent text-[10px] uppercase tracking-[0.22em] font-mono font-medium ring-1 ring-[color:var(--accent-default)]/15 mb-6">
@@ -23,15 +23,15 @@ export function CapabilityStrip({ eyebrow, headline, body, capabilities }: Capab
                 {eyebrow}
               </span>
             ) : null}
-            <h2 className="font-display font-medium text-display-lg text-fg-primary text-balance leading-[1.05] tracking-[-0.02em]">
+            <h2 className="font-display font-medium text-display-md md:text-display-lg text-fg-primary text-balance leading-[1.05] tracking-[-0.02em]">
               {headline}
             </h2>
           </div>
           <div className="lg:col-span-7">
-            <p className="font-serif italic text-[1.375rem] leading-[1.5] text-fg-secondary text-pretty">
+            <p className="font-serif italic text-[1.125rem] md:text-[1.25rem] lg:text-[1.375rem] leading-[1.5] text-fg-secondary text-pretty">
               {body}
             </p>
-            <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4 border-t border-[color:var(--border-subtle)] pt-8">
+            <ul className="mt-8 md:mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4 border-t border-[color:var(--border-subtle)] pt-6 md:pt-8">
               {capabilities.map((c) => (
                 <li
                   key={c}

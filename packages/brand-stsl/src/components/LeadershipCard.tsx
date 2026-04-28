@@ -77,7 +77,7 @@ export function LeadershipCard({
           ) : null}
         </div>
 
-        <h3 className="mt-2 font-display font-medium text-heading-1 text-fg-primary leading-[1.1] tracking-[-0.01em]">
+        <h3 className="mt-2 font-display font-medium text-heading-2 md:text-heading-1 text-fg-primary leading-[1.1] tracking-[-0.01em]">
           {name}
         </h3>
 

@@ -21,15 +21,15 @@ export function SolutionCard({ icon, title, description, proof, href }: Solution
                  shadow-e1 transition-[transform,box-shadow] duration-slow ease-expressive
                  hover:-translate-y-0.5 hover:shadow-e3"
     >
-      <div className="relative flex flex-col h-full p-7 md:p-8 rounded-[calc(1.75rem-0.375rem)] bg-bg-surface shadow-inner-hi">
+      <div className="relative flex flex-col h-full p-6 md:p-8 rounded-[calc(1.75rem-0.375rem)] bg-bg-surface shadow-inner-hi">
         {/* Icon chip — micro Doppelrand. */}
-        <div className="inline-flex items-center justify-center h-12 w-12 rounded-2xl p-1 ring-1 ring-[color:var(--border-subtle)] bg-bg-surface-raised mb-7">
+        <div className="inline-flex items-center justify-center h-12 w-12 rounded-2xl p-1 ring-1 ring-[color:var(--border-subtle)] bg-bg-surface-raised mb-6 md:mb-7">
           <div className="h-full w-full grid place-items-center rounded-[calc(1rem-0.25rem)] bg-bg-surface text-accent shadow-inner-hi">
             {icon}
           </div>
         </div>
 
-        <h3 className="font-display text-heading-1 font-medium text-fg-primary tracking-tight text-balance">
+        <h3 className="font-display text-heading-2 md:text-heading-1 font-medium text-fg-primary tracking-tight text-balance">
           {title}
         </h3>
         <p className="mt-3 text-body text-fg-secondary text-pretty flex-1">{description}</p>

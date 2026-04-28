@@ -166,7 +166,7 @@ export default function DesignPage() {
               <span className="text-caption text-fg-muted font-mono">text-{t.token}</span>
               <span
                 className={
-                  `text-${t.token} ` +
+                  `text-${t.token} block overflow-x-auto whitespace-nowrap ` +
                   (t.token.startsWith('display') || t.token.startsWith('heading') ? 'font-display text-fg-primary' : 'font-sans text-fg-primary')
                 }
               >
@@ -190,6 +190,29 @@ export default function DesignPage() {
           ))}
         </div>
       </Stage>
+
+      <SubHeading>Responsive scale</SubHeading>
+      <Stage>
+        <p className="text-caption text-fg-muted font-mono mb-6">How tokens scale across breakpoints.</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { vp: 'Mobile · 375',  display: '36px', heading: '24px', body: '16px', section: '96px' },
+            { vp: 'Tablet · 768',  display: '44px', heading: '30px', body: '18px', section: '128px' },
+            { vp: 'Desktop · 1280',display: '56px', heading: '30px', body: '18px', section: '160px' },
+          ].map((t) => (
+            <div key={t.vp} className="space-y-3">
+              <p className="text-overline uppercase font-mono tracking-widest text-accent">{t.vp}</p>
+              <dl className="text-body-sm space-y-2">
+                <div className="flex justify-between"><dt className="text-fg-muted">Display</dt><dd className="font-mono">{t.display}</dd></div>
+                <div className="flex justify-between"><dt className="text-fg-muted">Section heading</dt><dd className="font-mono">{t.heading}</dd></div>
+                <div className="flex justify-between"><dt className="text-fg-muted">Body</dt><dd className="font-mono">{t.body}</dd></div>
+                <div className="flex justify-between"><dt className="text-fg-muted">Section gap</dt><dd className="font-mono">{t.section}</dd></div>
+              </dl>
+            </div>
+          ))}
+        </div>
+      </Stage>
+      <Caption>The PageHeading title clamps to display-md on mobile, display-xl on tablet, display-2xl on desktop. Sub-tier sizes scale similarly.</Caption>
 
       <SubHeading>Radius</SubHeading>
       <Stage>
@@ -255,16 +278,16 @@ export default function DesignPage() {
 
       <SubHeading>Icons</SubHeading>
       <Stage>
+        {/* Single-radius tile — no nested squircle. One rounded container,
+            ring + bg, icon + label inside. */}
         <ul className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
           {iconCatalogue.map(({ name, icon: Icon }) => (
             <li
               key={name}
-              className="group/icon flex flex-col items-center gap-3 p-1 rounded-2xl ring-1 ring-[color:var(--border-subtle)] bg-bg-surface-raised transition-transform duration-slow ease-expressive hover:-translate-y-0.5"
+              className="group/icon flex flex-col items-center gap-3 px-4 py-5 rounded-2xl ring-1 ring-[color:var(--border-subtle)] bg-bg-surface transition-transform duration-slow ease-expressive hover:-translate-y-0.5"
             >
-              <div className="w-full flex flex-col items-center gap-3 px-4 py-5 rounded-[calc(1rem-0.25rem)] bg-bg-surface shadow-inner-hi">
-                <Icon size={26} className="text-fg-primary transition-transform duration-base ease-expressive group-hover/icon:scale-105" strokeWidth={1.25} />
-                <span className="text-caption text-fg-muted font-mono">{name}</span>
-              </div>
+              <Icon size={26} className="text-fg-primary transition-transform duration-base ease-expressive group-hover/icon:scale-105" strokeWidth={1.25} />
+              <span className="text-caption text-fg-muted font-mono">{name}</span>
             </li>
           ))}
         </ul>
@@ -408,7 +431,7 @@ export default function DesignPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-8 md:p-12 bg-bg-inverse text-fg-on-inverse rounded-lg">
           <div>
             <SystemSpecsWordmark height={28} tone="mono" />
-            <h3 className="mt-6 font-display text-display-md text-fg-on-inverse text-balance">
+            <h3 className="mt-6 font-display text-heading-1 md:text-display-md text-fg-on-inverse text-balance">
               Africa's payment, government, and financial infrastructure.
             </h3>
             <p className="mt-3 text-body text-fg-on-inverse/70 max-w-md">Coverage across Nigerian financial centers.</p>

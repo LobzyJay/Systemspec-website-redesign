@@ -20,19 +20,19 @@ export function SegmentedCTA({ headline, segments }: SegmentedCTAProps) {
   return (
     <Section surface="inverse" density="lg">
       <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-end">
           <div className="lg:col-span-7">
             <span className="inline-flex items-center h-6 px-3 rounded-pill bg-white/10 text-fg-on-inverse text-[10px] uppercase tracking-[0.22em] font-mono font-medium ring-1 ring-white/15 mb-6">
               <span aria-hidden="true" className="mr-2 inline-block h-1 w-1 rounded-pill bg-accent" />
               Pathways
             </span>
-            <h2 className="font-display font-medium text-display-lg text-fg-on-inverse text-balance leading-[1.05] tracking-[-0.02em]">
+            <h2 className="font-display font-medium text-display-md md:text-display-lg text-fg-on-inverse text-balance leading-[1.05] tracking-[-0.02em]">
               {headline}
             </h2>
           </div>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {segments.map((s) => (
             <a
               key={s.href}

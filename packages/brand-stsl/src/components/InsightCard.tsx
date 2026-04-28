@@ -40,7 +40,7 @@ export function InsightCard({ kind, publication, date, title, href, cover }: Ins
             />
           </div>
         ) : null}
-        <div className="flex flex-col flex-1 p-7 md:p-8">
+        <div className="flex flex-col flex-1 p-6 md:p-8">
           <span
             className="inline-flex items-center self-start h-6 px-3 rounded-pill text-[10px] uppercase tracking-[0.22em] font-mono font-medium"
             style={{ color: meta.tint, boxShadow: `inset 0 0 0 1px ${meta.tint}28`, backgroundColor: `${meta.tint}10` }}
