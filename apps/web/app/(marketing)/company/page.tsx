@@ -31,27 +31,28 @@ export default function CompanyAboutPage() {
       />
 
       {/* Group context — short editorial paragraph naming Remita / HumanManager
-          / Whatadeal. Inline JSX (no new component) per rules. */}
-      <Section surface="muted" density="lg">
+          / Whatadeal. Inline JSX (no new component) per rules.
+          Dark surface so the boundary against the cream Hero reads cleanly. */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
           <Grid cols={12} gap={8} mdGap={12} className="items-start">
             <div className="col-span-12 lg:col-span-5">
               <p className="text-overline uppercase text-accent mb-4">{c.intro.eyebrow}</p>
-              <h2 className="font-display font-medium text-display-md text-fg-primary text-balance leading-[1.05] tracking-[-0.02em]">
+              <h2 className="font-display font-medium text-display-md text-white text-balance leading-[1.05] tracking-[-0.02em]">
                 {c.intro.lede}
               </h2>
             </div>
             <div className="col-span-12 lg:col-span-7 lg:pt-3">
-              <p className="text-body-lg text-fg-secondary text-pretty max-w-2xl">
+              <p className="text-body-lg text-white/70 text-pretty max-w-2xl">
                 {c.intro.body}
               </p>
-              <p className="mt-5 text-body text-fg-secondary text-pretty max-w-2xl">
+              <p className="mt-5 text-body text-white/70 text-pretty max-w-2xl">
                 {c.group.body}
               </p>
             </div>
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       {/* Numbers grid — 4-up stat tiles. Inline mono+display layout per brief
           spec. We render the first four entries as the headline grid. */}

@@ -107,14 +107,21 @@ function LandingView() {
       {/* Audience grid — full chooser. Each tile is a same-page link that
           flips the ?audience= param so the router re-renders into the form
           view. Matches the SegmentedCTA visual vocabulary at a lighter
-          surface tone — these aren't a final CTA, they're a chooser. */}
-      <Section surface="muted" density="lg">
+          surface tone — these aren't a final CTA, they're a chooser.
+          Dark surface so the boundary against the cream Hero reads cleanly.
+          SectionHeader replaced with inline JSX (white headlines on ink).
+          Audience tiles keep their cream surface so they pop against the ink. */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
-          <SectionHeader
-            eyebrow="Audiences"
-            headline="Every conversation goes to the team that owns it."
-            intro="Pick the closest match. Replies inside one business day. Existing customers route to the support team that owns their account."
-          />
+          <div className="max-w-3xl">
+            <p className="text-overline uppercase text-accent mb-4">Audiences</p>
+            <h2 className="font-display font-medium text-display-md text-white text-balance leading-[1.05] tracking-[-0.02em]">
+              Every conversation goes to the team that owns it.
+            </h2>
+            <p className="mt-4 text-body-lg text-white/70 text-pretty max-w-xl">
+              Pick the closest match. Replies inside one business day. Existing customers route to the support team that owns their account.
+            </p>
+          </div>
           <Grid as="ul" cols={12} gap={4} mdGap={5} className="mt-12 md:mt-16">
             {c.routes.map((route) => (
               <li key={route.slug} className="col-span-12 md:col-span-6 lg:col-span-4">
@@ -152,11 +159,17 @@ function LandingView() {
             ))}
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       {/* Offices + standing channels. Phone / email / handles are placeholder
-          tokens pending STSL comms approval (brief §11) and render as-is. */}
-      <Section surface="canvas" density="lg">
+          tokens pending STSL comms approval (brief §11) and render as-is.
+          Pale green pre-footer band, matches marketing layout's page bg. */}
+      <section
+        className="py-20 md:py-28"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}>
         <Container size="wide">
           <SectionHeader eyebrow={c.offices.eyebrow} headline={c.offices.headline} />
           <Grid cols={12} gap={6} mdGap={8} className="mt-12 md:mt-16">
@@ -218,7 +231,7 @@ function LandingView() {
             </Grid>
           </div>
         </Container>
-      </Section>
+      </section>
     </>
   );
 }
@@ -259,7 +272,10 @@ function FormView({ audience }: { audience: ContactAudience }) {
         primary={{ label: 'Back to all audiences', href: '/contact' }}
       />
 
-      <Section surface="canvas" density="lg">
+      {/* Form section — dark surface so the boundary against the cream Hero
+          reads cleanly. The form card keeps its own white surface and pops
+          against the ink. Side panel text flipped to white/light. */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
           <Grid cols={12} gap={10} lgGap={16} className="items-start">
             {/* Form — primary column, owns the wider rail. */}
@@ -277,20 +293,20 @@ function FormView({ audience }: { audience: ContactAudience }) {
                 channels for visitors who want to bypass the form. */}
             <aside className="col-span-12 lg:col-span-5 lg:pt-2">
               <p className="text-overline uppercase text-accent mb-4">What happens next</p>
-              <p className="font-display font-medium text-heading-1 text-fg-primary tracking-[-0.01em] text-balance">
+              <p className="font-display font-medium text-heading-1 text-white tracking-[-0.01em] text-balance">
                 {route.successMessage}
               </p>
 
-              <Grid as="dl" cols={1} gap={6} className="mt-10 border-t border-[color:var(--border-subtle)] pt-8">
+              <Grid as="dl" cols={1} gap={6} className="mt-10 border-t border-white/15 pt-8">
                 {c.channels.items.map((channel) => (
                   <div key={channel.label} className="flex flex-col gap-1">
-                    <dt className="text-[10px] font-mono uppercase tracking-[0.22em] text-fg-muted">
+                    <dt className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/50">
                       {channel.label}
                     </dt>
                     <dd>
                       <a
                         href={channel.href}
-                        className="text-body font-medium text-fg-primary hover:text-accent transition-[color] duration-base ease-expressive"
+                        className="text-body font-medium text-white hover:text-accent transition-[color] duration-base ease-expressive"
                       >
                         {channel.value}
                       </a>
@@ -302,7 +318,7 @@ function FormView({ audience }: { audience: ContactAudience }) {
               <div className="mt-10">
                 <a
                   href="/contact"
-                  className="group/back inline-flex items-center gap-2 text-body-sm font-medium text-fg-secondary hover:text-accent transition-[color] duration-base ease-expressive"
+                  className="group/back inline-flex items-center gap-2 text-body-sm font-medium text-white/70 hover:text-accent transition-[color] duration-base ease-expressive"
                 >
                   <span>Wrong audience? Pick a different conversation</span>
                 </a>
@@ -310,7 +326,18 @@ function FormView({ audience }: { audience: ContactAudience }) {
             </aside>
           </Grid>
         </Container>
-      </Section>
+      </section>
+
+      {/* Pre-footer pale green band — matches the marketing layout's page bg
+          so the visual rhythm carries through to the footer transition. */}
+      <section
+        className="py-16 md:py-20"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+        aria-hidden="true"
+      />
     </>
   );
 }

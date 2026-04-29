@@ -52,15 +52,21 @@ export default function DevelopersPage() {
       />
 
       {/* API surface — three categories rendered as bare CapabilityBlocks on
-          the muted floor. Bullets lift the listed endpoints into the
-          editorial system without nesting another card surface. */}
-      <Section id="api-surface" surface="muted" density="lg">
+          the dark floor. Bullets lift the listed endpoints into the
+          editorial system without nesting another card surface.
+          Dark surface so the boundary against the cream Hero reads cleanly.
+          SectionHeader replaced with inline JSX (white headlines on ink). */}
+      <section id="api-surface" className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
-          <SectionHeader
-            eyebrow={c.apiSurface.eyebrow}
-            headline={c.apiSurface.headline}
-            intro={c.apiSurface.lede}
-          />
+          <div className="max-w-3xl">
+            <p className="text-overline uppercase text-accent mb-4">{c.apiSurface.eyebrow}</p>
+            <h2 className="font-display font-medium text-display-md text-white text-balance leading-[1.05] tracking-[-0.02em]">
+              {c.apiSurface.headline}
+            </h2>
+            <p className="mt-4 text-body-lg text-white/70 text-pretty max-w-xl">
+              {c.apiSurface.lede}
+            </p>
+          </div>
           <Grid cols={12} gap={8} mdGap={10} className="mt-12 md:mt-16">
             {c.apiSurface.categories.map((cat, i) => (
               <div
@@ -78,7 +84,7 @@ export default function DevelopersPage() {
             ))}
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       {/* Code sample — bash request followed by the JSON-shaped response.
           Both render on espresso ink so they read as developer artefacts
@@ -184,8 +190,15 @@ export default function DevelopersPage() {
       </Section>
 
       {/* Docs link — small footer-area block with the "coming soon" reference
-          + the standing alternative routes from the copy file. */}
-      <Section surface="muted" density="md">
+          + the standing alternative routes from the copy file.
+          Pale green pre-footer band, matches marketing layout's page bg. */}
+      <section
+        className="py-16 md:py-20"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+      >
         <Container size="wide">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-10">
             <div className="max-w-2xl">
@@ -221,7 +234,7 @@ export default function DevelopersPage() {
             </Stack>
           </div>
         </Container>
-      </Section>
+      </section>
     </>
   );
 }

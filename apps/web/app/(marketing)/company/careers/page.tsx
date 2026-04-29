@@ -74,14 +74,21 @@ export default function CompanyCareersPage() {
         atmosphereReactive
       />
 
-      {/* What we look for — three editorial blocks, inline JSX. */}
-      <Section surface="muted" density="lg">
+      {/* What we look for — three editorial blocks, inline JSX.
+          Dark surface so the boundary against the cream Hero reads cleanly.
+          SectionHeader replaced with inline JSX (white headlines on ink).
+          Value tiles keep their cream surface so they pop against the ink. */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
-          <SectionHeader
-            eyebrow="WHAT WE LOOK FOR"
-            headline="Three things, every hire."
-            intro="The work is technical, but the bar is editorial. We look for craft, ownership, and a sense of the institution we are building inside."
-          />
+          <div className="max-w-3xl">
+            <p className="text-overline uppercase text-accent mb-4">WHAT WE LOOK FOR</p>
+            <h2 className="font-display font-medium text-display-md text-white text-balance leading-[1.05] tracking-[-0.02em]">
+              Three things, every hire.
+            </h2>
+            <p className="mt-4 text-body-lg text-white/70 text-pretty max-w-xl">
+              The work is technical, but the bar is editorial. We look for craft, ownership, and a sense of the institution we are building inside.
+            </p>
+          </div>
           <Grid as="ul" cols={12} gap="px" className="mt-12 md:mt-16 bg-[color:var(--border-subtle)] ring-1 ring-[color:var(--border-subtle)] rounded-3xl overflow-hidden">
             {valueBlocks.map((b) => (
               <li
@@ -99,7 +106,7 @@ export default function CompanyCareersPage() {
             ))}
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       {/* Open roles — placeholder list. */}
       <Section surface="canvas" density="lg">
@@ -146,12 +153,19 @@ export default function CompanyCareersPage() {
         </Container>
       </Section>
 
-      {/* Talent pool newsletter — wraps the client component. */}
-      <Section surface="muted" density="lg">
+      {/* Talent pool newsletter — wraps the client component.
+          Pale green pre-footer band, matches marketing layout's page bg. */}
+      <section
+        className="py-20 md:py-28"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+      >
         <Container size="wide">
           <CareersNewsletter />
         </Container>
-      </Section>
+      </section>
     </>
   );
 }

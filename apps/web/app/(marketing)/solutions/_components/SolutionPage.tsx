@@ -164,22 +164,23 @@ export function SolutionPage({
         atmosphereReactive
       />
 
-      {/* Intro / overview band — short editorial preface above the capability grid. */}
-      <Section surface="canvas" density="md">
+      {/* Intro / overview band — short editorial preface above the capability grid.
+          Dark surface so the boundary against the cream Hero reads cleanly. */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
           <Grid cols={12} gap={6} lgGap={12}>
             <div className="col-span-12 lg:col-span-4">
               <p className="text-overline uppercase text-accent">{copy.intro.eyebrow}</p>
-              <h2 className="mt-4 font-display font-medium text-heading-1 md:text-display-md text-fg-primary text-balance leading-[1.1] tracking-[-0.015em]">
+              <h2 className="mt-4 font-display font-medium text-heading-1 md:text-display-md text-white text-balance leading-[1.1] tracking-[-0.015em]">
                 {copy.intro.headline}
               </h2>
             </div>
             <div className="col-span-12 lg:col-span-7 lg:col-start-6">
-              <p className="text-body-lg text-fg-secondary text-pretty">{copy.intro.body}</p>
+              <p className="text-body-lg text-white/70 text-pretty">{copy.intro.body}</p>
             </div>
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       {/* Capabilities — 2-up grid of CapabilityBlocks. */}
       <Section surface="canvas" density="lg" id="capabilities">

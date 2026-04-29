@@ -5,10 +5,9 @@
 
 import {
   Hero,
-  SectionHeader,
   InsightCard,
 } from '@systemspecs/brand-stsl';
-import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+import { Container, Grid } from '@systemspecs/foundations/layout';
 
 interface PressItem {
   title: string;
@@ -50,14 +49,20 @@ export default function CompanyPressPage() {
         atmosphereReactive
       />
 
-      {/* Coverage strip — three InsightCards in press kind. */}
-      <Section surface="muted" density="lg">
+      {/* Coverage strip — three InsightCards in press kind.
+          Dark surface so the boundary against the cream Hero reads cleanly.
+          SectionHeader replaced with inline JSX (white headlines on ink). */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
-          <SectionHeader
-            eyebrow="COVERAGE"
-            headline="Recent press."
-            intro="Selected third-party coverage of STSL, the SystemSpecs group, and the products we operate."
-          />
+          <div className="max-w-3xl">
+            <p className="text-overline uppercase text-accent mb-4">COVERAGE</p>
+            <h2 className="font-display font-medium text-display-md text-white text-balance leading-[1.05] tracking-[-0.02em]">
+              Recent press.
+            </h2>
+            <p className="mt-4 text-body-lg text-white/70 text-pretty max-w-xl">
+              Selected third-party coverage of STSL, the SystemSpecs group, and the products we operate.
+            </p>
+          </div>
           <Grid cols={12} gap={4} mdGap={5} className="mt-12 md:mt-16">
             {pressItems.map((item) => (
               <div
@@ -75,11 +80,18 @@ export default function CompanyPressPage() {
             ))}
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       {/* Media kit — single editorial block with download link. Inline JSX
-          (no new component) per rules. */}
-      <Section surface="canvas" density="lg">
+          (no new component) per rules.
+          Pale green pre-footer band, matches marketing layout's page bg. */}
+      <section
+        className="py-20 md:py-28"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+      >
         <Container size="wide">
           <Grid cols={12} gap={8} mdGap={12} className="items-center rounded-3xl bg-bg-surface ring-1 ring-[color:var(--border-subtle)] p-8 md:p-12 shadow-e1">
             <div className="col-span-12 lg:col-span-8">
@@ -104,7 +116,7 @@ export default function CompanyPressPage() {
             </div>
           </Grid>
         </Container>
-      </Section>
+      </section>
     </>
   );
 }

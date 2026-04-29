@@ -82,7 +82,7 @@ export function Nav({ primaryLinks, governmentHref, salesHref, brand }: NavProps
       )}
     >
       <Container size="wide">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex min-h-16 py-3 items-center justify-between">
           <a
             href={brand.href}
             className="flex items-center gap-2 font-display text-heading-3 text-fg-primary"

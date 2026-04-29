@@ -25,30 +25,31 @@ export default function CompanyGroupPage() {
         atmosphereReactive
       />
 
-      {/* Editorial intro about SystemSpecs Holdings. */}
-      <Section surface="muted" density="lg">
+      {/* Editorial intro about SystemSpecs Holdings.
+          Dark surface so the boundary against the cream Hero reads cleanly. */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
           <Grid cols={12} gap={8} mdGap={12} className="items-start">
             <div className="col-span-12 lg:col-span-5">
               <p className="text-overline uppercase text-accent mb-4">{c.intro.eyebrow}</p>
-              <h2 className="font-display font-medium text-display-md text-fg-primary text-balance leading-[1.05] tracking-[-0.02em]">
+              <h2 className="font-display font-medium text-display-md text-white text-balance leading-[1.05] tracking-[-0.02em]">
                 {c.holdings.name}
               </h2>
-              <p className="mt-3 text-caption font-mono uppercase tracking-[0.22em] text-fg-muted">
+              <p className="mt-3 text-caption font-mono uppercase tracking-[0.22em] text-white/50">
                 Operating since {c.holdings.founded}
               </p>
             </div>
             <div className="col-span-12 lg:col-span-7 lg:pt-3">
-              <p className="text-body-lg text-fg-secondary text-pretty max-w-2xl">
+              <p className="text-body-lg text-white/70 text-pretty max-w-2xl">
                 {c.intro.body}
               </p>
-              <p className="mt-5 text-body text-fg-secondary text-pretty max-w-2xl">
+              <p className="mt-5 text-body text-white/70 text-pretty max-w-2xl">
                 {c.holdings.description}
               </p>
             </div>
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       {/* Group tree — parent + sister companies, via shared GroupBlock. We
           pass only the non-STSL subsidiaries so the strip reads as siblings
@@ -67,8 +68,15 @@ export default function CompanyGroupPage() {
           }))}
       />
 
-      {/* Editorial subsidiary listing — each company's role in the group. */}
-      <Section surface="canvas" density="lg">
+      {/* Editorial subsidiary listing — each company's role in the group.
+          Pale green pre-footer band, matches marketing layout's page bg. */}
+      <section
+        className="py-20 md:py-28"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+      >
         <Container size="wide">
           <SectionHeader
             eyebrow="SUBSIDIARIES"
@@ -113,7 +121,7 @@ export default function CompanyGroupPage() {
             ))}
           </ul>
         </Container>
-      </Section>
+      </section>
     </>
   );
 }

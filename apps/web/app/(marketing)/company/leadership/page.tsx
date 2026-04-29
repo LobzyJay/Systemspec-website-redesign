@@ -26,17 +26,18 @@ export default function CompanyLeadershipPage() {
         atmosphereReactive
       />
 
-      {/* Overview lede — single editorial column above the grids. */}
-      <Section surface="muted" density="lg">
+      {/* Overview lede — single editorial column above the grids.
+          Dark surface so the boundary against the cream Hero reads cleanly. */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
           <div className="max-w-3xl">
             <p className="text-overline uppercase text-accent mb-4">{c.intro.eyebrow}</p>
-            <p className="font-serif italic text-[1.5rem] md:text-[1.75rem] text-fg-primary leading-snug text-balance">
+            <p className="font-serif italic text-[1.5rem] md:text-[1.75rem] text-white leading-snug text-balance">
               {c.intro.body}
             </p>
           </div>
         </Container>
-      </Section>
+      </section>
 
       {/* Board grid — full LeadershipCard. */}
       <Section surface="canvas" density="lg">
@@ -98,8 +99,15 @@ export default function CompanyLeadershipPage() {
         </Container>
       </Section>
 
-      {/* Closing — open roles link per brief. */}
-      <Section surface="muted" density="lg">
+      {/* Closing — open roles link per brief.
+          Pale green pre-footer band, matches marketing layout's page bg. */}
+      <section
+        className="py-20 md:py-28"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+      >
         <Container size="wide">
           <Grid cols={12} gap={8} mdGap={12} className="items-end">
             <div className="col-span-12 lg:col-span-8">
@@ -121,7 +129,7 @@ export default function CompanyLeadershipPage() {
             </div>
           </Grid>
         </Container>
-      </Section>
+      </section>
     </>
   );
 }

@@ -60,18 +60,20 @@ export default function FundACausePage() {
         atmosphereReactive
       />
 
-      {/* Who it's for — eyebrow + 4-up audience lineup. */}
-      <Section surface="canvas" density="md">
+      {/* Who it's for — eyebrow + 4-up audience lineup.
+          Dark surface so the boundary against the cream Hero reads cleanly.
+          Audience tiles keep their cream surface so they pop against the ink. */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
           <Grid cols={12} gap={8} mdGap={12} className="items-start">
             <div className="col-span-12 lg:col-span-5">
               <p className="text-overline uppercase text-accent mb-4">
                 {c.whoItsFor.eyebrow}
               </p>
-              <h2 className="font-display text-display-md text-fg-primary text-balance leading-[1.05] tracking-[-0.02em]">
+              <h2 className="font-display text-display-md text-white text-balance leading-[1.05] tracking-[-0.02em]">
                 {c.whoItsFor.headline}
               </h2>
-              <p className="mt-5 text-body-lg text-fg-secondary text-pretty">
+              <p className="mt-5 text-body-lg text-white/70 text-pretty">
                 {c.whoItsFor.body}
               </p>
             </div>
@@ -93,7 +95,7 @@ export default function FundACausePage() {
             </Grid>
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       {/* Features — 2-up CapabilityBlock grid. */}
       <Section surface="muted" density="lg">
@@ -258,6 +260,17 @@ export default function FundACausePage() {
           </Grid>
         </Container>
       </Section>
+
+      {/* Pre-footer pale green band — matches the marketing layout's page bg
+          so the visual rhythm carries through to the footer transition. */}
+      <section
+        className="py-16 md:py-20"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+        aria-hidden="true"
+      />
     </>
   );
 }
