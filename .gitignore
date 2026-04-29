@@ -27,7 +27,6 @@ Thumbs.db
 # standalone deliverables + build outputs
 apps/web/out/
 standalone/
-docs/
 
 # font zips + extracted folders (served via next/font, not bundled)
 Geist/
