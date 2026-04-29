@@ -100,7 +100,7 @@ export const bankingSolutionCopy = {
       { value: '99.98%', label: 'Platform uptime, rolling 12 months' },
       { value: '4 weeks', label: 'Sandbox to production' },
     ],
-    cta: { label: 'Read case study', href: '/resources/case-studies/tier-one-collections' },
+    cta: { label: 'Read case study', href: '/company/press' },
   },
 
   compliance: {

@@ -21,19 +21,19 @@ const pressItems: ReadonlyArray<PressItem> = [
     title: '{{PRESS_ITEM_1_TITLE}}',
     publication: 'TechCabal',
     date: '{{PRESS_ITEM_1_DATE}}',
-    href: '{{PRESS_ITEM_1_URL}}',
+    href: '/contact?audience=press',
   },
   {
     title: '{{PRESS_ITEM_2_TITLE}}',
     publication: 'Nairametrics',
     date: '{{PRESS_ITEM_2_DATE}}',
-    href: '{{PRESS_ITEM_2_URL}}',
+    href: '/contact?audience=press',
   },
   {
     title: '{{PRESS_ITEM_3_TITLE}}',
     publication: '{{PRESS_ITEM_3_PUBLICATION}}',
     date: '{{PRESS_ITEM_3_DATE}}',
-    href: '{{PRESS_ITEM_3_URL}}',
+    href: '/contact?audience=press',
   },
 ];
 
@@ -63,22 +63,20 @@ export default function CompanyPressPage() {
               Selected third-party coverage of STSL, the SystemSpecs group, and the products we operate.
             </p>
           </div>
-          <Grid cols={12} gap={4} mdGap={5} className="mt-12 md:mt-16">
-            {pressItems.map((item) => (
-              <div
-                key={item.href}
-                className="col-span-12 md:col-span-4 flex [&>*]:flex-1"
-              >
-                <InsightCard
-                  kind="press"
-                  title={item.title}
-                  href={item.href}
-                  date={item.date}
-                  publication={item.publication}
-                />
-              </div>
-            ))}
-          </Grid>
+          <div className="mt-12 md:mt-16 rounded-3xl border border-dashed border-white/25 bg-white/5 px-8 py-12 md:px-12 md:py-16 text-center">
+            <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-accent">Coming soon</p>
+            <p className="mt-3 font-display text-heading-2 text-white">Coverage roundup is being curated.</p>
+            <p className="mt-3 text-body text-white/70 max-w-xl mx-auto">
+              Selected third-party coverage from TechCabal, Nairametrics, and other publications will land here. For interview requests in the meantime, contact the office of the CEO.
+            </p>
+            <a
+              href="/contact?audience=press"
+              className="mt-6 inline-flex items-center gap-2 text-body font-medium text-white hover:text-accent transition-colors"
+            >
+              <span>Press enquiries</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </Container>
       </section>
 
@@ -105,13 +103,13 @@ export default function CompanyPressPage() {
             </div>
             <div className="col-span-12 lg:col-span-4 lg:text-right">
               <a
-                href="{{MEDIA_KIT_URL}}"
+                href="/contact?audience=press"
                 className="inline-flex items-center gap-3 h-13 pl-6 pr-6 rounded-pill bg-bg-inverse !text-white shadow-e1 transition-[background-color,box-shadow] duration-base ease-expressive hover:shadow-e2"
               >
-                <span className="leading-none text-body font-medium">Download media kit</span>
+                <span className="leading-none text-body font-medium">Request media kit</span>
               </a>
               <p className="mt-3 text-caption text-fg-muted">
-                ZIP · approx 18 MB · last updated {'{{MEDIA_KIT_UPDATED}}'}
+                Available on request via the press contact form.
               </p>
             </div>
           </Grid>

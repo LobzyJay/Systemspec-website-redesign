@@ -95,7 +95,7 @@ export const communitySolutionCopy = {
       { value: 'NGN 4.2B', label: 'Contributions processed in year one' },
       { value: '8 weeks', label: 'Scoping to live wallet' },
     ],
-    cta: { label: 'Read case study', href: '/resources/case-studies/unicoop-wallet' },
+    cta: { label: 'Read case study', href: '/company/press' },
   },
 
   compliance: {

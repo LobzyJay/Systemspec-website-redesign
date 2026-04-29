@@ -95,7 +95,7 @@ export const enterpriseSoftwareSolutionCopy = {
       { value: '0', label: 'Market downtime windows during cutover' },
       { value: '40%', label: 'Reduction in regulatory reporting cycle time' },
     ],
-    cta: { label: 'Read case study', href: '/resources/case-studies/nasd-replatform' },
+    cta: { label: 'Read case study', href: '/company/press' },
   },
 
   compliance: {

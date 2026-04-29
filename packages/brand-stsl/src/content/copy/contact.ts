@@ -20,6 +20,24 @@ export const contactCopy = {
 
   routes: [
     {
+      slug: 'sales',
+      audience: 'New customer enquiry',
+      title: 'Talk to sales',
+      description:
+        'General sales enquiries. Tell us what you are looking at and we will route you to the right team.',
+      ctaLabel: 'Talk to sales',
+      successMessage:
+        'Your enquiry is with sales. Expect a reply inside one business day from a named lead.',
+      fields: [
+        { key: 'name', label: 'Full name', type: 'text', required: true },
+        { key: 'workEmail', label: 'Work email', type: 'email', required: true },
+        { key: 'company', label: 'Company', type: 'text', required: true },
+        { key: 'role', label: 'Role', type: 'text', required: true },
+        { key: 'interest', label: 'What you are interested in', type: 'select', required: true, options: ['Banking', 'Fintech / API', 'Government', 'Enterprise software', 'Community / cooperative', 'Not sure yet'] },
+        { key: 'message', label: 'Anything else we should know', type: 'textarea', required: false },
+      ],
+    },
+    {
       slug: 'banking',
       audience: 'Bank product / digital lead',
       title: 'Talk to banking sales',

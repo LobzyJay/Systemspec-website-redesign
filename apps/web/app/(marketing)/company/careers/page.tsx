@@ -46,19 +46,19 @@ const openRoles: ReadonlyArray<OpenRole> = [
     title: '{{ROLE_1_TITLE}}',
     team: '{{ROLE_1_TEAM}}',
     location: 'Lagos, Nigeria',
-    href: '{{ROLE_1_URL}}',
+    href: '/contact?audience=careers',
   },
   {
     title: '{{ROLE_2_TITLE}}',
     team: '{{ROLE_2_TEAM}}',
     location: 'Lagos, Nigeria',
-    href: '{{ROLE_2_URL}}',
+    href: '/contact?audience=careers',
   },
   {
     title: '{{ROLE_3_TITLE}}',
     team: '{{ROLE_3_TEAM}}',
     location: 'Remote · Nigeria',
-    href: '{{ROLE_3_URL}}',
+    href: '/contact?audience=careers',
   },
 ];
 
@@ -118,38 +118,20 @@ export default function CompanyCareersPage() {
               intro="A short list, kept honest. If nothing fits today, leave your details below and we will reach out when a role opens."
             />
           </div>
-          <ul className="mt-12 md:mt-16 divide-y divide-[color:var(--border-subtle)] border-y border-[color:var(--border-subtle)]">
-            {openRoles.map((role) => (
-              <Grid
-                as="li"
-                key={role.href}
-                cols={12}
-                gap={4}
-                mdGap={8}
-                className="py-6 md:py-8 items-center"
-              >
-                <div className="col-span-12 md:col-span-6">
-                  <h3 className="font-display font-medium text-heading-2 text-fg-primary leading-tight tracking-[-0.005em]">
-                    {role.title}
-                  </h3>
-                  <p className="mt-1 text-[10px] font-mono uppercase tracking-[0.22em] text-fg-muted">
-                    {role.team}
-                  </p>
-                </div>
-                <div className="col-span-12 md:col-span-3">
-                  <p className="text-body text-fg-secondary">{role.location}</p>
-                </div>
-                <div className="col-span-12 md:col-span-3 md:text-right">
-                  <a
-                    href={role.href}
-                    className="inline-flex items-center gap-2 h-11 px-5 rounded-pill bg-bg-surface text-fg-primary ring-1 ring-[color:var(--border-default)] transition-[background-color,border-color,color] duration-base ease-expressive hover:ring-accent hover:text-accent"
-                  >
-                    <span className="leading-none text-body-sm font-medium">Apply</span>
-                  </a>
-                </div>
-              </Grid>
-            ))}
-          </ul>
+          <div className="mt-12 md:mt-16 rounded-3xl border border-dashed border-[color:var(--border-subtle)] bg-bg-surface px-8 py-12 md:px-12 md:py-16 text-center">
+            <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-accent">No open roles right now</p>
+            <p className="mt-3 font-display text-heading-2 text-fg-primary">The team isn’t actively hiring.</p>
+            <p className="mt-3 text-body text-fg-secondary max-w-xl mx-auto">
+              We hire in small bursts when the work calls for it — engineering, product, banking, and government delivery. Leave your details below and we’ll reach out when something opens that fits.
+            </p>
+            <a
+              href="/contact?audience=careers"
+              className="mt-6 inline-flex items-center gap-2 text-body font-medium text-fg-primary hover:text-accent transition-colors"
+            >
+              <span>Send us your CV</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </Container>
       </Section>
 

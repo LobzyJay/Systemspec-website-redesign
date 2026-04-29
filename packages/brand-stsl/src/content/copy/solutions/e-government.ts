@@ -100,7 +100,7 @@ export const eGovernmentSolutionCopy = {
       { value: '99.95%', label: 'Service availability during budget cycles' },
       { value: '5 days', label: 'Average warrant turnaround, down from 21' },
     ],
-    cta: { label: 'Read the work', href: '/resources/case-studies/federal-e-budgeting' },
+    cta: { label: 'Read the work', href: '/company/press' },
   },
 
   compliance: {

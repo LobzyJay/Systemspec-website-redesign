@@ -292,7 +292,7 @@ export const teamsCopy = {
     headline: 'Talk to the team.',
     body: 'Press, analyst, and investor enquiries route to the office of the CEO.',
     primaryCta: { label: 'Press resources', href: '/contact?audience=press' },
-    secondaryCta: { label: 'About STSL', href: '/company/about' },
+    secondaryCta: { label: 'About STSL', href: '/company' },
   },
 } as const
 

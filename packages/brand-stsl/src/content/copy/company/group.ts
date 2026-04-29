@@ -15,7 +15,7 @@ export const groupCopy = {
     subheadline:
       'Four companies under one 30-year holding. STSL is the technology arm.',
     primaryCta: { label: 'Visit SystemSpecs Holdings', href: 'https://systemspecsholdings.com', external: true },
-    secondaryCta: { label: 'About STSL', href: '/company/about' },
+    secondaryCta: { label: 'About STSL', href: '/company' },
   },
 
   intro: {
@@ -69,7 +69,7 @@ export const groupCopy = {
   closingCta: {
     eyebrow: 'NEXT STEP',
     headline: 'Read the work.',
-    primaryCta: { label: 'About STSL', href: '/company/about' },
+    primaryCta: { label: 'About STSL', href: '/company' },
     secondaryCta: { label: 'Press resources', href: '/contact?audience=press' },
   },
 } as const

@@ -196,7 +196,7 @@ export const homepageCopy = {
         kind: 'article',
         title: 'Why virtual accounts beat direct integrations for new fintechs',
         excerpt: 'A short technical note on the trade-offs between bank-direct and aggregator-routed account provisioning.',
-        href: '/resources/blog/virtual-accounts-vs-direct',
+        href: '/company/press',
         date: 'April 2026',
       },
       {
@@ -210,10 +210,10 @@ export const homepageCopy = {
         kind: 'case-study',
         title: 'How a tier-2 bank cut payment reconciliation time by 70%',
         excerpt: 'A walkthrough of a six-week integration that replaced four manual reconciliation workflows with one API.',
-        href: '/resources/case-studies/tier2-bank-reconciliation',
+        href: '/company/press',
       },
     ],
-    cta: { label: 'All insights', href: '/resources' },
+    cta: { label: 'All insights', href: '/company/press' },
   },
 
   closingCta: {

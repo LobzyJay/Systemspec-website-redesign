@@ -111,7 +111,7 @@ export const aboutCopy = {
       {
         title: 'Children’s Day Essay Competition',
         body: 'An annual essay competition for Nigerian secondary school students, run continuously since 2008.',
-        href: '/community/essay-competition',
+        href: '/contact?audience=community',
       },
       {
         title: 'Internship and graduate programme',
