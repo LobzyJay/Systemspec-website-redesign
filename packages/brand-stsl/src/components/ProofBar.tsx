@@ -182,7 +182,7 @@ export function ProofBar({ intro, metrics, logos }: ProofBarProps) {
   return (
     <Section surface="muted" density="md">
       <Container size="wide">
-        <p className="text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-fg-muted text-center">
+        <p className="font-sans text-body-sm text-fg-secondary text-center max-w-3xl mx-auto">
           {intro}
         </p>
 
@@ -222,7 +222,7 @@ export function ProofBar({ intro, metrics, logos }: ProofBarProps) {
 
         {logos && logos.length > 0 ? (
           <div className="mt-14 pt-10 border-t border-[color:var(--border-subtle)]">
-            <p className="text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-fg-muted text-center mb-8">
+            <p className="font-sans text-body-sm text-fg-secondary text-center mb-8">
               Trusted by tier-1 institutions and federal MDAs
             </p>
 

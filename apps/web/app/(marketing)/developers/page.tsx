@@ -74,12 +74,30 @@ export default function DevelopersPage() {
                 style={{ '--stagger': Math.min(i, 5) } as React.CSSProperties}
                 className="col-span-12 md:col-span-6 lg:col-span-4"
               >
-                <CapabilityBlock
-                  icon={categoryIcons[i] ?? <Network size={22} />}
-                  title={cat.title}
-                  description={cat.body}
-                  bullets={[...cat.endpoints]}
-                />
+                {/* Inline card on dark surface — CapabilityBlock is light-mode
+                    tuned so we hand-roll on dark to keep text contrast. */}
+                <div className="flex flex-col h-full">
+                  <div className="inline-flex items-center justify-center h-10 w-10 text-accent">
+                    {categoryIcons[i] ?? <Network size={22} />}
+                  </div>
+                  <p className="mt-4 font-display font-medium text-heading-1 text-white tracking-[-0.01em]">
+                    {cat.title}
+                  </p>
+                  <p className="mt-3 text-body text-white/70 text-pretty">
+                    {cat.body}
+                  </p>
+                  <ul className="mt-5 space-y-2 border-t border-white/15 pt-4">
+                    {cat.endpoints.map((ep) => (
+                      <li
+                        key={ep}
+                        className="text-body-sm font-mono text-white/80 flex items-start gap-2"
+                      >
+                        <span aria-hidden="true" className="text-accent mt-0.5">→</span>
+                        <span>{ep}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </Grid>

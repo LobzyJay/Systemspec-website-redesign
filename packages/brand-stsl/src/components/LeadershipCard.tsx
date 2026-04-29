@@ -41,7 +41,7 @@ export function LeadershipCard({
           <img
             src={photo}
             alt={name}
-            className="absolute inset-0 w-full h-full object-cover object-[50%_20%] transition-transform duration-cinematic ease-expressive"
+            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-cinematic ease-expressive motion-safe:group-hover:scale-[1.04]"
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center">
