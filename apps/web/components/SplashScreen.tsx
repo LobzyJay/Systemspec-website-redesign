@@ -42,8 +42,11 @@ import { useEffect, useState } from 'react';
 // up at the start of the dismiss to soften the mask edge mid-motion.
 const MIN_HOLD_DESKTOP_MS = 4000;
 const MIN_HOLD_MOBILE_MS  = 2000;
-const REVEAL_MS           = 1200;
-const REVEAL_EASE         = 'cubic-bezier(0.7, 0, 0.2, 1)';
+// Reveal: slightly longer duration + expo-out easing so the circle
+// accelerates hard at the start then floats gently to zero — feels
+// like the mask is being inhaled rather than mechanically shrunk.
+const REVEAL_MS           = 1400;
+const REVEAL_EASE         = 'cubic-bezier(0.16, 1, 0.3, 1)';
 
 export function SplashScreen() {
   // Three states:
@@ -143,15 +146,17 @@ export function SplashScreen() {
         WebkitClipPath: dismissing
           ? 'circle(0% at 50% 50%)'
           : 'circle(150% at 50% 50%)',
+        // Subtle scale: overlay slightly zooms in as the circle collapses —
+        // the page "pulls through" the shrinking portal, giving the reveal
+        // a sense of depth rather than a flat 2D wipe.
+        transform: dismissing ? 'scale(1.04)' : 'scale(1)',
         pointerEvents: dismissing ? 'none' : 'auto',
-        // Motion-blur ramps up at the start of the dismiss and fades
-        // back to zero by the end. Softens the mask edge mid-collapse
-        // so the reveal feels like a fluid wash rather than a hard
-        // circular wipe. Triggered via the `splash-blurring` class
-        // since CSS keyframe animations sit cleaner than a multi-stop
-        // transition on filter.
-        transition: `clip-path ${REVEAL_MS}ms ${REVEAL_EASE}, -webkit-clip-path ${REVEAL_MS}ms ${REVEAL_EASE}`,
-        willChange: 'clip-path, filter',
+        transition: [
+          `clip-path ${REVEAL_MS}ms ${REVEAL_EASE}`,
+          `-webkit-clip-path ${REVEAL_MS}ms ${REVEAL_EASE}`,
+          `transform ${REVEAL_MS}ms ${REVEAL_EASE}`,
+        ].join(', '),
+        willChange: 'clip-path, filter, transform',
       }}
       className={dismissing ? 'splash-blurring' : ''}
     >
@@ -209,10 +214,14 @@ export function SplashScreen() {
           animation: stsl-splash-blur ${REVEAL_MS}ms ${REVEAL_EASE} both;
         }
         @keyframes stsl-splash-blur {
-          0%   { filter: blur(0); }
-          35%  { filter: blur(14px); }
-          80%  { filter: blur(8px); }
-          100% { filter: blur(0); }
+          /* Ramps fast to peak blur (portal edge softens), dwells through
+             the midpoint, then clears just before the circle closes so the
+             final snap is crisp rather than soft. */
+          0%   { filter: blur(0px); }
+          20%  { filter: blur(28px); }
+          70%  { filter: blur(22px); }
+          95%  { filter: blur(4px); }
+          100% { filter: blur(0px); }
         }
         @media (prefers-reduced-motion: reduce) {
           .splash-dots > span {
