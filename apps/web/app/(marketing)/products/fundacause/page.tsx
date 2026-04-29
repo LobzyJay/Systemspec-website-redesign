@@ -231,19 +231,26 @@ export default function FundACausePage() {
         </Container>
       </Section>
 
-      {/* Final CTA — primary button only per §6.3. "Visit live product" maps
-          to the primary "Start a campaign" CTA in copy (external link). */}
-      <Section surface="inverse" density="lg">
+      {/* Pre-footer "Next step" band — pale green wash matches the
+          marketing layout's page bg so it lands directly against the
+          floating footer squircle without an empty buffer. */}
+      <section
+        className="py-20 md:py-28"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+      >
         <Container size="wide">
           <Grid cols={12} gap={8} mdGap={12} className="items-end">
             <div className="col-span-12 lg:col-span-8">
               <p className="text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-accent mb-4">
                 {c.closingCta.eyebrow}
               </p>
-              <h2 className="font-display font-medium text-display-md md:text-display-lg text-fg-on-inverse text-balance leading-[1.05] tracking-[-0.02em]">
+              <h2 className="font-display font-medium text-display-md md:text-display-lg text-fg-primary text-balance leading-[1.05] tracking-[-0.02em]">
                 {c.closingCta.headline}
               </h2>
-              <p className="mt-5 text-body-lg text-white/70 text-pretty max-w-2xl">
+              <p className="mt-5 text-body-lg text-fg-secondary text-pretty max-w-2xl">
                 {c.closingCta.body}
               </p>
             </div>
@@ -259,18 +266,7 @@ export default function FundACausePage() {
             </div>
           </Grid>
         </Container>
-      </Section>
-
-      {/* Pre-footer pale green band — matches the marketing layout's page bg
-          so the visual rhythm carries through to the footer transition. */}
-      <section
-        className="py-16 md:py-20"
-        style={{
-          background:
-            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
-        }}
-        aria-hidden="true"
-      />
+      </section>
     </>
   );
 }

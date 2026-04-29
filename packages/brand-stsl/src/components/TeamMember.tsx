@@ -31,7 +31,7 @@ export function TeamMember({ name, role, photo, linkedin, department }: TeamMemb
           <img
             src={photo}
             alt={name}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-cinematic ease-expressive"
+            className="absolute inset-0 w-full h-full object-cover object-[50%_18%] transition-transform duration-cinematic ease-expressive"
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center">
@@ -52,7 +52,7 @@ export function TeamMember({ name, role, photo, linkedin, department }: TeamMemb
           </a>
         ) : null}
         {department ? (
-          <span className="absolute top-2 left-2 inline-flex items-center h-5 px-2 rounded-pill bg-bg-canvas/85 backdrop-blur-md text-[9px] uppercase tracking-[0.16em] font-mono font-medium text-fg-secondary">
+          <span className="absolute top-2 left-2 inline-flex items-center h-6 px-2.5 rounded-pill bg-accent text-white text-[10px] uppercase tracking-[0.18em] font-mono font-semibold shadow-e1">
             {department}
           </span>
         ) : null}

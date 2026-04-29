@@ -159,38 +159,35 @@ export default function DevelopersPage() {
         </Container>
       </Section>
 
-      {/* Integration partners — short editorial roll. Names + use cases are
-          placeholders pending STSL comms approval (brief §11). Pre-footer
-          sections use the pale green wash so the page rhythm hands off to
-          the floating footer squircle smoothly. */}
-      <section
-        className="py-20 md:py-28"
-        style={{
-          background:
-            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
-        }}
-      >
+      {/* Integration partners — flipped to dark theme so it visually
+          breaks from the green References section directly below. Page
+          rhythm now reads: black API surface → muted code sample →
+          dark partners → green references → footer. */}
+      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
         <Container size="wide">
-          <SectionHeader
-            eyebrow={c.partners.eyebrow}
-            headline={c.partners.headline}
-            intro={c.partners.body}
-          />
-          {/* Asymmetric gap-x / gap-y — pass `gap={0}` so the primitive emits
-              no shorthand and our axis-specific overrides take effect cleanly. */}
-          <Grid as="ul" cols={12} gap={0} className="mt-10 md:mt-14 gap-x-10 gap-y-8 border-t border-[color:var(--border-subtle)] pt-10">
+          {/* Inline header — SectionHeader is light-mode tuned, so we
+              hand-roll on dark so the eyebrow/headline/intro all read
+              against the black surface. */}
+          <div className="max-w-3xl">
+            <p className="text-overline uppercase text-accent mb-4">{c.partners.eyebrow}</p>
+            <h2 className="font-display font-medium text-display-md text-white text-balance leading-[1.05] tracking-[-0.02em]">
+              {c.partners.headline}
+            </h2>
+            <p className="mt-5 text-body-lg text-white/70 text-pretty">{c.partners.body}</p>
+          </div>
+          <Grid as="ul" cols={12} gap={0} className="mt-10 md:mt-14 gap-x-10 gap-y-8 border-t border-white/15 pt-10">
             {c.partners.partners.map((p) => (
               <li
                 key={p.name}
-                className="col-span-12 md:col-span-6 flex flex-col gap-2 border-b border-[color:var(--border-subtle)] pb-8"
+                className="col-span-12 md:col-span-6 flex flex-col gap-2 border-b border-white/15 pb-8"
               >
                 <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-accent">
                   Partner
                 </span>
-                <p className="font-display font-medium text-heading-1 text-fg-primary tracking-[-0.01em]">
+                <p className="font-display font-medium text-heading-1 text-white tracking-[-0.01em]">
                   {p.name}
                 </p>
-                <p className="text-body text-fg-secondary text-pretty">{p.useCase}</p>
+                <p className="text-body text-white/70 text-pretty">{p.useCase}</p>
               </li>
             ))}
           </Grid>
