@@ -1,4 +1,5 @@
 import { LinkedIn } from '../icons';
+import { asset } from '../utils/asset';
 
 interface LeadershipCardProps {
   name: string;
@@ -39,7 +40,7 @@ export function LeadershipCard({
         {photo ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={photo}
+            src={asset(photo)}
             alt={name}
             // 4:5 frame matches the portrait aspect so object-cover
             // fills the frame cleanly. object-top keeps the head in

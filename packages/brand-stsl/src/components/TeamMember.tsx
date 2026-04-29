@@ -4,6 +4,7 @@
 // grid sits cleanly on desktop and a 2-up on mobile.
 
 import { LinkedIn } from '../icons';
+import { asset } from '../utils/asset';
 
 interface TeamMemberProps {
   name: string;
@@ -29,7 +30,7 @@ export function TeamMember({ name, role, photo, linkedin, department }: TeamMemb
         {photo ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={photo}
+            src={asset(photo)}
             alt={name}
             // Frame matches portrait aspect (4:5) so object-cover fills
             // cleanly without cropping the head — no per-photo scale
