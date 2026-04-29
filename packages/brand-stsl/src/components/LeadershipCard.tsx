@@ -41,7 +41,13 @@ export function LeadershipCard({
           <img
             src={photo}
             alt={name}
-            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-cinematic ease-expressive motion-safe:group-hover:scale-[1.04]"
+            // 4:5 frame matches the portrait aspect so object-cover
+            // fills the frame cleanly. object-top keeps the head in
+            // view if any portrait is taller than 4:5.
+            className="absolute inset-0 w-full h-full object-cover object-top transition-[transform,filter] duration-cinematic ease-expressive
+                       motion-safe:group-hover/lead:scale-[1.04]
+                       grayscale-[0.18] motion-safe:group-hover/lead:grayscale-0
+                       motion-safe:group-hover/lead:saturate-[1.1]"
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center">
@@ -50,12 +56,27 @@ export function LeadershipCard({
             </span>
           </div>
         )}
+
+        {/* Soft ink-wash overlay — fades in from bottom on hover so the
+            portrait gains depth without obscuring the face. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none
+                     opacity-0 group-hover/lead:opacity-100
+                     transition-opacity duration-base ease-expressive"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(11,12,15,0.4) 0%, rgba(11,12,15,0) 100%)',
+          }}
+        />
       </div>
 
-      {/* Hairline rail — teal on hover. */}
+      {/* Hairline rail. Off-white tint so it reads against both the
+          portrait above and the cream page floor below without shouting.
+          Teal on hover for a subtle accent pulse. */}
       <span
         aria-hidden="true"
-        className="block h-px w-full bg-[color:var(--border-subtle)] group-hover/lead:bg-accent transition-colors duration-base ease-expressive"
+        className="block h-[5px] w-full bg-[#E8E2D5] group-hover/lead:bg-accent transition-colors duration-base ease-expressive"
       />
 
       {/* Name plate. Role row: mono caps eyebrow + LinkedIn icon pinned right. */}

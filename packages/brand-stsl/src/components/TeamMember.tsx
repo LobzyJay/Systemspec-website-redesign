@@ -25,19 +25,40 @@ export function TeamMember({ name, role, photo, linkedin, department }: TeamMemb
 
   return (
     <article className="group/team flex flex-col text-left">
-      <div className="relative aspect-square rounded-2xl overflow-hidden bg-bg-surface-muted ring-1 ring-[color:var(--border-subtle)]">
+      <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-bg-surface-muted ring-1 ring-[color:var(--border-subtle)]">
         {photo ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={photo}
             alt={name}
-            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-cinematic ease-expressive motion-safe:group-hover:scale-[1.04]"
+            // Frame matches portrait aspect (4:5) so object-cover fills
+            // cleanly without cropping the head — no per-photo scale
+            // overrides needed.
+            className="absolute inset-0 w-full h-full object-cover object-top transition-[transform,filter] duration-cinematic ease-expressive
+                       motion-safe:group-hover/team:scale-[1.04]
+                       grayscale-[0.15] motion-safe:group-hover/team:grayscale-0
+                       motion-safe:group-hover/team:saturate-[1.1]"
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center">
             <span className="font-display text-heading-1 text-fg-muted/40 select-none">{initials || '—'}</span>
           </div>
         )}
+
+        {/* Soft ink-wash overlay — fades in from bottom on hover so the
+            name + LinkedIn pin sit on a legible band instead of floating
+            on the photo. Pure CSS, no JS. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none
+                     opacity-0 group-hover/team:opacity-100
+                     transition-opacity duration-base ease-expressive"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(11,12,15,0.55) 0%, rgba(11,12,15,0) 100%)',
+          }}
+        />
+
         {linkedin ? (
           <a
             href={linkedin}
@@ -51,8 +72,12 @@ export function TeamMember({ name, role, photo, linkedin, department }: TeamMemb
             <LinkedIn size={12} />
           </a>
         ) : null}
+
+        {/* Department label — subtle editorial chip. Mono caps, accent
+            color on tinted accent-subtle bg. Reads as a quiet category
+            tag rather than a loud product badge. */}
         {department ? (
-          <span className="absolute top-2 left-2 inline-flex items-center h-6 px-2.5 rounded-pill bg-accent text-white text-[10px] uppercase tracking-[0.18em] font-mono font-semibold shadow-e1">
+          <span className="absolute top-2.5 left-2.5 inline-flex items-center h-5 px-2 rounded-pill bg-accent-subtle text-accent text-[9px] uppercase tracking-[0.18em] font-mono font-medium ring-1 ring-[color:var(--accent-default)]/20">
             {department}
           </span>
         ) : null}

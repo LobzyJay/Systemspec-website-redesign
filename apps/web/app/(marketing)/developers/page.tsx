@@ -76,8 +76,12 @@ export default function DevelopersPage() {
               >
                 {/* Inline card on dark surface — CapabilityBlock is light-mode
                     tuned so we hand-roll on dark to keep text contrast. */}
+                {/* h-full + flex-col with the body wrapping mt-auto on the
+                    endpoints list pins the hairline divider to the same
+                    horizontal line across all three cards regardless of
+                    body-text length variance — clean editorial baseline. */}
                 <div className="flex flex-col h-full">
-                  <div className="inline-flex items-center justify-center h-10 w-10 text-accent">
+                  <div className="inline-flex items-center justify-start h-10 w-10 text-accent shrink-0">
                     {categoryIcons[i] ?? <Network size={22} />}
                   </div>
                   <p className="mt-4 font-display font-medium text-heading-1 text-white tracking-[-0.01em]">
@@ -86,14 +90,14 @@ export default function DevelopersPage() {
                   <p className="mt-3 text-body text-white/70 text-pretty">
                     {cat.body}
                   </p>
-                  <ul className="mt-5 space-y-2 border-t border-white/15 pt-4">
+                  <ul className="mt-auto pt-6 space-y-2.5 border-t border-white/15 mt-6">
                     {cat.endpoints.map((ep) => (
                       <li
                         key={ep}
-                        className="text-body-sm font-mono text-white/80 flex items-start gap-2"
+                        className="text-body-sm font-mono text-white/85 flex items-baseline gap-2.5 leading-relaxed"
                       >
-                        <span aria-hidden="true" className="text-accent mt-0.5">→</span>
-                        <span>{ep}</span>
+                        <span aria-hidden="true" className="text-accent shrink-0 leading-none">→</span>
+                        <span className="min-w-0 break-all">{ep}</span>
                       </li>
                     ))}
                   </ul>

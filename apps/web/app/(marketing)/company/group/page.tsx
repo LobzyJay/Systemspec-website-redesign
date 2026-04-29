@@ -7,6 +7,7 @@ import {
   Hero,
   GroupBlock,
   SectionHeader,
+  ArrowUpRight,
   groupCopy,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
@@ -85,39 +86,43 @@ export default function CompanyGroupPage() {
           />
           <ul className="mt-12 md:mt-16 divide-y divide-[color:var(--border-subtle)] border-y border-[color:var(--border-subtle)]">
             {c.subsidiaries.map((s) => (
-              <Grid
-                as="li"
-                key={s.name}
-                cols={12}
-                gap={4}
-                mdGap={8}
-                className="py-7 md:py-9 items-baseline"
-              >
-                <div className="col-span-12 md:col-span-3">
-                  <h3 className="font-display font-medium text-heading-1 text-fg-primary leading-tight tracking-[-0.005em]">
-                    {s.name}
-                  </h3>
-                </div>
-                <div className="col-span-12 md:col-span-3">
-                  <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-accent">
-                    {s.role}
-                  </p>
-                </div>
-                <div className="col-span-12 md:col-span-6">
-                  <p className="text-body text-fg-secondary text-pretty">
-                    {s.description}
-                  </p>
-                  <a
-                    href={s.href}
-                    {...(s.external
-                      ? { rel: 'noopener', target: '_blank' }
-                      : {})}
-                    className="mt-3 inline-flex items-center gap-2 text-body-sm font-medium text-fg-primary hover:text-accent transition-colors duration-base ease-expressive"
-                  >
-                    Visit {s.name}
-                  </a>
-                </div>
-              </Grid>
+              <li key={s.name}>
+                <a
+                  href={s.href}
+                  {...(s.external ? { rel: 'noopener', target: '_blank' } : {})}
+                  className="group/sub block py-7 md:py-9 -mx-4 md:-mx-6 px-4 md:px-6 rounded-2xl
+                             transition-[background-color,transform] duration-base ease-expressive
+                             hover:bg-white/40 motion-safe:hover:translate-x-1"
+                >
+                  <Grid cols={12} gap={4} mdGap={8} className="items-baseline">
+                    <div className="col-span-12 md:col-span-3">
+                      <h3 className="font-display font-medium text-heading-1 text-fg-primary leading-tight tracking-[-0.005em]
+                                     group-hover/sub:text-accent transition-colors duration-base ease-expressive">
+                        {s.name}
+                      </h3>
+                    </div>
+                    <div className="col-span-12 md:col-span-3">
+                      <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-accent">
+                        {s.role}
+                      </p>
+                    </div>
+                    <div className="col-span-12 md:col-span-6 flex items-baseline justify-between gap-4">
+                      <p className="text-body text-fg-secondary text-pretty flex-1">
+                        {s.description}
+                      </p>
+                      <span
+                        aria-hidden="true"
+                        className="shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-pill bg-bg-surface ring-1 ring-[color:var(--border-subtle)] text-fg-muted
+                                   transition-[transform,background-color,color] duration-base ease-expressive
+                                   group-hover/sub:bg-accent group-hover/sub:text-white group-hover/sub:ring-accent
+                                   motion-safe:group-hover/sub:translate-x-0.5 motion-safe:group-hover/sub:-translate-y-px motion-safe:group-hover/sub:scale-[1.06]"
+                      >
+                        <ArrowUpRight size={14} />
+                      </span>
+                    </div>
+                  </Grid>
+                </a>
+              </li>
             ))}
           </ul>
         </Container>

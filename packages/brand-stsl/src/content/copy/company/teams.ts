@@ -208,7 +208,7 @@ export const teamsCopy = {
   operating: {
     eyebrow: 'OPERATING TEAM',
     headline: 'Heads of practice.',
-    note: 'STSL division heads driving product, technology, business, and public-sector engagement day to day. Source: stsl.com.ng.',
+    note: 'STSL division heads driving product, technology, business, and public-sector engagement day to day.',
     members: [
       {
         slug: 'leke-ogunbanwo',
