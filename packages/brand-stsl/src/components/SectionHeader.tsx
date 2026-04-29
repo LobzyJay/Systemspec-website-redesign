@@ -1,4 +1,4 @@
-import { Container } from '@systemspecs/foundations/layout';
+import { Container, Grid } from '@systemspecs/foundations/layout';
 import { Link } from '@systemspecs/foundations/primitives';
 import { ArrowRight } from '../icons';
 
@@ -12,8 +12,8 @@ interface SectionHeaderProps {
 export function SectionHeader({ eyebrow, headline, intro, link }: SectionHeaderProps) {
   return (
     <Container size="wide">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:items-end mb-12">
-        <div className="lg:col-span-8">
+      <Grid cols={12} gap={6} className="lg:items-end mb-12" data-reveal>
+        <div className="col-span-12 lg:col-span-8">
           {eyebrow ? (
             <p className="text-overline uppercase text-accent mb-4">{eyebrow}</p>
           ) : null}
@@ -25,7 +25,7 @@ export function SectionHeader({ eyebrow, headline, intro, link }: SectionHeaderP
           ) : null}
         </div>
         {link ? (
-          <div className="lg:col-span-4 lg:text-right">
+          <div className="col-span-12 lg:col-span-4 lg:text-right">
             <Link
               href={link.href}
               variant="standalone"
@@ -35,7 +35,7 @@ export function SectionHeader({ eyebrow, headline, intro, link }: SectionHeaderP
             </Link>
           </div>
         ) : null}
-      </div>
+      </Grid>
     </Container>
   );
 }

@@ -184,10 +184,33 @@ module.exports = {
           '0%':   { opacity: 0, transform: 'translate3d(0, 16px, 0)', filter: 'blur(6px)' },
           '100%': { opacity: 1, transform: 'translate3d(0, 0, 0)',    filter: 'blur(0)' },
         },
+        // Dialog motion — matches `.kit-sheet` in the prototype kit.
+        // Backdrop fades; content scales 0.96 → 1.0 with opacity, both on the
+        // `expressive` curve (cubic-bezier(0.32, 0.72, 0, 1)).
+        'stsl-dialog-overlay-in':  { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+        'stsl-dialog-overlay-out': { '0%': { opacity: 1 }, '100%': { opacity: 0 } },
+        'stsl-dialog-content-in': {
+          '0%':   { opacity: 0, transform: 'translate(-50%, -50%) scale(0.96) translateY(8px)' },
+          '100%': { opacity: 1, transform: 'translate(-50%, -50%) scale(1)    translateY(0)' },
+        },
+        'stsl-dialog-content-out': {
+          '0%':   { opacity: 1, transform: 'translate(-50%, -50%) scale(1)    translateY(0)' },
+          '100%': { opacity: 0, transform: 'translate(-50%, -50%) scale(0.96) translateY(8px)' },
+        },
       },
       animation: {
         shimmer: 'shimmer 1.5s infinite',
         'fade-up': 'fade-up 700ms cubic-bezier(0.16, 1, 0.3, 1) both',
+        // Dialog — 220ms expressive in, slightly faster exit. `motion-reduce`
+        // variants drop to a 100ms linear crossfade per the brief.
+        'stsl-dialog-overlay-in':          'stsl-dialog-overlay-in 220ms cubic-bezier(0.32, 0.72, 0, 1) both',
+        'stsl-dialog-overlay-out':         'stsl-dialog-overlay-out 180ms cubic-bezier(0.4, 0.0, 1, 1) both',
+        'stsl-dialog-content-in':          'stsl-dialog-content-in 220ms cubic-bezier(0.32, 0.72, 0, 1) both',
+        'stsl-dialog-content-out':         'stsl-dialog-content-out 180ms cubic-bezier(0.4, 0.0, 1, 1) both',
+        'stsl-dialog-overlay-in-reduced':  'stsl-dialog-overlay-in 100ms linear both',
+        'stsl-dialog-overlay-out-reduced': 'stsl-dialog-overlay-out 100ms linear both',
+        'stsl-dialog-content-in-reduced':  'stsl-dialog-overlay-in 100ms linear both',
+        'stsl-dialog-content-out-reduced': 'stsl-dialog-overlay-out 100ms linear both',
       },
     },
   },

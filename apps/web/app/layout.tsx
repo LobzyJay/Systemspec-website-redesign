@@ -38,11 +38,17 @@ const mono = JetBrains_Mono({
   display: 'swap',
 });
 
-const SITE_URL = 'https://design.stsl.ng';
-const SITE_NAME = 'SystemSpecs Design System';
+// Root layout metadata = the STSL marketing site (root `/` is the homepage,
+// every (marketing)/* route inherits this). The /design route overrides
+// with its own metadata via apps/web/app/design/layout.tsx.
+const SITE_URL = 'https://stsl.ng';
+const SITE_NAME = 'SystemSpecs Technology Solutions';
 const DESCRIPTION =
-  'The design system behind SystemSpecs Technology Solutions — tokens, brand identity, primitives, and composed components. Built as a three-layer monorepo so it can re-skin across SystemSpecs Holdings subsidiaries with token swaps alone.';
-const TITLE = 'SystemSpecs Design System';
+  'The infrastructure behind Africa’s payment, government, and financial technology systems. A SystemSpecs Holdings company, building for Nigerian banks, federal MDAs, and fintech operators since 1992.';
+const TITLE = {
+  default: 'SystemSpecs Technology Solutions',
+  template: '%s · SystemSpecs Technology Solutions',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -59,7 +65,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: SITE_NAME,
-    title: TITLE,
+    title: TITLE.default,
     description: DESCRIPTION,
     url: SITE_URL,
     locale: 'en_NG',
@@ -74,7 +80,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: TITLE,
+    title: TITLE.default,
     description: DESCRIPTION,
     images: ['/og-image.png'],
   },
@@ -139,6 +145,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${display.variable} ${body.variable} ${editorial.variable} ${mono.variable}`}
     >
+      {/* Pre-paint splash gate — runs synchronously in <head> BEFORE
+          the body paints:
+            1. Set data-splash="active" so the body bg is forced white
+               until the splash dismisses (no flash of cream-canvas).
+            2. Disable browser scroll restoration so a refresh on a
+               scrolled page doesn't restore the previous offset.
+            3. Reset scroll to top so the splash always plays over the
+               top of the page — when it dismisses, the user sees the
+               hero, not a mid-page reveal. */}
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){document.documentElement.setAttribute('data-splash','active');try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}window.scrollTo(0,0);})();`,
+          }}
+        />
+      </head>
       <body>
         <Script
           id="ld-json-organization"

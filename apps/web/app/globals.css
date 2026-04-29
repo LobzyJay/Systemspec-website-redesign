@@ -36,6 +36,57 @@ html, body {
   background-color: var(--paper-tint);
 }
 
+/* Pre-splash bg lock — html[data-splash="active"] is set synchronously
+   in <head> by an inline script BEFORE the body paints. Body forces
+   pure white so the very first frame is the splash surface, never a
+   flash of cream-canvas. Removed by SplashScreen on dismiss. The
+   ::before paper-grain is also suppressed so the white reads clean. */
+html[data-splash="active"] body {
+  background-color: #fff;
+}
+html[data-splash="active"] body::before {
+  display: none;
+}
+
+/* Reveal-gate during splash — even if the IntersectionObserver marks
+   above-the-fold elements as revealed while the splash is up, force
+   them BACK to the hidden state so the entry animations queue up
+   instead of firing behind the overlay. When the splash drops the
+   attribute, the natural [data-reveal][data-revealed="true"] state
+   kicks in and every queued element animates in synchronously —
+   header, hero text, globe, cards all enter together. */
+html[data-splash="active"] [data-reveal] {
+  opacity: 0 !important;
+  transform: translate3d(0, 24px, 0) !important;
+  filter: blur(6px) !important;
+  transition: none !important;
+}
+html[data-splash="active"] [data-reveal-card] {
+  opacity: 0 !important;
+  transform: translateY(16px) !important;
+  transition: none !important;
+}
+
+/* Nav entry — the header doesn't use the IO reveal system (sticky
+   would be weird mid-translate). Instead it fades in once the splash
+   is gone, with a slight delay so the header lands just after the
+   hero text starts revealing. */
+header[data-stsl-nav] {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 520ms cubic-bezier(0.2, 0, 0, 1) 80ms,
+    transform 520ms cubic-bezier(0.2, 0, 0, 1) 80ms;
+}
+html[data-splash="active"] header[data-stsl-nav] {
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  header[data-stsl-nav] { transition: none; }
+}
+
 /*
  * Fixed paper-grain overlay. Lives on a fixed pseudo-element so it never
  * triggers reflow on scroll (skill perf rule). Opacity tuned for a barely-
@@ -64,22 +115,151 @@ body::before {
     text-wrap: pretty;
   }
 
-  /* Scroll-reveal — applied via [data-reveal]. CSS-only via animation-timeline:
-     view(); browsers without view-timeline (Firefox/Safari at present) fall
-     back to a static, in-place state — never broken, just less choreographed. */
-  @supports (animation-timeline: view()) {
-    [data-reveal] {
-      animation: ds-reveal-up linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 35%;
-    }
+  /* Scroll-reveal — applied via [data-reveal]. IO-driven so it works in
+     every browser (Chrome/Edge/Safari/Firefox), not just the ones that
+     support animation-timeline: view(). The RevealObserver client mounted
+     in the marketing layout walks every [data-reveal] node, observes it,
+     and adds data-revealed="true" the first time it crosses 12% of the
+     viewport — at which point the transition fires. */
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    filter: blur(6px);
+    transition:
+      opacity 620ms cubic-bezier(0.2, 0, 0, 1),
+      transform 620ms cubic-bezier(0.2, 0, 0, 1),
+      filter 620ms cubic-bezier(0.2, 0, 0, 1);
+    will-change: opacity, transform, filter;
   }
-  @keyframes ds-reveal-up {
-    from { opacity: 0; transform: translate3d(0, 24px, 0); filter: blur(6px); }
-    to   { opacity: 1; transform: translate3d(0, 0, 0);    filter: blur(0); }
+  [data-reveal][data-revealed="true"] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
   }
   @media (prefers-reduced-motion: reduce) {
-    [data-reveal] { animation: none; }
+    [data-reveal],
+    [data-reveal][data-revealed="true"] {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition: none;
+    }
+  }
+}
+
+/* Success-state swap for inline forms (ContactForm, NewsletterCTA).
+   Single FADE_UP utility — 240ms editorial settle, motion-safe via the
+   prefers-reduced-motion override below. */
+@keyframes stsl-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.stsl-fade-up {
+  animation: stsl-fade-up 240ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stsl-fade-up { animation: none; opacity: 1; transform: none; }
+}
+
+/* Card-entrance stagger — applied via [data-reveal-card]. IO-driven (same
+   RevealObserver as [data-reveal]) so it works in every browser. Reads a
+   per-child --stagger CSS variable for the cascade delay; the parent grid
+   passes `style={{ '--stagger': index }}` to each card wrapper, capped at
+   Math.min(index, 5) so beyond ~6 cards the rhythm doesn't read as wrong. */
+[data-reveal-card] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 540ms cubic-bezier(0.2, 0, 0, 1),
+    transform 540ms cubic-bezier(0.2, 0, 0, 1);
+  transition-delay: calc(var(--stagger, 0) * 70ms);
+  will-change: opacity, transform;
+}
+[data-reveal-card][data-revealed="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal-card],
+  [data-reveal-card][data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Eyebrow dot micro-pulse — fires once on parent group-hover. Used by the
+   small mono-caps eyebrow chips on SolutionCard, ProductCard, InsightCard,
+   SegmentedCTA segment cards. The dot scales 1 → 1.4 → 1 over 600ms. */
+@keyframes stsl-dot-pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .group\/sol:hover .stsl-dot-pulse,
+  .group\/prod:hover .stsl-dot-pulse,
+  .group\/ins:hover .stsl-dot-pulse,
+  .group\/seg:hover .stsl-dot-pulse {
+    animation: stsl-dot-pulse 600ms cubic-bezier(0.2, 0, 0, 1) 1;
+  }
+}
+
+/* Link underline draw-in — Tailwind-driven via arbitrary `[&::after]:`
+   classes is verbose; this single utility keeps Footer + Nav link sites
+   consistent. Color tracks currentColor so each consumer can tint freely. */
+.stsl-underline-draw {
+  position: relative;
+}
+.stsl-underline-draw::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms cubic-bezier(0.2, 0, 0, 1);
+}
+.stsl-underline-draw:hover::after {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .stsl-underline-draw::after { transition: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Page transitions — Native View Transitions API.                      */
+/* Cross-fade with a small editorial slide. Old page exits with a 4px   */
+/* upward translate; new page enters with an 8px upward translate. The  */
+/* curve matches the foundations expressive cubic-bezier so the         */
+/* transition reads as the same family as the rest of the site's        */
+/* motion. Chrome/Edge today, Safari TP — Safari/Firefox stable fall    */
+/* through to instant navigation (no broken state, just no transition). */
+/* ------------------------------------------------------------------ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+::view-transition-old(root) {
+  animation-name: stsl-route-fade-out;
+}
+::view-transition-new(root) {
+  animation-name: stsl-route-fade-in;
+}
+@keyframes stsl-route-fade-out {
+  to { opacity: 0; transform: translateY(-4px); }
+}
+@keyframes stsl-route-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
   }
 }
 

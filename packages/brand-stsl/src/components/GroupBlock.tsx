@@ -1,4 +1,4 @@
-import { Container, Section } from '@systemspecs/foundations/layout';
+import { Container, Grid, Section } from '@systemspecs/foundations/layout';
 import { ArrowUpRight } from '../icons';
 import { SystemSpecsWordmark } from '../brand';
 import { asset } from '../utils/asset';
@@ -34,8 +34,8 @@ export function GroupBlock({
     <Section surface="surface" density="lg">
       <Container size="wide">
         {/* Header — editorial statement. */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-end pb-10 md:pb-12 border-b border-[color:var(--border-subtle)]">
-          <div className="lg:col-span-7">
+        <Grid cols={12} gap={8} mdGap={10} className="items-end pb-10 md:pb-12 border-b border-[color:var(--border-subtle)]" data-reveal>
+          <div className="col-span-12 lg:col-span-7">
             <span className="inline-flex items-center h-6 px-3 rounded-pill bg-bg-surface-raised text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-fg-muted ring-1 ring-[color:var(--border-subtle)] mb-6">
               Group
             </span>
@@ -43,7 +43,7 @@ export function GroupBlock({
               {intro}
             </h2>
           </div>
-          <div className="lg:col-span-5 flex flex-col items-start lg:items-end gap-3">
+          <div className="col-span-12 lg:col-span-5 flex flex-col items-start lg:items-end gap-3">
             <a
               href={parentHref}
               rel="noopener"
@@ -66,15 +66,15 @@ export function GroupBlock({
               <span className="text-fg-muted">Operating since {foundedYear}.</span>
             </p>
           </div>
-        </div>
+        </Grid>
 
         {/* Lineup — three columns, hairline dividers between. */}
-        <ul className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3">
+        <Grid as="ul" cols={12} gap={0} className="mt-10 md:mt-12">
           {companies.map((c, i) => (
             <li
               key={c.href}
               className={
-                'flex flex-col py-8 md:py-0 md:px-8 first:md:pl-0 last:md:pr-0 ' +
+                'col-span-12 md:col-span-4 flex flex-col py-8 md:py-0 md:px-8 first:md:pl-0 last:md:pr-0 ' +
                 (i > 0 ? 'border-t md:border-t-0 md:border-l border-[color:var(--border-subtle)]' : '')
               }
             >
@@ -110,7 +110,7 @@ export function GroupBlock({
               </a>
             </li>
           ))}
-        </ul>
+        </Grid>
       </Container>
     </Section>
   );

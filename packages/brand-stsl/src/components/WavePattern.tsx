@@ -66,17 +66,25 @@ export const waveStills = [0, 0.16, 0.33, 0.5, 0.66, 0.84].map((progress, i) => 
 //   rings of brightness emanate outward continuously.
 // ============================================================
 
-const RIPPLE_GRID = 22;       // 22×22 dot grid
-const RIPPLE_DURATION = 5;    // s — full pulse cycle
-const RIPPLE_PROPAGATION = 1.6; // s — time for the wave to traverse half the grid
+const RIPPLE_DEFAULT_GRID = 22;       // 22×22 dot grid
+const RIPPLE_DURATION = 5;            // s — full pulse cycle
+const RIPPLE_PROPAGATION = 1.6;       // s — time for the wave to traverse half the grid
+const RIPPLE_DEFAULT_RADIUS = 0.18;   // SVG units, relative to grid cell
 
-function rippleDots() {
+interface WaveBackdrop2Props extends BaseProps {
+  // Smaller value = finer dots. Default 0.18 keeps the original look.
+  dotRadius?: number;
+  // More cells = denser, finer pattern. Default 22 keeps the original.
+  gridSize?: number;
+}
+
+function rippleDots(grid: number) {
   const dots: { cx: number; cy: number; delay: number }[] = [];
-  const cx = (RIPPLE_GRID - 1) / 2;
-  const cy = (RIPPLE_GRID - 1) / 2;
+  const cx = (grid - 1) / 2;
+  const cy = (grid - 1) / 2;
   const maxDist = Math.sqrt(cx * cx + cy * cy);
-  for (let r = 0; r < RIPPLE_GRID; r++) {
-    for (let c = 0; c < RIPPLE_GRID; c++) {
+  for (let r = 0; r < grid; r++) {
+    for (let c = 0; c < grid; c++) {
       const dx = c - cx;
       const dy = r - cy;
       const dist = Math.sqrt(dx * dx + dy * dy);
@@ -89,13 +97,18 @@ function rippleDots() {
   return dots;
 }
 
-export function WaveBackdrop2({ className, style }: BaseProps) {
-  const dots = rippleDots();
+export function WaveBackdrop2({
+  className,
+  style,
+  dotRadius = RIPPLE_DEFAULT_RADIUS,
+  gridSize = RIPPLE_DEFAULT_GRID,
+}: WaveBackdrop2Props) {
+  const dots = rippleDots(gridSize);
   return (
     <span className={wrap('grid place-items-center', className)} style={style} aria-hidden="true">
       <style>{styles}</style>
       <svg
-        viewBox={`0 0 ${RIPPLE_GRID} ${RIPPLE_GRID}`}
+        viewBox={`0 0 ${gridSize} ${gridSize}`}
         className="absolute inset-0 w-full h-full"
         preserveAspectRatio="xMidYMid slice"
       >
@@ -104,7 +117,7 @@ export function WaveBackdrop2({ className, style }: BaseProps) {
             key={i}
             cx={d.cx}
             cy={d.cy}
-            r="0.18"
+            r={dotRadius}
             fill="currentColor"
             data-w-anim
             style={{

@@ -10,12 +10,7 @@ export {
   AccordionTrigger,
   AccordionContent,
 } from './Accordion';
-export {
-  Dialog,
-  DialogTrigger,
-  DialogClose,
-  DialogContent,
-} from './Dialog';
+export { Dialog, type DialogProps } from './Dialog';
 export {
   TooltipProvider,
   Tooltip,

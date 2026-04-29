@@ -1,8 +1,29 @@
 import type { ReactNode } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@systemspecs/foundations/layout';
 import { SystemSpecsWordmark } from '@systemspecs/brand-stsl/brand';
 import { ThemeToggle, TableOfContents } from './_client';
+
+// Per-route metadata override — /design keeps the design-system identity
+// while every other route inherits the STSL marketing metadata from the
+// root layout.
+export const metadata: Metadata = {
+  title: 'SystemSpecs Design System',
+  description:
+    'The design system behind SystemSpecs Technology Solutions — tokens, brand identity, primitives, and composed components. Built as a three-layer monorepo so it can re-skin across SystemSpecs Holdings subsidiaries with token swaps alone.',
+  applicationName: 'SystemSpecs Design System',
+  alternates: { canonical: '/design' },
+  openGraph: {
+    type: 'website',
+    siteName: 'SystemSpecs Design System',
+    title: 'SystemSpecs Design System',
+    description:
+      'Tokens, primitives, and composed components for the SystemSpecs Holdings design system.',
+    url: '/design',
+    locale: 'en_NG',
+  },
+};
 
 // One-page anchor nav. Two columns: left rail = top-level sections + their
 // sub-anchors. Right rail = scroll-spied "on this page" mirror. Sidebar

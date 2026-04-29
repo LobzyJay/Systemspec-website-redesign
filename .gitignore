@@ -23,3 +23,25 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# standalone deliverables + build outputs
+apps/web/out/
+standalone/
+docs/
+
+# font zips + extracted folders (served via next/font, not bundled)
+Geist/
+Geist.zip
+Plus_Jakarta_Sans/
+Plus_Jakarta_Sans.zip
+
+# cobe plugin (dev reference only)
+cobe-main/
+cobe-main.zip
+
+# scraped/reference assets (not source code)
+assets/
+"new image data/"
+
+# build info
+apps/web/tsconfig.tsbuildinfo

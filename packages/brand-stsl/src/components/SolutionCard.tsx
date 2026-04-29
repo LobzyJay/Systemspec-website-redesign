@@ -16,14 +16,18 @@ export function SolutionCard({ icon, title, description, proof, href }: Solution
   return (
     <a
       href={href}
+      data-reveal-card
       className="group/sol block rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
                  bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
                  shadow-e1 transition-[transform,box-shadow] duration-slow ease-expressive
                  hover:-translate-y-0.5 hover:shadow-e3"
     >
       <div className="relative flex flex-col h-full p-6 md:p-8 rounded-[calc(1.75rem-0.375rem)] bg-bg-surface shadow-inner-hi">
-        {/* Icon chip — micro Doppelrand. */}
-        <div className="inline-flex items-center justify-center h-12 w-12 rounded-2xl p-1 ring-1 ring-[color:var(--border-subtle)] bg-bg-surface-raised mb-6 md:mb-7">
+        {/* Icon chip — micro Doppelrand. Tiny rotate + scale on parent
+            group-hover keeps the icon present without becoming theatrical. */}
+        <div className="inline-flex items-center justify-center h-12 w-12 rounded-2xl p-1 ring-1 ring-[color:var(--border-subtle)] bg-bg-surface-raised mb-6 md:mb-7
+                        transition-transform duration-[280ms] ease-expressive
+                        motion-safe:group-hover/sol:rotate-1 motion-safe:group-hover/sol:scale-105">
           <div className="h-full w-full grid place-items-center rounded-[calc(1rem-0.25rem)] bg-bg-surface text-accent shadow-inner-hi">
             {icon}
           </div>

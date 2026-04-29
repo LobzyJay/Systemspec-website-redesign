@@ -85,9 +85,13 @@ export default function Globe({ className, caption }: GlobeProps) {
     });
 
     // cobe v2 has no onRender hook — drive rotation from a manual RAF loop.
+    // IntersectionObserver gates the loop so we don't burn frames (or advance
+    // phi) while the globe is off-screen. Re-entering the viewport resumes
+    // rotation from the last phi without a visible jump.
     let rafId = 0;
+    let paused = false;
     const tick = () => {
-      if (!pointerInteracting.current && !reducedMotion) {
+      if (!paused && !pointerInteracting.current && !reducedMotion) {
         phiRef.current += 0.003;
       }
       globe.update({
@@ -99,6 +103,19 @@ export default function Globe({ className, caption }: GlobeProps) {
     };
     rafId = requestAnimationFrame(tick);
 
+    let io: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== 'undefined') {
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            paused = !entry.isIntersecting;
+          }
+        },
+        { threshold: 0.05 },
+      );
+      io.observe(wrap);
+    }
+
     canvas.style.opacity = '0';
     requestAnimationFrame(() => {
       canvas.style.opacity = '1';
@@ -106,6 +123,7 @@ export default function Globe({ className, caption }: GlobeProps) {
 
     return () => {
       cancelAnimationFrame(rafId);
+      if (io) io.disconnect();
       globe.destroy();
       window.removeEventListener('resize', onResize);
     };

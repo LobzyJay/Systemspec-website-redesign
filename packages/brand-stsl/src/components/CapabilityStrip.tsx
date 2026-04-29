@@ -1,4 +1,4 @@
-import { Container, Section } from '@systemspecs/foundations/layout';
+import { Container, Grid, Section } from '@systemspecs/foundations/layout';
 
 interface CapabilityStripProps {
   eyebrow?: string;
@@ -15,8 +15,8 @@ export function CapabilityStrip({ eyebrow, headline, body, capabilities }: Capab
   return (
     <Section surface="surface" density="lg">
       <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
-          <div className="lg:col-span-5">
+        <Grid cols={12} gap={8} mdGap={12}>
+          <div className="col-span-12 lg:col-span-5" data-reveal>
             {eyebrow ? (
               <span className="inline-flex items-center h-6 px-3 rounded-pill bg-accent-subtle text-accent text-[10px] uppercase tracking-[0.22em] font-mono font-medium ring-1 ring-[color:var(--accent-default)]/15 mb-6">
                 <span aria-hidden="true" className="mr-2 inline-block h-1 w-1 rounded-pill bg-accent" />
@@ -27,23 +27,25 @@ export function CapabilityStrip({ eyebrow, headline, body, capabilities }: Capab
               {headline}
             </h2>
           </div>
-          <div className="lg:col-span-7">
+          <div className="col-span-12 lg:col-span-7">
             <p className="font-serif italic text-[1.125rem] md:text-[1.25rem] lg:text-[1.375rem] leading-[1.5] text-fg-secondary text-pretty">
               {body}
             </p>
-            <ul className="mt-8 md:mt-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4 border-t border-[color:var(--border-subtle)] pt-6 md:pt-8">
+            {/* Asymmetric gap-x / gap-y — pass `gap={0}` so the primitive emits
+                no shorthand and our axis-specific overrides take effect cleanly. */}
+            <Grid as="ul" cols={12} gap={0} className="mt-8 md:mt-10 gap-x-10 gap-y-4 border-t border-[color:var(--border-subtle)] pt-6 md:pt-8">
               {capabilities.map((c) => (
                 <li
                   key={c}
-                  className="flex items-start gap-3 text-body text-fg-primary text-pretty"
+                  className="col-span-12 sm:col-span-6 flex items-start gap-3 text-body text-fg-primary text-pretty"
                 >
                   <span className="mt-2 inline-block h-1.5 w-1.5 rounded-pill bg-accent shrink-0" />
                   {c}
                 </li>
               ))}
-            </ul>
+            </Grid>
           </div>
-        </div>
+        </Grid>
       </Container>
     </Section>
   );

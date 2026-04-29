@@ -1,111 +1,119 @@
-import { ArrowUpRight } from '../icons';
-import { asset } from '../utils/asset';
+import { ProductCardWave } from './ProductCard/ProductCardWave';
 
 interface ProductCardProps {
-  name: string;
-  positioning: string;
-  proof: string;
+  name: string;         // e.g. "Pouchii"
+  positioning: string;  // description text
+  proof: string;        // proof statement
   href: string;
-  tag?: string;
-  // Brand-owned hex color. Drives the brand panel + CTA accent.
-  brandColor?: string;
-  // Product logo. Sits centered on the brand panel.
-  logo?: string;
+  tag?: string;         // optional badge e.g. "Best Crowdfunding Platform 2022"
+  logoColor: string;    // path to color PNG, e.g. '/products/pouchii-color.png'
+  logoBw: string;       // path to B/W PNG, e.g. '/products/pouchii-bw.png'
 }
 
-// Doppelrand product card — same outer vocabulary as SolutionCard +
-// InsightCard so all three cards read as one family in a row. Inner core has
-// two zones: a tinted brand panel with the logo on top, paper panel with
-// info + CTA below. CTA is pinned to the bottom (mt-auto) so all 3 cards in
-// a row have their button on the same horizontal line.
 export function ProductCard({
   name,
   positioning,
   proof,
   href,
   tag,
-  brandColor,
-  logo,
+  logoColor,
+  logoBw,
 }: ProductCardProps) {
-  const panelTint = brandColor
-    ? `color-mix(in srgb, ${brandColor} 10%, var(--bg-surface-raised))`
-    : 'var(--bg-surface-raised)';
-
   return (
     <a
       href={href}
-      className="group/prod block h-full rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
-                 bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
-                 shadow-e1 transition-[transform,box-shadow] duration-slow ease-expressive
-                 hover:-translate-y-0.5 hover:shadow-e3"
+      data-reveal-card
+      className="group/prod block h-full rounded-3xl overflow-hidden
+                 ring-1 ring-[color:var(--border-subtle)] shadow-e1
+                 transition-[transform,box-shadow,ring-color] duration-slow ease-expressive
+                 hover:-translate-y-1 hover:shadow-e3 hover:ring-[color:var(--border-default)]"
     >
-      <div className="relative flex flex-col h-full rounded-[calc(1.75rem-0.375rem)] overflow-hidden bg-bg-surface shadow-inner-hi">
-        {/* Brand panel — tinted ground, logo centered. */}
-        <div
-          className="relative aspect-[5/2] grid place-items-center px-8"
-          style={{ backgroundColor: panelTint }}
-        >
-          {logo ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={asset(logo)} alt={name} className="max-h-9 w-auto max-w-[55%] object-contain" />
-          ) : (
-            <span className="font-display text-display-md text-fg-muted/40">{name[0]}</span>
-          )}
-          {brandColor ? (
-            <span
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-px"
-              style={{ backgroundColor: brandColor, opacity: 0.5 }}
-            />
+      {/* ── Top section: recessed muted surface so the logo frame reads
+          as a distinct zone from the white content below. Using
+          bg-bg-surface-muted gives a slightly deeper off-white that
+          makes the card feel structured without needing a hard border. ── */}
+      <div
+        className="relative overflow-hidden bg-bg-surface-muted"
+        style={{ height: '200px' }}
+      >
+        {/* Canvas wave — absolutely positioned behind logo */}
+        <ProductCardWave />
+
+        {/* Four-edge fades — all sides dissolve into the muted surface so the
+            braille field reads as floating in the frame rather than tiled.
+            Top + bottom are slightly deeper; left + right are slimmer so
+            the logos stay centered with breathing room. */}
+        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-14 z-20 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, transparent 100%)' }} />
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-16 z-20 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, rgba(255,255,255,0.95) 0%, transparent 100%)' }} />
+        <div aria-hidden="true" className="absolute inset-y-0 left-0 w-10 z-20 pointer-events-none"
+          style={{ background: 'linear-gradient(to right, rgba(255,255,255,0.95) 0%, transparent 100%)' }} />
+        <div aria-hidden="true" className="absolute inset-y-0 right-0 w-10 z-20 pointer-events-none"
+          style={{ background: 'linear-gradient(to left, rgba(255,255,255,0.95) 0%, transparent 100%)' }} />
+
+        {/* B/W logo — fades out on hover */}
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logoBw}
+            alt={name}
+            className="max-h-[69px] w-auto max-w-[68%] object-contain
+                       transition-opacity duration-[320ms] [transition-timing-function:cubic-bezier(0.2,0,0,1)]
+                       opacity-100 group-hover/prod:opacity-0
+                       absolute"
+          />
+          {/* Color logo — fades in on hover */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logoColor}
+            alt=""
+            aria-hidden="true"
+            className="max-h-[69px] w-auto max-w-[68%] object-contain
+                       transition-opacity duration-[320ms] [transition-timing-function:cubic-bezier(0.2,0,0,1)]
+                       opacity-0 group-hover/prod:opacity-100
+                       absolute"
+          />
+        </div>
+      </div>
+
+
+      {/* ── Content section: white bg ── */}
+      <div className="flex flex-col flex-1 bg-white px-6 pb-6 pt-2 md:px-8 md:pb-8">
+        <div className="flex items-baseline justify-between gap-3">
+          <h3
+            className="font-display font-medium leading-tight tracking-[-0.005em] text-fg-primary"
+            style={{ fontSize: '22px' }}
+          >
+            {name}
+          </h3>
+          {tag ? (
+            <span className="shrink-0 font-mono uppercase tracking-[0.16em] text-fg-muted"
+              style={{ fontSize: '9.5px' }}>
+              {tag}
+            </span>
           ) : null}
         </div>
 
-        {/* Paper panel — info + CTA. flex-col + mt-auto on CTA pins button
-            row to bottom; padding kept identical to SolutionCard / InsightCard. */}
-        <div className="flex flex-col flex-1 p-6 md:p-8">
-          <div className="flex items-baseline justify-between gap-3">
-            <h3 className="font-display font-medium text-heading-2 md:text-heading-1 text-fg-primary leading-tight tracking-[-0.005em]">
-              {name}
-            </h3>
-            {tag ? (
-              <span className="shrink-0 text-[10px] font-mono uppercase tracking-[0.16em] text-fg-muted">
-                {tag}
-              </span>
-            ) : null}
-          </div>
+        <p className="mt-3 text-fg-secondary text-pretty" style={{ fontSize: '14px' }}>
+          {positioning}
+        </p>
 
-          <p className="mt-3 text-body text-fg-secondary text-pretty">{positioning}</p>
+        <div className="mt-6">
+          <p
+            className="font-mono uppercase tracking-[0.22em] text-fg-muted"
+            style={{ fontSize: '9.5px' }}
+          >
+            PROOF
+          </p>
+          <p className="mt-1.5 text-body-sm text-fg-primary">{proof}</p>
+        </div>
 
-          <div className="mt-7 pt-5 border-t border-[color:var(--border-subtle)]">
-            <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-fg-muted">Proof</p>
-            <p className="mt-2 text-body-sm text-fg-primary font-medium">{proof}</p>
-          </div>
-
-          {/* CTA pinned to bottom — same vocabulary as SolutionCard. Pill
-              h-12 / chip h-9 / pr-1.5 → chip stays inside the rim on hover. */}
-          <div className="mt-auto pt-7">
-            <span
-              className="inline-flex items-center gap-3 h-12 pl-6 pr-1.5 rounded-pill ring-1 text-body-sm font-medium transition-[background-color,box-shadow] duration-base ease-expressive"
-              style={
-                brandColor
-                  ? { color: brandColor, boxShadow: `inset 0 0 0 1px ${brandColor}33` }
-                  : undefined
-              }
-            >
-              <span className="leading-none">Visit {name}</span>
-              <span
-                aria-hidden="true"
-                className="inline-flex items-center justify-center h-9 w-9 rounded-pill transition-[transform] duration-base ease-expressive group-hover/prod:translate-x-0.5"
-                style={
-                  brandColor
-                    ? { backgroundColor: `${brandColor}1f`, color: brandColor }
-                    : { backgroundColor: 'var(--accent-subtle)', color: 'var(--accent-default)' }
-                }
-              >
-                <ArrowUpRight size={14} />
-              </span>
-            </span>
-          </div>
+        {/* CTA — text link with arrow, pinned to bottom via mt-auto */}
+        <div className="mt-auto pt-6">
+          <span className="text-accent text-body-sm font-medium inline-flex items-center gap-1">
+            Visit {name} →
+          </span>
         </div>
       </div>
     </a>

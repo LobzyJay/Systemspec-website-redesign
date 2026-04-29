@@ -24,6 +24,7 @@ export function InsightCard({ kind, publication, date, title, href, cover }: Ins
   return (
     <a
       href={href}
+      data-reveal-card
       className="group/ins block rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
                  bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
                  shadow-e1 transition-[transform,box-shadow] duration-slow ease-expressive
@@ -36,7 +37,7 @@ export function InsightCard({ kind, publication, date, title, href, cover }: Ins
             <img
               src={cover}
               alt=""
-              className="h-full w-full object-cover transition-transform duration-cinematic ease-expressive group-hover/ins:scale-[1.04]"
+              className="h-full w-full object-cover transition-transform duration-cinematic ease-expressive"
             />
           </div>
         ) : null}
@@ -45,7 +46,7 @@ export function InsightCard({ kind, publication, date, title, href, cover }: Ins
             className="inline-flex items-center self-start h-6 px-3 rounded-pill text-[10px] uppercase tracking-[0.22em] font-mono font-medium"
             style={{ color: meta.tint, boxShadow: `inset 0 0 0 1px ${meta.tint}28`, backgroundColor: `${meta.tint}10` }}
           >
-            <span aria-hidden="true" className="mr-2 inline-block h-1 w-1 rounded-pill" style={{ backgroundColor: meta.tint }} />
+            <span aria-hidden="true" className="stsl-dot-pulse mr-2 inline-block h-1 w-1 rounded-pill" style={{ backgroundColor: meta.tint }} />
             {meta.label}
           </span>
 

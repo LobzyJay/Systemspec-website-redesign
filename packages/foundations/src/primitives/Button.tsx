@@ -25,7 +25,9 @@ const base =
   'duration-base ease-expressive ' +
   'disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed ' +
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-emphasis focus-visible:ring-offset-2 focus-visible:ring-offset-bg-canvas ' +
-  'active:scale-[0.98]';
+  // Tactile press — crisp 100ms transform shim layered onto the base
+  // transitions; motion-safe so reduced-motion preference disables it.
+  'motion-safe:active:scale-[0.98] motion-safe:active:duration-100';
 
 const variants: Record<ButtonVariant, string> = {
   // Primary — deep teal with diffuse warm shadow. Hover deepens shade and

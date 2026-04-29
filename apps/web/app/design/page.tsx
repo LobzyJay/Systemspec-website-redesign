@@ -663,8 +663,8 @@ export default function DesignPage() {
             positioning="Digital wallet and aggregation API."
             proof="Live with integration partners"
             href="#"
-            logo="/brand/group/pouchii.png"
-            brandColor="#5C6BFF"
+            logoColor="/products/pouchii-color.png"
+            logoBw="/products/pouchii-bw.png"
           />
           <ProductCard
             name="FundACause"
@@ -672,8 +672,8 @@ export default function DesignPage() {
             positioning="Crowdfunding for Nigerian causes."
             proof="Best Crowdfunding Platform 2022"
             href="#"
-            logo="/brand/group/fundacause.svg"
-            brandColor="#2F80ED"
+            logoColor="/products/fundacause-color.png"
+            logoBw="/products/fundacause-bw.png"
           />
           <ProductCard
             name="Monicenta"
@@ -681,8 +681,8 @@ export default function DesignPage() {
             positioning="SaaS for cooperatives and contributory schemes."
             proof="Operating with multiple cooperatives"
             href="#"
-            logo="/brand/group/monicenta.png"
-            brandColor="#F26524"
+            logoColor="/products/monicenta-color.png"
+            logoBw="/products/monicenta-bw.png"
           />
         </div>
       </Stage>
