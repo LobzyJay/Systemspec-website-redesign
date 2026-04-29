@@ -57,10 +57,9 @@ const groupCompanies = [
   { label: 'WhataDeal',     href: 'https://whatadeal.com' },
 ];
 
-const legalLinks = [
-  { label: 'Privacy', href: `${base}/legal/privacy` },
-  { label: 'Terms',   href: `${base}/legal/terms` },
-];
+// Legal links removed for v1 — pages don't exist yet. Restore once
+// `/legal/privacy` and `/legal/terms` are built.
+const legalLinks: { label: string; href: string }[] = [];
 
 const socialLinks: { kind: 'linkedin' | 'twitter'; href: string }[] = [
   { kind: 'linkedin', href: 'https://www.linkedin.com/company/systemspecs-technology-solutions/' },
