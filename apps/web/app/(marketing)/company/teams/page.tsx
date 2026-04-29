@@ -1,19 +1,20 @@
-// STSL leadership page (Phase 2C, brief §6.5).
-// Renders a Board grid of LeadershipCard plus a compact TeamMember grid for
-// the management roster. Bios are placeholdered ({{COMMS_APPROVAL_REQUIRED}})
-// per brief §11 and render as-is so the gaps stay visible on this dev build.
+// STSL teams page (Phase 2C, brief §6.5).
+// Renders a Board grid of LeadershipCard plus compact TeamMember grids for
+// the management roster and broader operating teams. Bios are placeholdered
+// ({{COMMS_APPROVAL_REQUIRED}}) per brief §11 and render as-is so the gaps
+// stay visible on this dev build.
 
 import {
   Hero,
   SectionHeader,
   LeadershipCard,
   TeamMember,
-  leadershipCopy,
+  teamsCopy,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
 
-export default function CompanyLeadershipPage() {
-  const c = leadershipCopy;
+export default function CompanyTeamsPage() {
+  const c = teamsCopy;
 
   return (
     <>
@@ -21,7 +22,7 @@ export default function CompanyLeadershipPage() {
         eyebrow={c.hero.eyebrow}
         headline={c.hero.headline}
         subhead={c.hero.subheadline}
-        primary={{ label: 'Talk to leadership', href: c.closingCta.primaryCta.href }}
+        primary={{ label: 'Talk to the team', href: c.closingCta.primaryCta.href }}
         secondary={{ label: 'About STSL', href: '/company' }}
         atmosphereReactive
       />
@@ -92,6 +93,36 @@ export default function CompanyLeadershipPage() {
                   role={m.role}
                   photo={m.photo}
                   linkedin={m.linkedin}
+                />
+              </div>
+            ))}
+          </Grid>
+        </Container>
+      </Section>
+
+      {/* Operating team grid — division heads, compact TeamMember cards
+          tagged with their department. */}
+      <Section surface="canvas" density="lg">
+        <Container size="wide">
+          <SectionHeader
+            eyebrow={c.operating.eyebrow}
+            headline={c.operating.headline}
+            intro={c.operating.note}
+          />
+          <Grid cols={12} gap={6} mdGap={8} className="mt-12 md:mt-16">
+            {c.operating.members.map((m, i) => (
+              <div
+                key={m.slug}
+                data-reveal-card
+                style={{ '--stagger': Math.min(i, 5) } as React.CSSProperties}
+                className="col-span-6 md:col-span-4 lg:col-span-3 flex [&>*]:flex-1"
+              >
+                <TeamMember
+                  name={m.name}
+                  role={m.role}
+                  photo={m.photo}
+                  linkedin={m.linkedin}
+                  department={m.department}
                 />
               </div>
             ))}

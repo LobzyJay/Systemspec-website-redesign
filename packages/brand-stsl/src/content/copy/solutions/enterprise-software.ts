@@ -143,7 +143,7 @@ export const enterpriseSoftwareSolutionCopy = {
     headline: 'Discuss a project.',
     body: 'A 30-minute conversation to scope the work and the engagement model.',
     primaryCta: { label: 'Discuss a project', href: '/contact?audience=enterprise' },
-    secondaryCta: { label: 'See the team', href: '/company/leadership' },
+    secondaryCta: { label: 'See the team', href: '/company/teams' },
   },
 } as const
 

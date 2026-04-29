@@ -18,5 +18,5 @@ export { fundACauseCopy, type FundACauseCopy } from './products/fundacause'
 export { monicentaCopy, type MonicentaCopy } from './products/monicenta'
 
 export { aboutCopy, type AboutCopy } from './company/about'
-export { leadershipCopy, type LeadershipCopy } from './company/leadership'
+export { teamsCopy, type TeamsCopy } from './company/teams'
 export { groupCopy, type GroupCopy } from './company/group'

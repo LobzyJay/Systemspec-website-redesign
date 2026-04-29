@@ -186,6 +186,15 @@ export function Nav({ primaryLinks, governmentHref, salesHref, brand }: NavProps
             background-color 320ms cubic-bezier(0.32, 0.72, 0, 1),
             backdrop-filter 320ms cubic-bezier(0.32, 0.72, 0, 1),
             -webkit-backdrop-filter 320ms cubic-bezier(0.32, 0.72, 0, 1);
+          /* Safe-area handling for iOS notch / Dynamic Island. The header
+             paints UP into the safe-area inset so the white bar reaches
+             the very top of the viewport — no gap of body-bg showing
+             between the status bar and the header. Inner content gets
+             pushed down by the same amount so the wordmark + nav links
+             never sit underneath the notch. */
+          padding-top: env(safe-area-inset-top, 0px);
+          padding-left: env(safe-area-inset-left, 0px);
+          padding-right: env(safe-area-inset-right, 0px);
         }
         .stsl-nav-header[data-scrolled='true'] {
           background: rgba(255, 255, 255, 0.92);

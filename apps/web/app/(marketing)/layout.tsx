@@ -43,7 +43,7 @@ const footerColumns = [
     title: 'Company',
     links: [
       { label: 'About',       href: `${base}/company` },
-      { label: 'Leadership',  href: `${base}/company/leadership` },
+      { label: 'Teams',       href: `${base}/company/teams` },
       { label: 'Group',       href: `${base}/company/group` },
       { label: 'Press',       href: `${base}/company/press` },
       { label: 'Careers',     href: `${base}/company/careers` },
@@ -73,39 +73,60 @@ export default function MarketingLayout({ children }: { children: ReactNode }) {
     // surfaces paint over this, so only the inset gap framing the footer
     // squircle reveals the bg — and that gap now reads as a continuation
     // of the green band above the footer instead of a hard white frame.
-    <div
-      className="min-h-screen flex flex-col"
-      style={{
-        background:
-          'color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas))',
-      }}
-    >
-      <Nav
-        primaryLinks={primaryLinks}
-        salesHref="/contact#sales"
-        governmentHref="/contact#government"
-        brand={{
-          mark: <SystemSpecsWordmark height={28} />,
-          href: '/',
-          label: 'SystemSpecs Technology Solutions',
+    <>
+      {/* Inline server-rendered <style> paints the same pale-mint onto
+          <html> + <body> so iOS Safari overscroll / rubber-band bounce
+          past the footer never flashes the cream paper-tint behind this
+          div. Lands in the initial HTML — no client hydration flash.
+          Scoped to the marketing route group only because this layout
+          owns the green canvas; non-marketing routes (e.g. /design) keep
+          the cream default from globals.css. */}
+      <style>{`
+        html, body { background-color: color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)); }
+        /* Guard against any nested absolute/canvas atmosphere from
+           pushing horizontal scroll on iOS Safari. Marketing layout owns
+           the page chrome so this guard stays scoped here. */
+        body { overflow-x: hidden; }
+      `}</style>
+      <div
+        className="min-h-screen flex flex-col"
+        style={{
+          background:
+            'color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas))',
         }}
-      />
-      <SplashScreen />
-      <RevealObserver />
-      <RouteTransitions />
-      <main className="flex-1">{children}</main>
-      {/* Footer wrapper — inset padding creates the visible breathing
-          space between the section above and the floating squircle.
-          The black surface peeks through this gap on all four sides. */}
-      <div className="p-3 md:p-5">
-        <Footer
-          columns={footerColumns}
-          groupCompanies={groupCompanies}
-          contact={{ email: 'hello@stsl.ng', phone: '+234 (0)1 271 0511' }}
-          legalLinks={legalLinks}
-          socialLinks={socialLinks}
+      >
+        <Nav
+          primaryLinks={primaryLinks}
+          salesHref="/contact#sales"
+          governmentHref="/contact#government"
+          brand={{
+            mark: <SystemSpecsWordmark height={28} />,
+            href: '/',
+            label: 'SystemSpecs Technology Solutions',
+          }}
         />
+        <SplashScreen />
+        <RevealObserver />
+        <RouteTransitions />
+        <main className="flex-1">{children}</main>
+        {/* Footer wrapper — inset padding creates the visible breathing
+            space between the section above and the floating squircle.
+            The black surface peeks through this gap on all four sides.
+            Bottom padding extended by env(safe-area-inset-bottom) so the
+            squircle doesn't disappear under the iOS home-indicator. */}
+        <div
+          className="p-3 md:p-5"
+          style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom, 0px))' }}
+        >
+          <Footer
+            columns={footerColumns}
+            groupCompanies={groupCompanies}
+            contact={{ email: 'hello@stsl.ng', phone: '+234 (0)1 271 0511' }}
+            legalLinks={legalLinks}
+            socialLinks={socialLinks}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

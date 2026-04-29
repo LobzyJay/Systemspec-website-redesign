@@ -160,8 +160,16 @@ export default function DevelopersPage() {
       </Section>
 
       {/* Integration partners — short editorial roll. Names + use cases are
-          placeholders pending STSL comms approval (brief §11). */}
-      <Section surface="canvas" density="lg">
+          placeholders pending STSL comms approval (brief §11). Pre-footer
+          sections use the pale green wash so the page rhythm hands off to
+          the floating footer squircle smoothly. */}
+      <section
+        className="py-20 md:py-28"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+      >
         <Container size="wide">
           <SectionHeader
             eyebrow={c.partners.eyebrow}
@@ -187,7 +195,7 @@ export default function DevelopersPage() {
             ))}
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       {/* Docs link — small footer-area block with the "coming soon" reference
           + the standing alternative routes from the copy file.

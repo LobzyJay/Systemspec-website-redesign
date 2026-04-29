@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Plus_Jakarta_Sans, Geist, Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
@@ -48,6 +48,22 @@ const DESCRIPTION =
 const TITLE = {
   default: 'SystemSpecs Technology Solutions',
   template: '%s · SystemSpecs Technology Solutions',
+};
+
+// Viewport — viewport-fit=cover is REQUIRED for env(safe-area-inset-*)
+// to return the actual iOS notch / Dynamic Island inset values. Without
+// it, those env() values resolve to 0 and the sticky header leaves a
+// transparent gap above itself on iPhone 15 Pro Max. themeColor matches
+// the page bg so the iOS dynamic status-bar tint reads in-tone instead
+// of flashing white when the bar transitions.
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#E8F2EE' },
+    { media: '(prefers-color-scheme: dark)',  color: '#0A0B0E' },
+  ],
 };
 
 export const metadata: Metadata = {

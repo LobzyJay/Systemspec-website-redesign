@@ -272,10 +272,16 @@ function FormView({ audience }: { audience: ContactAudience }) {
         primary={{ label: 'Back to all audiences', href: '/contact' }}
       />
 
-      {/* Form section — dark surface so the boundary against the cream Hero
-          reads cleanly. The form card keeps its own white surface and pops
-          against the ink. Side panel text flipped to white/light. */}
-      <section className="relative bg-black text-fg-on-inverse py-20 md:py-28">
+      {/* Form section — pale green surface (matches marketing page bg)
+          since this section sits directly above the footer. The form
+          card keeps its own white surface and pops against the wash. */}
+      <section
+        className="relative py-20 md:py-28"
+        style={{
+          background:
+            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
+        }}
+      >
         <Container size="wide">
           <Grid cols={12} gap={10} lgGap={16} className="items-start">
             {/* Form — primary column, owns the wider rail. */}
@@ -293,20 +299,20 @@ function FormView({ audience }: { audience: ContactAudience }) {
                 channels for visitors who want to bypass the form. */}
             <aside className="col-span-12 lg:col-span-5 lg:pt-2">
               <p className="text-overline uppercase text-accent mb-4">What happens next</p>
-              <p className="font-display font-medium text-heading-1 text-white tracking-[-0.01em] text-balance">
+              <p className="font-display font-medium text-heading-1 text-fg-primary tracking-[-0.01em] text-balance">
                 {route.successMessage}
               </p>
 
-              <Grid as="dl" cols={1} gap={6} className="mt-10 border-t border-white/15 pt-8">
+              <Grid as="dl" cols={1} gap={6} className="mt-10 border-t border-[color:var(--border-subtle)] pt-8">
                 {c.channels.items.map((channel) => (
                   <div key={channel.label} className="flex flex-col gap-1">
-                    <dt className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/50">
+                    <dt className="text-[10px] font-mono uppercase tracking-[0.22em] text-fg-muted">
                       {channel.label}
                     </dt>
                     <dd>
                       <a
                         href={channel.href}
-                        className="text-body font-medium text-white hover:text-accent transition-[color] duration-base ease-expressive"
+                        className="text-body font-medium text-fg-primary hover:text-accent transition-[color] duration-base ease-expressive"
                       >
                         {channel.value}
                       </a>
@@ -318,7 +324,7 @@ function FormView({ audience }: { audience: ContactAudience }) {
               <div className="mt-10">
                 <a
                   href="/contact"
-                  className="group/back inline-flex items-center gap-2 text-body-sm font-medium text-white/70 hover:text-accent transition-[color] duration-base ease-expressive"
+                  className="group/back inline-flex items-center gap-2 text-body-sm font-medium text-fg-secondary hover:text-accent transition-[color] duration-base ease-expressive"
                 >
                   <span>Wrong audience? Pick a different conversation</span>
                 </a>
@@ -327,17 +333,6 @@ function FormView({ audience }: { audience: ContactAudience }) {
           </Grid>
         </Container>
       </section>
-
-      {/* Pre-footer pale green band — matches the marketing layout's page bg
-          so the visual rhythm carries through to the footer transition. */}
-      <section
-        className="py-16 md:py-20"
-        style={{
-          background:
-            'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
-        }}
-        aria-hidden="true"
-      />
     </>
   );
 }

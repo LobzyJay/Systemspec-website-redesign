@@ -31,7 +31,10 @@
 
 /* Repaint the canvas tone so the whole page reads as warm paper, not
    off-the-shelf white. The brand keeps surface-raised + surface-muted as
-   neutrals; only the page floor moves. */
+   neutrals; only the page floor moves. The marketing layout overrides
+   this to the pale-mint page bg via an inline <style> so iOS overscroll
+   beneath the footer squircle never flashes cream — see (marketing)/
+   layout.tsx. */
 html, body {
   background-color: var(--paper-tint);
 }

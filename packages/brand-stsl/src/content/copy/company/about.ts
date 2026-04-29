@@ -14,7 +14,7 @@ export const aboutCopy = {
     headline: 'The technology arm of SystemSpecs Holdings.',
     subheadline:
       'Building Nigerian payment, government, and financial infrastructure since 1992.',
-    primaryCta: { label: 'Read leadership', href: '/company/leadership' },
+    primaryCta: { label: 'Meet the team', href: '/company/teams' },
     secondaryCta: { label: 'See the group', href: '/company/group' },
   },
 
@@ -123,9 +123,9 @@ export const aboutCopy = {
 
   closingCta: {
     eyebrow: 'NEXT STEP',
-    headline: 'Talk to us, or read the team.',
+    headline: 'Talk to us, or meet the team.',
     primaryCta: { label: 'Talk to sales', href: '/contact?audience=sales' },
-    secondaryCta: { label: 'Read leadership', href: '/company/leadership' },
+    secondaryCta: { label: 'Meet the team', href: '/company/teams' },
   },
 } as const
 
