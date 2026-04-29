@@ -1,4 +1,5 @@
 import { ProductCardWave } from './ProductCard/ProductCardWave';
+import { asset } from '../utils/asset';
 
 interface ProductCardProps {
   name: string;         // e.g. "Pouchii"
@@ -33,8 +34,7 @@ export function ProductCard({
           bg-bg-surface-muted gives a slightly deeper off-white that
           makes the card feel structured without needing a hard border. ── */}
       <div
-        className="relative overflow-hidden bg-bg-surface-muted"
-        style={{ height: '200px' }}
+        className="relative overflow-hidden bg-bg-surface-muted h-40 md:h-[200px]"
       >
         {/* Canvas wave — absolutely positioned behind logo */}
         <ProductCardWave />
@@ -56,7 +56,7 @@ export function ProductCard({
         <div className="absolute inset-0 flex items-center justify-center z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={logoBw}
+            src={asset(logoBw)}
             alt={name}
             className="max-h-[69px] w-auto max-w-[68%] object-contain
                        transition-opacity duration-[320ms] [transition-timing-function:cubic-bezier(0.2,0,0,1)]
@@ -66,7 +66,7 @@ export function ProductCard({
           {/* Color logo — fades in on hover */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={logoColor}
+            src={asset(logoColor)}
             alt=""
             aria-hidden="true"
             className="max-h-[69px] w-auto max-w-[68%] object-contain

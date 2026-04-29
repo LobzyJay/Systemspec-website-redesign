@@ -61,7 +61,7 @@ export function Hero({
         className={[
           'relative z-10 w-full',
           mobileAnchorBottomLeft
-            ? 'pt-16 pb-12 md:pt-24 md:pb-20 lg:pt-28 lg:pb-28'
+            ? 'pt-16 pb-[max(3rem,env(safe-area-inset-bottom,0px))] md:pt-24 md:pb-20 lg:pt-28 lg:pb-28'
             : 'pt-12 pb-10 md:pt-24 md:pb-20 lg:pt-28 lg:pb-28',
         ].join(' ')}
       >

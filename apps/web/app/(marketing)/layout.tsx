@@ -11,42 +11,42 @@ import { RevealObserver } from '../../components/RevealObserver';
 import { RouteTransitions } from '../../components/RouteTransitions';
 import { SplashScreen } from '../../components/SplashScreen';
 
-// Contact removed — the "Talk to sales" CTA in the right rail covers the
-// same destination. Footer keeps Contact as a deep link for non-sales
-// audiences (press, careers, support).
+// Prepend the basePath so static HTML hrefs work on GitHub Pages without
+// relying on JS. RouteTransitions will strip the prefix before router.push.
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 const primaryLinks = [
-  { label: 'Solutions',  href: '/solutions' },
-  { label: 'Products',   href: '/products' },
-  { label: 'Developers', href: '/developers' },
-  { label: 'Company',    href: '/company' },
+  { label: 'Solutions',  href: `${base}/solutions` },
+  { label: 'Products',   href: `${base}/products` },
+  { label: 'Developers', href: `${base}/developers` },
+  { label: 'Company',    href: `${base}/company` },
 ];
 
 const footerColumns = [
   {
     title: 'Solutions',
     links: [
-      { label: 'Banking',             href: '/solutions/banking' },
-      { label: 'E-Government',        href: '/solutions/e-government' },
-      { label: 'Community',           href: '/solutions/community' },
-      { label: 'Enterprise Software', href: '/solutions/enterprise-software' },
+      { label: 'Banking',             href: `${base}/solutions/banking` },
+      { label: 'E-Government',        href: `${base}/solutions/e-government` },
+      { label: 'Community',           href: `${base}/solutions/community` },
+      { label: 'Enterprise Software', href: `${base}/solutions/enterprise-software` },
     ],
   },
   {
     title: 'Products',
     links: [
-      { label: 'Pouchii',     href: '/products/pouchii' },
-      { label: 'FundACause',  href: '/products/fundacause' },
-      { label: 'Monicenta',   href: '/products/monicenta' },
+      { label: 'Pouchii',     href: `${base}/products/pouchii` },
+      { label: 'FundACause',  href: `${base}/products/fundacause` },
+      { label: 'Monicenta',   href: `${base}/products/monicenta` },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About',       href: '/company' },
-      { label: 'Leadership',  href: '/company/leadership' },
-      { label: 'Group',       href: '/company/group' },
-      { label: 'Press',       href: '/company/press' },
-      { label: 'Careers',     href: '/company/careers' },
+      { label: 'About',       href: `${base}/company` },
+      { label: 'Leadership',  href: `${base}/company/leadership` },
+      { label: 'Group',       href: `${base}/company/group` },
+      { label: 'Press',       href: `${base}/company/press` },
+      { label: 'Careers',     href: `${base}/company/careers` },
     ],
   },
 ];
@@ -58,8 +58,8 @@ const groupCompanies = [
 ];
 
 const legalLinks = [
-  { label: 'Privacy', href: '/legal/privacy' },
-  { label: 'Terms',   href: '/legal/terms' },
+  { label: 'Privacy', href: `${base}/legal/privacy` },
+  { label: 'Terms',   href: `${base}/legal/terms` },
 ];
 
 const socialLinks: { kind: 'linkedin' | 'twitter'; href: string }[] = [

@@ -203,7 +203,7 @@ export default function PouchiiPage() {
               {c.proof.metrics.map((m, i) => (
                 <div
                   key={`pouchii-metric-${i}`}
-                  className="col-span-12 sm:col-span-4 rounded-[1.5rem] bg-bg-surface ring-1 ring-[color:var(--border-subtle)] p-6 shadow-e1"
+                  className="col-span-12 md:col-span-4 rounded-[1.5rem] bg-bg-surface ring-1 ring-[color:var(--border-subtle)] p-6 shadow-e1"
                 >
                   <dt className="text-[10px] font-mono uppercase tracking-[0.22em] text-fg-muted">
                     {m.label}

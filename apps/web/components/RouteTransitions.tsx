@@ -91,8 +91,16 @@ export function RouteTransitions() {
       if (url.pathname === window.location.pathname && url.hash) return;
 
       // We own this navigation. Build the destination as a path+search+hash
-      // so router.push gets a clean relative target.
-      const destination = url.pathname + url.search + url.hash;
+      // so router.push gets a clean relative target. Strip the basePath
+      // prefix if present — Next.js router.push expects paths WITHOUT the
+      // basePath (it adds the prefix internally). Without this, hrefs that
+      // already include the basePath (needed for correct GitHub Pages static
+      // HTML attributes) would push a double-prefixed URL.
+      const base = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+      const rawPath = base && url.pathname.startsWith(base)
+        ? url.pathname.slice(base.length) || '/'
+        : url.pathname;
+      const destination = rawPath + url.search + url.hash;
 
       const doc = document as ViewTransitionDoc;
       const startVT = doc.startViewTransition;

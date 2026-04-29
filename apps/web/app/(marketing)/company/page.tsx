@@ -70,7 +70,7 @@ export default function CompanyAboutPage() {
                 <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-fg-muted">
                   {item.label}
                 </span>
-                <span className="font-display font-medium text-display-md md:text-display-lg text-fg-primary leading-[1] tracking-[-0.02em] tabular-nums">
+                <span className="font-display font-medium text-display-md md:text-display-lg text-fg-primary leading-[1] tracking-[-0.02em] tabular-nums break-words overflow-hidden">
                   {item.value}
                 </span>
               </li>

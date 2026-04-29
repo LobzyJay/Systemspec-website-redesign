@@ -37,7 +37,7 @@ export function Footer({ columns, groupCompanies, contact, legalLinks, socialLin
             <Grid cols={1} mdCols={2} lgCols={6} gap={10}>
               <div className="lg:col-span-2">
                 <SystemSpecsWordmark tone="mono" height={26} />
-                <p className="mt-5 font-display text-body-lg text-fg-on-inverse whitespace-nowrap">
+                <p className="mt-5 font-display text-body-lg text-fg-on-inverse">
                   Technology Solutions Limited
                 </p>
                 <p className="mt-3 text-body-sm text-fg-on-inverse/70 max-w-sm">
@@ -147,7 +147,7 @@ export function Footer({ columns, groupCompanies, contact, legalLinks, socialLin
         <div className="md:hidden">
           <Container size="wide" className="py-10">
             <SystemSpecsWordmark tone="mono" height={22} />
-            <p className="mt-3 font-display text-body text-fg-on-inverse whitespace-nowrap">
+            <p className="mt-3 font-display text-body text-fg-on-inverse">
               Technology Solutions Limited
             </p>
 

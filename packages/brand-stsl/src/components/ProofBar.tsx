@@ -206,7 +206,7 @@ export function ProofBar({ intro, metrics, logos }: ProofBarProps) {
                 // First in each row gets no left border.
                 i % 2 === 0 ? '' : 'border-l border-[color:var(--border-subtle)]',
                 'md:border-l md:border-[color:var(--border-subtle)]',
-                'md:[&:nth-child(4n+1)]:border-l-0',
+                i % 4 === 0 ? 'md:border-l-0' : '',
               ].join(' ')}
             >
               <p className="font-display font-medium text-heading-1 md:text-display-md text-fg-primary tracking-tight tabular-nums leading-[1.05]">

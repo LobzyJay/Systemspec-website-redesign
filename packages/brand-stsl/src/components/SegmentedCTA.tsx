@@ -55,7 +55,7 @@ export function SegmentedCTA({ headline, segments }: SegmentedCTAProps) {
               href={s.href}
               data-reveal-card
               style={{ '--stagger': Math.min(i, 5) } as CSSProperties}
-              className="col-span-12 md:col-span-6 lg:col-span-4 group/seg block rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
+              className="col-span-12 sm:col-span-6 md:col-span-4 group/seg block rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
                          bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
                          shadow-e1 transition-[transform,box-shadow] duration-slow ease-expressive
                          hover:-translate-y-0.5 hover:shadow-e3"
