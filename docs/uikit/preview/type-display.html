@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<title>Display type</title>
+<link rel="stylesheet" href="_card.css"/>
+<style>
+  body { padding: 32px 28px; }
+  .specimen { display:flex; flex-direction:column; gap: 6px; }
+  .row-spec { display:flex; align-items:baseline; justify-content:space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle); }
+  .row-spec:last-child { border-bottom: none; }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: .12em; text-transform: uppercase; white-space:nowrap; padding-left: 12px;}
+  .display-xl { font-family: var(--font-display); font-weight: 500; font-size: 56px; letter-spacing: -0.02em; line-height: 1.05; color: var(--text-primary); }
+  .display-md { font-family: var(--font-display); font-weight: 500; font-size: 36px; letter-spacing: -0.02em; line-height: 1.1; color: var(--text-primary); }
+  .heading-1  { font-family: var(--font-display); font-weight: 600; font-size: 30px; letter-spacing: -0.005em; }
+  .heading-2  { font-family: var(--font-display); font-weight: 600; font-size: 24px; }
+  .heading-3  { font-family: var(--font-display); font-weight: 600; font-size: 20px; }
+</style>
+</head>
+<body>
+  <p class="eyebrow">Display · Plus Jakarta Sans (subbing Inter Tight)</p>
+  <div class="specimen">
+    <div class="row-spec">
+      <div class="display-xl">Infrastructure for Africa.</div>
+    </div>
+    <div class="meta" style="text-align:right; padding:0 0 6px;">display-xl · 56 / 1.05 / -0.02em · 500</div>
+    <div class="row-spec">
+      <div class="display-md">Built for institutions that move money.</div>
+    </div>
+    <div class="meta" style="text-align:right; padding:0 0 6px;">display-md · 36 / 1.1 / -0.02em · 500</div>
+    <div class="row-spec">
+      <div class="heading-1">Three decades of payment rails.</div>
+      <span class="meta">heading-1 · 30 · 600</span>
+    </div>
+    <div class="row-spec">
+      <div class="heading-2">Trusted by 800 institutions.</div>
+      <span class="meta">heading-2 · 24 · 600</span>
+    </div>
+    <div class="row-spec">
+      <div class="heading-3">A patient technology house.</div>
+      <span class="meta">heading-3 · 20 · 600</span>
+    </div>
+  </div>
+</body></html>

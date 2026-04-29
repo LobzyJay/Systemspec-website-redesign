@@ -1,4 +1,5 @@
 'use client';
+import { asset } from '../utils/asset';
 
 // Editorial proof bar.
 //
@@ -302,7 +303,7 @@ function ProofLogoMark({ logo }: { logo: ProofLogo }) {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logo.src} alt={altText} className="h-full w-auto object-contain" />
+        <img src={asset(logo.src)} alt={altText} className="h-full w-auto object-contain" />
       </span>
     );
   }

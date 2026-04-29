@@ -1,0 +1,46 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<title>Form input</title>
+<link rel="stylesheet" href="_card.css"/>
+<style>
+  body { padding: 28px; display:flex; flex-direction:column; gap: 16px; max-width: 100%; }
+  .field { display:flex; flex-direction: column; gap: 6px; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing:.22em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; }
+  .ctrl {
+    height: 44px;
+    border-radius: 12px;
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-subtle);
+    padding: 0 14px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-primary);
+    width: 100%;
+    transition: border-color 160ms, background 160ms;
+  }
+  .ctrl::placeholder { color: var(--text-muted); }
+  .ctrl:focus { outline: none; border-color: var(--accent-default); background: var(--bg-surface); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-default) 15%, transparent); }
+  .ctrl.error { border-color: var(--feedback-danger); background: var(--feedback-danger-subtle); }
+  .help { font-size: 12px; color: var(--text-muted); }
+  .help.err { color: var(--feedback-danger); }
+  .row { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+</style>
+</head>
+<body>
+  <p class="eyebrow" style="margin:0">Inputs · raised fill · 12px radius · accent focus ring</p>
+  <div class="row">
+    <div class="field">
+      <label class="lbl">Full name</label>
+      <input class="ctrl" placeholder="Adaeze Okafor"/>
+    </div>
+    <div class="field">
+      <label class="lbl">Work email</label>
+      <input class="ctrl" value="adaeze@treasury.gov" style="background: var(--bg-surface); border-color: var(--accent-default); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-default) 15%, transparent);"/>
+    </div>
+  </div>
+  <div class="field">
+    <label class="lbl">Institution</label>
+    <input class="ctrl error" value="not.an.email"/>
+    <span class="help err">Use your official institutional address.</span>
+  </div>
+</body></html>

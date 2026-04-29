@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<title>Wordmark</title>
+<link rel="stylesheet" href="_card.css"/>
+<style>
+  body { padding: 0; }
+  .row { display:grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-subtle); border-radius: 14px; overflow:hidden; margin: 28px; }
+  .cell { padding: 36px; min-height: 120px; display:flex; align-items:center; justify-content:center;}
+  .cell.light { background: var(--bg-canvas); }
+  .cell.dark  { background: var(--bg-inverse); }
+  .cell img { max-width: 70%; max-height: 56px; object-fit: contain; }
+  .cap { font-family: var(--font-mono); font-size: 10px; letter-spacing:.22em; text-transform: uppercase; color: var(--text-muted); padding: 0 28px; }
+</style>
+</head>
+<body>
+  <p class="cap" style="margin: 28px 0 0 28px;">Primary wordmark · cream + inverse</p>
+  <div class="row">
+    <div class="cell light"><img src="../assets/systemspecs-wordmark-black.png" alt="SystemSpecs"/></div>
+    <div class="cell dark"><img src="../assets/systemspecs-wordmark-white.png" alt="SystemSpecs"/></div>
+  </div>
+</body></html>

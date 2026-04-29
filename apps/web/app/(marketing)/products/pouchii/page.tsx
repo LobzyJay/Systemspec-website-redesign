@@ -60,7 +60,7 @@ export default function PouchiiPage() {
         visual={
           <div className="w-full h-full bg-bg-canvas flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/products/pouchii-color.png" alt="Pouchii" className="max-h-20 w-auto object-contain" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/products/pouchii-color.png`} alt="Pouchii" className="max-h-20 w-auto object-contain" />
           </div>
         }
         atmosphereReactive

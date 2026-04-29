@@ -52,7 +52,7 @@ export default function MonicentaPage() {
         visual={
           <div className="w-full h-full bg-bg-canvas flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/products/monicenta-color.png" alt="Monicenta" className="max-h-20 w-auto object-contain" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/products/monicenta-color.png`} alt="Monicenta" className="max-h-20 w-auto object-contain" />
           </div>
         }
         atmosphereReactive
