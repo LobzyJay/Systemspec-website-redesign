@@ -210,12 +210,16 @@ body::before {
 [data-reveal-card] {
   opacity: 0;
   transform: translateY(8px);
-  /* Matching ease-in-out + trimmed base delay so cards land just
-     after the hero text settles. */
+  /* Faster, no base delay — when the user scrolls down quickly, cards
+     should appear immediately as they cross the IO threshold instead
+     of waiting on a delay tuned for the splash sync. The above-the-fold
+     splash hand-off is still safe because the splash CSS rule
+     (html[data-splash="active"] [data-reveal-card]) overrides this
+     with !important until the splash drops. */
   transition:
-    opacity 540ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 540ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: calc(400ms + var(--stagger, 0) * 70ms);
+    opacity 380ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 380ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--stagger, 0) * 60ms);
   will-change: opacity, transform;
 }
 [data-reveal-card][data-revealed="true"] {

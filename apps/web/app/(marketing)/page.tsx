@@ -137,23 +137,18 @@ export default function HomePage() {
               ) : null}
             </div>
           </Grid>
-          <Grid cols={12} gap={4} mdGap={5}>
-            {c.solutions.cards.map((card, i) => (
-              <div
+          <MobileSnapCarousel desktopItemClass="md:basis-auto md:col-span-6 lg:col-span-3">
+            {c.solutions.cards.map((card) => (
+              <SolutionCard
                 key={card.slug}
-                style={{ '--stagger': Math.min(i, 5) } as React.CSSProperties}
-                className="col-span-12 md:col-span-6 lg:col-span-3 flex [&>*]:flex-1"
-              >
-                <SolutionCard
-                  icon={solutionIcons[card.slug as keyof typeof solutionIcons]}
-                  title={card.title}
-                  description={card.description}
-                  proof={card.proofPoint}
-                  href={card.href}
-                />
-              </div>
+                icon={solutionIcons[card.slug as keyof typeof solutionIcons]}
+                title={card.title}
+                description={card.description}
+                proof={card.proofPoint}
+                href={card.href}
+              />
             ))}
-          </Grid>
+          </MobileSnapCarousel>
         </Container>
       </section>
 
