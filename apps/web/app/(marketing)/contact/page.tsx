@@ -127,9 +127,29 @@ function LandingView() {
               Pick the closest match. Replies inside one business day. Existing customers route to the support team that owns their account.
             </p>
           </div>
-          <Grid as="ul" cols={12} gap={4} mdGap={5} className="mt-12 md:mt-16">
+          {/* Mobile: horizontal snap-scroll carousel — one card in focus
+              with a peek of the next so the swipe affordance is obvious.
+              Desktop (md+): standard responsive grid. The scroll area
+              breaks the Container padding via -mx-6 / px-6 so the
+              carousel feels full-bleed; touch-action override lets the
+              user pan-x here despite the global pan-y lock. */}
+          <ul
+            className="mt-12 md:mt-16
+                       flex md:grid md:grid-cols-2 lg:grid-cols-3
+                       gap-4 md:gap-5
+                       overflow-x-auto md:overflow-visible
+                       snap-x snap-mandatory md:snap-none
+                       -mx-6 md:mx-0 px-6 md:px-0
+                       py-4 md:py-0
+                       [touch-action:pan-x_pan-y] md:[touch-action:auto]
+                       [&::-webkit-scrollbar]:hidden
+                       [scrollbar-width:none]"
+          >
             {c.routes.map((route) => (
-              <li key={route.slug} className="col-span-12 md:col-span-6 lg:col-span-4">
+              <li
+                key={route.slug}
+                className="shrink-0 md:shrink basis-[85%] md:basis-auto snap-center"
+              >
                 <a
                   href={`?audience=${route.slug}`}
                   className="group/aud relative flex flex-col h-full rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
@@ -163,7 +183,7 @@ function LandingView() {
                 </a>
               </li>
             ))}
-          </Grid>
+          </ul>
         </Container>
       </section>
 

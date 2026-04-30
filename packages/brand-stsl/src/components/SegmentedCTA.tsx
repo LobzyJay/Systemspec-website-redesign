@@ -48,37 +48,58 @@ export function SegmentedCTA({ headline, segments }: SegmentedCTAProps) {
           </div>
         </Grid>
 
-        <Grid cols={12} gap={4} className="mt-10 md:mt-14">
+        {/* Mobile: horizontal snap-scroll with one card in focus + a peek
+            of the next so the swipe affordance is obvious. Desktop:
+            standard responsive grid. Carousel breaks the Container
+            padding (-mx-6/px-6) so it reads full-bleed on phone, and
+            touch-action override unlocks pan-x against the global
+            pan-y lock. */}
+        <ul
+          className="mt-10 md:mt-14
+                     flex md:grid md:grid-cols-12 gap-4
+                     overflow-x-auto md:overflow-visible
+                     snap-x snap-mandatory md:snap-none
+                     -mx-6 md:mx-0 px-6 md:px-0
+                     py-4 md:py-0
+                     [touch-action:pan-x_pan-y] md:[touch-action:auto]
+                     [&::-webkit-scrollbar]:hidden
+                     [scrollbar-width:none]"
+        >
           {segments.map((s, i) => (
-            <a
+            <li
               key={s.href}
-              href={s.href}
-              data-reveal-card
               style={{ '--stagger': Math.min(i, 5) } as CSSProperties}
-              className="col-span-12 sm:col-span-6 md:col-span-4 group/seg block rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
-                         bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
-                         shadow-e1 transition-[transform,box-shadow] duration-slow ease-expressive
-                         hover:-translate-y-0.5 hover:shadow-e3"
+              className="shrink-0 md:shrink basis-[85%] md:basis-auto md:col-span-6 lg:col-span-4 snap-center"
             >
-              <div className="relative flex flex-col h-full p-7 md:p-8 rounded-[calc(1.75rem-0.375rem)] bg-bg-surface shadow-inner-hi">
-                <p className="text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-accent">{s.audience}</p>
-                <p className="mt-5 font-display font-medium text-heading-1 text-fg-primary text-balance tracking-tight">
-                  {s.outcome}
-                </p>
-                {/* CTA pinned to bottom so every card's button row shares
-                    a horizontal baseline regardless of outcome length. */}
-                <div className="mt-auto pt-8">
-                  <span className="inline-flex items-center gap-2.5 h-11 pl-5 pr-1 rounded-pill ring-1 ring-[color:var(--border-default)] text-body-sm font-medium text-fg-primary transition-[background-color,border-color,color] duration-base ease-expressive group-hover/seg:ring-accent group-hover/seg:text-accent">
-                    <span className="leading-none">{s.cta}</span>
-                    <span aria-hidden="true" className="inline-flex items-center justify-center h-9 w-9 rounded-pill bg-accent-subtle text-accent transition-[transform,background-color,color] duration-base ease-expressive group-hover/seg:translate-x-0.5 group-hover/seg:-translate-y-px group-hover/seg:scale-[1.06] group-hover/seg:bg-accent group-hover/seg:!text-white">
-                      <ArrowUpRight size={14} />
+              <a
+                href={s.href}
+                data-reveal-card
+                className="group/seg flex h-full rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
+                           bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
+                           shadow-e1 transition-[transform,box-shadow] duration-slow ease-expressive
+                           hover:-translate-y-0.5 hover:shadow-e3
+                           motion-safe:active:scale-[0.98] motion-safe:active:duration-100 active:shadow-e2"
+              >
+                <div className="relative flex flex-col flex-1 p-7 md:p-8 rounded-[calc(1.75rem-0.375rem)] bg-bg-surface shadow-inner-hi">
+                  <p className="text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-accent">{s.audience}</p>
+                  <p className="mt-5 font-display font-medium text-heading-1 text-fg-primary text-balance tracking-tight">
+                    {s.outcome}
+                  </p>
+                  {/* CTA pinned to bottom so every card's button row shares
+                      a horizontal baseline regardless of outcome length. */}
+                  <div className="mt-auto pt-8">
+                    <span className="inline-flex items-center gap-2.5 h-11 pl-5 pr-1 rounded-pill ring-1 ring-[color:var(--border-default)] text-body-sm font-medium text-fg-primary transition-[background-color,border-color,color] duration-base ease-expressive group-hover/seg:ring-accent group-hover/seg:text-accent">
+                      <span className="leading-none">{s.cta}</span>
+                      <span aria-hidden="true" className="inline-flex items-center justify-center h-9 w-9 rounded-pill bg-accent-subtle text-accent transition-[transform,background-color,color] duration-base ease-expressive group-hover/seg:translate-x-0.5 group-hover/seg:-translate-y-px group-hover/seg:scale-[1.06] group-hover/seg:bg-accent group-hover/seg:!text-white">
+                        <ArrowUpRight size={14} />
+                      </span>
                     </span>
-                  </span>
+                  </div>
                 </div>
-              </div>
-            </a>
+              </a>
+            </li>
           ))}
-        </Grid>
+        </ul>
       </Container>
     </section>
   );
