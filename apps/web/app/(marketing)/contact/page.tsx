@@ -270,6 +270,7 @@ function FormView({ audience }: { audience: ContactAudience }) {
         headline={route.title}
         subhead={route.description}
         primary={{ label: 'Back to all audiences', href: '/contact' }}
+        atmosphereReactive
       />
 
       {/* Form section — pale green surface (matches marketing page bg)
