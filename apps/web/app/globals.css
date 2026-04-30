@@ -51,6 +51,24 @@ html[data-splash="active"] body::before {
   display: none;
 }
 
+/* Pre-hydration overlay — covers ALL page content (dark sections,
+   atmospheres, hero bg, etc.) from the very first paint until the
+   React SplashScreen mounts on top. Without this, there's a brief
+   flash where the body bg is white but section/hero bg colors leak
+   through before the React splash z-index:999 overlay appears.
+   Pinned at z-index:998 so it sits BENEATH the React splash; removed
+   together with the data-splash attribute 120ms into the reveal
+   animation so the React splash's clip-path collapse reveals the
+   real page bg underneath. */
+html[data-splash="active"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 998;
+  pointer-events: none;
+}
+
 /* Reveal-gate during splash — even if the IntersectionObserver marks
    above-the-fold elements as revealed while the splash is up, force
    them BACK to the hidden state so the entry animations queue up
@@ -126,12 +144,16 @@ body::before {
      viewport — at which point the transition fires. */
   [data-reveal] {
     opacity: 0;
-    transform: translate3d(0, 24px, 0);
+    transform: translate3d(0, 20px, 0);
     filter: blur(6px);
+    /* 900ms Apple-style settle — slower, softer end than the previous
+       620ms cubic-bezier(0.2,0,0,1). Combined with the 180ms delay below
+       the reveal starts AFTER the splash clip-path has clearly opened
+       so the two motions don't fight each other. */
     transition:
-      opacity 620ms cubic-bezier(0.2, 0, 0, 1),
-      transform 620ms cubic-bezier(0.2, 0, 0, 1),
-      filter 620ms cubic-bezier(0.2, 0, 0, 1);
+      opacity 900ms cubic-bezier(0.32, 0.72, 0, 1) 180ms,
+      transform 900ms cubic-bezier(0.32, 0.72, 0, 1) 180ms,
+      filter 900ms cubic-bezier(0.32, 0.72, 0, 1) 180ms;
     will-change: opacity, transform, filter;
   }
   [data-reveal][data-revealed="true"] {
@@ -171,11 +193,14 @@ body::before {
    Math.min(index, 5) so beyond ~6 cards the rhythm doesn't read as wrong. */
 [data-reveal-card] {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(14px);
+  /* Same Apple curve as [data-reveal]; cards add their per-child stagger
+     on top of the base 180ms delay so they cascade after page text has
+     started settling. */
   transition:
-    opacity 540ms cubic-bezier(0.2, 0, 0, 1),
-    transform 540ms cubic-bezier(0.2, 0, 0, 1);
-  transition-delay: calc(var(--stagger, 0) * 70ms);
+    opacity 780ms cubic-bezier(0.32, 0.72, 0, 1),
+    transform 780ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition-delay: calc(180ms + var(--stagger, 0) * 80ms);
   will-change: opacity, transform;
 }
 [data-reveal-card][data-revealed="true"] {
