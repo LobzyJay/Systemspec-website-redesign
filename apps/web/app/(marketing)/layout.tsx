@@ -82,10 +82,6 @@ export default function MarketingLayout({ children }: { children: ReactNode }) {
           the cream default from globals.css. */}
       <style>{`
         html, body { background-color: color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)); }
-        /* Guard against any nested absolute/canvas atmosphere from
-           pushing horizontal scroll on iOS Safari. Marketing layout owns
-           the page chrome so this guard stays scoped here. */
-        body { overflow-x: hidden; }
       `}</style>
       <div
         className="min-h-screen flex flex-col"
