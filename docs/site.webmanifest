@@ -1,0 +1,12 @@
+{
+  "name": "SystemSpecs Technology Solutions",
+  "short_name": "STSL",
+  "description": "Infrastructure for Africa's payments, government, and finance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#017a6a",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

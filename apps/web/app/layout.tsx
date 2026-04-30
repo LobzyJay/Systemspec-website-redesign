@@ -89,7 +89,11 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   manifest: '/site.webmanifest',
   icons: {
-    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
   alternates: {
     canonical: '/',
