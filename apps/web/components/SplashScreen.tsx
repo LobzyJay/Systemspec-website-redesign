@@ -37,15 +37,16 @@ import { useEffect, useState } from 'react';
 // brand reveal consistent and lets the user feel the loading state on
 // every visit, including back/forward navigations from external sites.
 //
-// 4s desktop hold / 2s mobile hold. Reveal is a circular clip-path
-// collapse on a smoother ease-in-out curve, with motion blur ramping
-// up at the start of the dismiss to soften the mask edge mid-motion.
-const MIN_HOLD_DESKTOP_MS = 4000;
-const MIN_HOLD_MOBILE_MS  = 2000;
-// Reveal: slightly longer duration + expo-out easing so the circle
-// accelerates hard at the start then floats gently to zero — feels
-// like the mask is being inhaled rather than mechanically shrunk.
-const REVEAL_MS           = 1400;
+// Fast hold so pages feel responsive, then a quick clip-path reveal.
+// Tuned to sit well under 2.5s total to first content (Core Web Vitals
+// LCP target). 1.2s desktop / 0.8s mobile (mobile is usually slower
+// network so we surface content sooner).
+const MIN_HOLD_DESKTOP_MS = 1200;
+const MIN_HOLD_MOBILE_MS  = 800;
+// Reveal: trimmed from 1400ms → 900ms. Same expo-out easing so the
+// circle accelerates hard at the start then floats gently to zero —
+// the mask still reads as inhaled, just more responsive.
+const REVEAL_MS           = 900;
 const REVEAL_EASE         = 'cubic-bezier(0.16, 1, 0.3, 1)';
 
 export function SplashScreen() {

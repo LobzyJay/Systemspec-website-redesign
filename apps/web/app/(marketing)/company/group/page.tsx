@@ -3,6 +3,7 @@
 // the existing GroupBlock component, then a second editorial section that
 // names each subsidiary's role in the group.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   GroupBlock,
@@ -11,6 +12,18 @@ import {
   groupCopy,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+
+export const metadata: Metadata = {
+  title: 'Group',
+  description:
+    'STSL inside SystemSpecs Holdings — Remita, HumanManager, and Whatadeal. Four operating companies under shared governance, since 1992.',
+  alternates: { canonical: '/company/group' },
+  openGraph: {
+    title: 'Group · SystemSpecs Technology Solutions',
+    description: 'STSL is part of SystemSpecs Holdings — Remita, HumanManager, and Whatadeal.',
+    url: '/company/group',
+  },
+};
 
 export default function CompanyGroupPage() {
   const c = groupCopy;

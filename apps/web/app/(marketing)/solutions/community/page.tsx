@@ -1,6 +1,7 @@
 // Community solution sub-page. Wires communitySolutionCopy through the
 // shared SolutionPage template under solutions/_components.
 
+import type { Metadata } from 'next';
 import {
   communitySolutionCopy,
   Wallet,
@@ -11,6 +12,18 @@ import {
   Document,
 } from '@systemspecs/brand-stsl';
 import { SolutionPage } from '../_components/SolutionPage';
+
+export const metadata: Metadata = {
+  title: 'Community',
+  description:
+    'STSL community-finance infrastructure for cooperatives, faith-based groups, and member schemes — wallets, contributions, payouts, lending, and oversight.',
+  alternates: { canonical: '/solutions/community' },
+  openGraph: {
+    title: 'Community · SystemSpecs Technology Solutions',
+    description: 'Wallets, contributions, payouts, and oversight for cooperative and member-based schemes.',
+    url: '/solutions/community',
+  },
+};
 
 // Order matches communitySolutionCopy.capabilities.blocks:
 //   branded wallets, contributions and savings, payouts and disbursements,

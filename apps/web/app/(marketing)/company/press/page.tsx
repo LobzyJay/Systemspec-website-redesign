@@ -3,39 +3,23 @@
 // downloadable media kit will replace the placeholders below once comms
 // approval lands per brief §11.
 
+import type { Metadata } from 'next';
 import {
   Hero,
-  InsightCard,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid } from '@systemspecs/foundations/layout';
 
-interface PressItem {
-  title: string;
-  publication: string;
-  date: string;
-  href: string;
-}
-
-const pressItems: ReadonlyArray<PressItem> = [
-  {
-    title: '{{PRESS_ITEM_1_TITLE}}',
-    publication: 'TechCabal',
-    date: '{{PRESS_ITEM_1_DATE}}',
-    href: '/contact?audience=press',
+export const metadata: Metadata = {
+  title: 'Press',
+  description:
+    'Press and analyst resources for STSL. Third-party coverage, leadership interviews, and a downloadable media kit on request.',
+  alternates: { canonical: '/company/press' },
+  openGraph: {
+    title: 'Press · SystemSpecs Technology Solutions',
+    description: 'Press and analyst resources, coverage, and media kit.',
+    url: '/company/press',
   },
-  {
-    title: '{{PRESS_ITEM_2_TITLE}}',
-    publication: 'Nairametrics',
-    date: '{{PRESS_ITEM_2_DATE}}',
-    href: '/contact?audience=press',
-  },
-  {
-    title: '{{PRESS_ITEM_3_TITLE}}',
-    publication: '{{PRESS_ITEM_3_PUBLICATION}}',
-    date: '{{PRESS_ITEM_3_DATE}}',
-    href: '/contact?audience=press',
-  },
-];
+};
 
 export default function CompanyPressPage() {
   return (

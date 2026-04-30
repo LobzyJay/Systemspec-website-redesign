@@ -12,6 +12,7 @@
 // per §11. They are rendered as-is so reviewers can see the gaps clearly,
 // per the same convention used on the homepage.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   CapabilityBlock,
@@ -25,6 +26,18 @@ import {
   Users,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+
+export const metadata: Metadata = {
+  title: 'Monicenta',
+  description:
+    'Monicenta — the enterprise infrastructure layer STSL operates for institutional finance, treasury, and operations teams.',
+  alternates: { canonical: '/products/monicenta' },
+  openGraph: {
+    title: 'Monicenta · SystemSpecs Technology Solutions',
+    description: 'Enterprise infrastructure for institutional finance, treasury, and operations.',
+    url: '/products/monicenta',
+  },
+};
 
 // Feature → icon map. Six slots to match monicentaCopy.features.items. All
 // titles are still placeholders so the icons here are intentionally generic

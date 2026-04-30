@@ -11,6 +11,7 @@
 // Placeholder tokens ({{LIKE_THIS}}) inside copy are blocked on STSL comms
 // approval per brief §11 and render as-is so the gaps are visible.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   CapabilityBlock,
@@ -26,6 +27,19 @@ import {
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section, Stack } from '@systemspecs/foundations/layout';
 import type { ReactNode } from 'react';
+
+export const metadata: Metadata = {
+  title: 'Developers',
+  description:
+    'STSL APIs for accounts, payments, and verification. Sandbox access, code samples, and integration partners for fintech and enterprise builders.',
+  alternates: { canonical: '/developers' },
+  openGraph: {
+    title: 'Developers · SystemSpecs Technology Solutions',
+    description:
+      'APIs, sandbox access, and the code paths used by Nigerian fintech and enterprise teams.',
+    url: '/developers',
+  },
+};
 
 const categoryIcons: ReadonlyArray<ReactNode> = [
   <Wallet key="wallet" size={22} />,

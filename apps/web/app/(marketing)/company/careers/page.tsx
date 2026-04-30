@@ -3,6 +3,7 @@
 // a placeholder open-roles list, and a talent-pool newsletter CTA. Roles are
 // blocked on hiring approval per brief §11 and render placeholders inline.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   SectionHeader,
@@ -10,17 +11,22 @@ import {
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
 import { CareersNewsletter } from './CareersNewsletter';
 
+export const metadata: Metadata = {
+  title: 'Careers',
+  description:
+    'Careers at STSL. Build the systems that move money, payroll, and public services for Nigerian institutions. Hiring engineers, product, banking, and government delivery.',
+  alternates: { canonical: '/company/careers' },
+  openGraph: {
+    title: 'Careers · SystemSpecs Technology Solutions',
+    description: 'Build for the institutions that matter. Hiring at STSL.',
+    url: '/company/careers',
+  },
+};
+
 interface ValueBlock {
   eyebrow: string;
   title: string;
   body: string;
-}
-
-interface OpenRole {
-  title: string;
-  team: string;
-  location: string;
-  href: string;
 }
 
 const valueBlocks: ReadonlyArray<ValueBlock> = [
@@ -38,27 +44,6 @@ const valueBlocks: ReadonlyArray<ValueBlock> = [
     eyebrow: 'INSTITUTION',
     title: 'Build at a 30-year operating standard.',
     body: 'STSL has shipped to banks and federal MDAs since 1992. That standard sets the bar for the work and for how the team treats each other.',
-  },
-];
-
-const openRoles: ReadonlyArray<OpenRole> = [
-  {
-    title: '{{ROLE_1_TITLE}}',
-    team: '{{ROLE_1_TEAM}}',
-    location: 'Lagos, Nigeria',
-    href: '/contact?audience=careers',
-  },
-  {
-    title: '{{ROLE_2_TITLE}}',
-    team: '{{ROLE_2_TEAM}}',
-    location: 'Lagos, Nigeria',
-    href: '/contact?audience=careers',
-  },
-  {
-    title: '{{ROLE_3_TITLE}}',
-    team: '{{ROLE_3_TEAM}}',
-    location: 'Remote · Nigeria',
-    href: '/contact?audience=careers',
   },
 ];
 

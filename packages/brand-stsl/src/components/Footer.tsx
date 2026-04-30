@@ -49,8 +49,10 @@ export function Footer({ columns, groupCompanies, contact, legalLinks, socialLin
                     <a
                       key={s.kind}
                       href={s.href}
+                      rel="noopener"
+                      target="_blank"
                       className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/15 text-fg-on-inverse hover:bg-white/10 transition-colors"
-                      aria-label={s.kind}
+                      aria-label={`SystemSpecs Technology Solutions on ${s.kind === 'linkedin' ? 'LinkedIn' : 'Twitter'}`}
                     >
                       {s.kind === 'linkedin' ? <LinkedIn size={18} /> : <Twitter size={18} />}
                     </a>
@@ -180,8 +182,10 @@ export function Footer({ columns, groupCompanies, contact, legalLinks, socialLin
                   <a
                     key={s.kind}
                     href={s.href}
+                    rel="noopener"
+                    target="_blank"
                     className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/15 text-fg-on-inverse hover:bg-white/10 transition-colors"
-                    aria-label={s.kind}
+                    aria-label={`SystemSpecs Technology Solutions on ${s.kind === 'linkedin' ? 'LinkedIn' : 'Twitter'}`}
                   >
                     {s.kind === 'linkedin' ? <LinkedIn size={14} /> : <Twitter size={14} />}
                   </a>

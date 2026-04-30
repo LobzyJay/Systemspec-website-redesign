@@ -9,6 +9,7 @@
 //
 // Nav + Footer come from the (marketing)/layout.tsx wrapper.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   ProductCard,
@@ -17,6 +18,19 @@ import {
   homepageCopy,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+
+export const metadata: Metadata = {
+  title: 'Products',
+  description:
+    'Three products built and operated in-house at STSL. Pouchii powers fintech rails. FundACause runs regulated giving. Monicenta serves enterprise.',
+  alternates: { canonical: '/products' },
+  openGraph: {
+    title: 'Products · SystemSpecs Technology Solutions',
+    description:
+      'Pouchii, FundACause, and Monicenta — owned, run, and supported by the same team that builds for banks and government.',
+    url: '/products',
+  },
+};
 
 export default function ProductsOverviewPage() {
   const c = homepageCopy;

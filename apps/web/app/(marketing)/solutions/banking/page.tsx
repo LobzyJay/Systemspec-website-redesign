@@ -1,6 +1,7 @@
 // Banking solution sub-page. Wires bankingSolutionCopy through the shared
 // SolutionPage template under solutions/_components.
 
+import type { Metadata } from 'next';
 import {
   bankingSolutionCopy,
   Wallet,
@@ -11,6 +12,18 @@ import {
   Document,
 } from '@systemspecs/brand-stsl';
 import { SolutionPage } from '../_components/SolutionPage';
+
+export const metadata: Metadata = {
+  title: 'Banking',
+  description:
+    'STSL banking infrastructure — virtual accounts, payment APIs, core banking integration, lending, and identity for Nigerian Tier-1 and challenger banks.',
+  alternates: { canonical: '/solutions/banking' },
+  openGraph: {
+    title: 'Banking · SystemSpecs Technology Solutions',
+    description: 'Payment, identity, and core-banking infrastructure for Nigerian banks.',
+    url: '/solutions/banking',
+  },
+};
 
 // Order matches bankingSolutionCopy.capabilities.blocks:
 //   virtual accounts, payment APIs, core banking integration,

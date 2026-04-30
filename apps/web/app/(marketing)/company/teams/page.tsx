@@ -4,6 +4,7 @@
 // ({{COMMS_APPROVAL_REQUIRED}}) per brief §11 and render as-is so the gaps
 // stay visible on this dev build.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   SectionHeader,
@@ -12,6 +13,18 @@ import {
   teamsCopy,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+
+export const metadata: Metadata = {
+  title: 'Teams',
+  description:
+    'The board, management, and operating teams behind STSL. People who have shipped to Nigerian banks, federal MDAs, and the SystemSpecs group of companies.',
+  alternates: { canonical: '/company/teams' },
+  openGraph: {
+    title: 'Teams · SystemSpecs Technology Solutions',
+    description: 'Board, management, and operating teams behind STSL.',
+    url: '/company/teams',
+  },
+};
 
 export default function CompanyTeamsPage() {
   const c = teamsCopy;

@@ -144,16 +144,17 @@ body::before {
      viewport — at which point the transition fires. */
   [data-reveal] {
     opacity: 0;
-    transform: translate3d(0, 20px, 0);
-    filter: blur(6px);
-    /* 900ms Apple-style settle — slower, softer end than the previous
-       620ms cubic-bezier(0.2,0,0,1). Combined with the 180ms delay below
-       the reveal starts AFTER the splash clip-path has clearly opened
-       so the two motions don't fight each other. */
+    transform: translate3d(0, 10px, 0);
+    filter: blur(3px);
+    /* Subtle, snappy 520ms settle. Delay tuned so reveals fire AFTER
+       the splash clip-path has fully resolved (data-splash drops at
+       ~120ms into the dismiss; splash visually gone at ~900ms; we wait
+       another ~140ms past that so the user sees an empty cream hero
+       for a beat before text + buttons fade in inside it). */
     transition:
-      opacity 900ms cubic-bezier(0.32, 0.72, 0, 1) 180ms,
-      transform 900ms cubic-bezier(0.32, 0.72, 0, 1) 180ms,
-      filter 900ms cubic-bezier(0.32, 0.72, 0, 1) 180ms;
+      opacity 520ms cubic-bezier(0.32, 0.72, 0, 1) 880ms,
+      transform 520ms cubic-bezier(0.32, 0.72, 0, 1) 880ms,
+      filter 520ms cubic-bezier(0.32, 0.72, 0, 1) 880ms;
     will-change: opacity, transform, filter;
   }
   [data-reveal][data-revealed="true"] {
@@ -193,14 +194,14 @@ body::before {
    Math.min(index, 5) so beyond ~6 cards the rhythm doesn't read as wrong. */
 [data-reveal-card] {
   opacity: 0;
-  transform: translateY(14px);
-  /* Same Apple curve as [data-reveal]; cards add their per-child stagger
-     on top of the base 180ms delay so they cascade after page text has
-     started settling. */
+  transform: translateY(8px);
+  /* Same subtle treatment as [data-reveal]. Base delay aligns with the
+     post-splash gap so above-the-fold cards land after the hero text;
+     per-child stagger cascades them in. */
   transition:
-    opacity 780ms cubic-bezier(0.32, 0.72, 0, 1),
-    transform 780ms cubic-bezier(0.32, 0.72, 0, 1);
-  transition-delay: calc(180ms + var(--stagger, 0) * 80ms);
+    opacity 520ms cubic-bezier(0.32, 0.72, 0, 1),
+    transform 520ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition-delay: calc(880ms + var(--stagger, 0) * 70ms);
   will-change: opacity, transform;
 }
 [data-reveal-card][data-revealed="true"] {

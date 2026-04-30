@@ -1,6 +1,7 @@
 // E-Government solution sub-page. Wires eGovernmentSolutionCopy through the
 // shared SolutionPage template under solutions/_components.
 
+import type { Metadata } from 'next';
 import {
   eGovernmentSolutionCopy,
   Document,
@@ -11,6 +12,18 @@ import {
   Network,
 } from '@systemspecs/brand-stsl';
 import { SolutionPage } from '../_components/SolutionPage';
+
+export const metadata: Metadata = {
+  title: 'E-Government',
+  description:
+    'STSL e-government infrastructure for federal MDAs and state agencies — e-budgeting, warranting, revenue collection, identity, and reporting.',
+  alternates: { canonical: '/solutions/e-government' },
+  openGraph: {
+    title: 'E-Government · SystemSpecs Technology Solutions',
+    description: 'E-budgeting, revenue, identity, and reporting for federal MDAs and state agencies.',
+    url: '/solutions/e-government',
+  },
+};
 
 // Order matches eGovernmentSolutionCopy.capabilities.blocks:
 //   e-budgeting, warranting and AIE, revenue and collections,

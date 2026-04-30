@@ -12,6 +12,7 @@
 // Copy comes from packages/brand-stsl/src/content/copy/products/fundacause.ts.
 // Brand colour comes from the shared productBrandColors map (FundACause gold).
 
+import type { Metadata } from 'next';
 import {
   Hero,
   CapabilityBlock,
@@ -27,6 +28,18 @@ import {
   Network,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+
+export const metadata: Metadata = {
+  title: 'FundACause',
+  description:
+    'FundACause — STSL’s regulated giving platform. Verified campaigns, multi-channel collection, transparent disbursement, and white-label options for institutions.',
+  alternates: { canonical: '/products/fundacause' },
+  openGraph: {
+    title: 'FundACause · SystemSpecs Technology Solutions',
+    description: 'Regulated giving infrastructure with verified campaigns and transparent disbursement.',
+    url: '/products/fundacause',
+  },
+};
 
 // Feature → icon map, ordered to match fundACauseCopy.features.items.
 const featureIcons = [
@@ -160,8 +173,8 @@ export default function FundACausePage() {
               <p className="text-overline uppercase text-accent mb-4">{c.proof.eyebrow}</p>
 
               {/* Dedicated mono-caps award badge — pinned above the section
-                  headline as called out in the brief. Source line under the
-                  badge label honours the {{AWARD_BODY_NAME}} placeholder. */}
+                  headline as called out in the brief. Source line shows the
+                  awarding body alongside the badge label. */}
               <div className="mb-6 inline-flex items-center gap-3 rounded-pill bg-bg-surface ring-1 ring-[color:var(--border-default)] pl-4 pr-5 h-10 shadow-e1">
                 <span
                   aria-hidden="true"

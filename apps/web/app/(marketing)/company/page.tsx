@@ -6,6 +6,7 @@
 // Placeholders ({{LIKE_THIS}}) in copy are blocked on STSL comms approval per
 // brief §11. They render as-is on this dev build so the gaps stay visible.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   SectionHeader,
@@ -15,6 +16,19 @@ import {
   homepageCopy,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    'STSL is a SystemSpecs Holdings company building infrastructure for Nigerian banks, federal MDAs, and the institutions Nigerians rely on every day. Operating since 1992.',
+  alternates: { canonical: '/company' },
+  openGraph: {
+    title: 'About · SystemSpecs Technology Solutions',
+    description:
+      'A SystemSpecs Holdings company. Building infrastructure for Africa’s payments, government, and finance since 1992.',
+    url: '/company',
+  },
+};
 
 export default function CompanyAboutPage() {
   const c = aboutCopy;

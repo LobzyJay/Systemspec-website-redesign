@@ -5,6 +5,7 @@
 //
 // Nav + Footer come from the (marketing)/layout.tsx wrapper.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   SolutionCard,
@@ -17,6 +18,19 @@ import {
   homepageCopy,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+
+export const metadata: Metadata = {
+  title: 'Solutions',
+  description:
+    'STSL solutions for banking, e-government, community schemes, and enterprise software — built on the same operating platform that has served Nigerian institutions since 1992.',
+  alternates: { canonical: '/solutions' },
+  openGraph: {
+    title: 'Solutions · SystemSpecs Technology Solutions',
+    description:
+      'Four lines of business, one platform underneath. Banking, e-government, community, enterprise software.',
+    url: '/solutions',
+  },
+};
 
 const solutionIcons = {
   banking: <Bank size={22} />,

@@ -9,6 +9,7 @@
 // Placeholders ({{LIKE_THIS}}) in copy are blocked on STSL comms approval per
 // brief §11. They render as-is on this dev build so the gaps are visible.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   StatPill,
@@ -26,6 +27,23 @@ import {
   Code,
   homepageCopy,
 } from '@systemspecs/brand-stsl';
+
+// Page-specific metadata. Title falls into the root layout's `%s · …`
+// template so the full <title> reads as a single string. Description and
+// OpenGraph are page-scoped so social previews reflect this page, not the
+// site default inherited from app/layout.tsx.
+export const metadata: Metadata = {
+  title: { absolute: 'SystemSpecs Technology Solutions — Infrastructure for Africa’s payments, government, and finance' },
+  description:
+    'STSL builds and operates the payment, e-government, and enterprise infrastructure used by Nigerian banks, federal MDAs, and the SystemSpecs group of companies since 1992.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'SystemSpecs Technology Solutions',
+    description:
+      'Infrastructure for Africa’s payments, government, and finance. A SystemSpecs Holdings company since 1992.',
+    url: '/',
+  },
+};
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
 // Globe is the only consumer of the cobe runtime (~10KB+ minified) on the
 // site. The .client shim dynamic-imports it client-only so cobe stays out

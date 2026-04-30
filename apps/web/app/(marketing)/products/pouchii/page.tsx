@@ -16,6 +16,7 @@
 // "show me an actual call" reflex of API evaluators is satisfied without
 // scrolling.
 
+import type { Metadata } from 'next';
 import {
   Hero,
   CapabilityBlock,
@@ -32,6 +33,18 @@ import {
   Award,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+
+export const metadata: Metadata = {
+  title: 'Pouchii',
+  description:
+    'Pouchii — the fintech rails STSL builds and operates. Virtual accounts, transfers, bills, lending, and identity APIs ready for sandbox.',
+  alternates: { canonical: '/products/pouchii' },
+  openGraph: {
+    title: 'Pouchii · SystemSpecs Technology Solutions',
+    description: 'Fintech infrastructure: virtual accounts, payments, identity, and lending APIs.',
+    url: '/products/pouchii',
+  },
+};
 
 // Feature → icon map. Ordered to match pouchiiCopy.features.items so the
 // glyph beside each block reads as the capability, not as decoration.
