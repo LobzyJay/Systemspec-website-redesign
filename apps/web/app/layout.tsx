@@ -42,14 +42,21 @@ const mono = JetBrains_Mono({
 // every (marketing)/* route inherits this). The /design route overrides
 // with its own metadata via apps/web/app/design/layout.tsx.
 // SITE_URL is the absolute base used for canonical + OpenGraph URLs.
-// On the GitHub Pages preview build it points at the Pages subpath so
-// link previews (Slack, LinkedIn, etc.) load the OG image from the
-// deploy that actually serves it. Vercel + production stsl.ng builds
-// fall through to the canonical apex.
-const SITE_URL =
-  process.env.GITHUB_PAGES === 'true'
-    ? 'https://lobzyjay.github.io/Systemspec-website-redesign'
-    : 'https://stsl.ng';
+// Priority chain so each deploy environment auto-resolves to the host
+// that actually serves the assets:
+//   1. NEXT_PUBLIC_SITE_URL — explicit override (set in Vercel env for
+//      a custom domain like https://stsl.ng once it's live)
+//   2. GITHUB_PAGES build flag → the Pages subpath
+//   3. VERCEL_URL — auto-injected by Vercel on every deploy so previews
+//      and production deploys both resolve to the actual host
+//   4. stsl.ng — production canonical fallback
+const SITE_URL = (() => {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.GITHUB_PAGES === 'true') return 'https://lobzyjay.github.io/Systemspec-website-redesign';
+  const vercel = process.env.NEXT_PUBLIC_VERCEL_URL || process.env.VERCEL_URL;
+  if (vercel) return `https://${vercel}`;
+  return 'https://stsl.ng';
+})();
 const OG_IMAGE_URL = `${SITE_URL}/og-image.jpg`;
 const SITE_NAME = 'SystemSpecs Technology Solutions';
 const DESCRIPTION =

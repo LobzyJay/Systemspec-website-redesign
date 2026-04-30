@@ -47,10 +47,17 @@ export const metadata: Metadata = {
     // so any page that overrides it loses the parent's images.
     images: [
       {
-        url:
-          (process.env.GITHUB_PAGES === 'true'
-            ? 'https://lobzyjay.github.io/Systemspec-website-redesign'
-            : 'https://stsl.ng') + '/og-image.jpg',
+        // Same priority chain as the root layout SITE_URL — explicit
+        // env override → Pages build flag → Vercel auto-injected URL →
+        // production fallback. Keeps the OG image URL pointing at the
+        // host that actually serves it on every deploy environment.
+        url: (() => {
+          if (process.env.NEXT_PUBLIC_SITE_URL) return `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.jpg`;
+          if (process.env.GITHUB_PAGES === 'true') return 'https://lobzyjay.github.io/Systemspec-website-redesign/og-image.jpg';
+          const vercel = process.env.NEXT_PUBLIC_VERCEL_URL || process.env.VERCEL_URL;
+          if (vercel) return `https://${vercel}/og-image.jpg`;
+          return 'https://stsl.ng/og-image.jpg';
+        })(),
         width: 1200,
         height: 630,
         alt: 'SystemSpecs Technology Solutions',
@@ -59,9 +66,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     images: [
-      (process.env.GITHUB_PAGES === 'true'
-        ? 'https://lobzyjay.github.io/Systemspec-website-redesign'
-        : 'https://stsl.ng') + '/og-image.jpg',
+      (() => {
+        if (process.env.NEXT_PUBLIC_SITE_URL) return `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.jpg`;
+        if (process.env.GITHUB_PAGES === 'true') return 'https://lobzyjay.github.io/Systemspec-website-redesign/og-image.jpg';
+        const vercel = process.env.NEXT_PUBLIC_VERCEL_URL || process.env.VERCEL_URL;
+        if (vercel) return `https://${vercel}/og-image.jpg`;
+        return 'https://stsl.ng/og-image.jpg';
+      })(),
     ],
   },
 };
