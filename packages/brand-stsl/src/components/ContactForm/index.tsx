@@ -104,6 +104,7 @@ const MESSAGE_FIELD: FieldDef = {
 const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const AUDIENCE_LABEL: Record<ContactAudience, string> = {
+  sales:      'Sales',
   banking:    'Banking',
   government: 'Government',
   fintech:    'Fintech',
@@ -112,7 +113,6 @@ const AUDIENCE_LABEL: Record<ContactAudience, string> = {
   partners:   'Partners',
   press:      'Press',
   careers:    'Careers',
-  support:    'Support',
 };
 
 /**
