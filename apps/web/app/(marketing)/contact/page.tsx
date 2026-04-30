@@ -30,7 +30,7 @@ import {
   Hero,
   ContactForm,
   SectionHeader,
-  route,
+  route as routeHref,
   ArrowUpRight,
   Mail,
   Phone,
@@ -275,7 +275,7 @@ function FormView({ audience }: { audience: ContactAudience }) {
         eyebrow={route.audience}
         headline={route.title}
         subhead={route.description}
-        primary={{ label: 'Back to all audiences', href: route('/contact') }}
+        primary={{ label: 'Back to all audiences', href: routeHref('/contact') }}
         atmosphereReactive
       />
 
@@ -341,7 +341,7 @@ function FormView({ audience }: { audience: ContactAudience }) {
 
               <div className="mt-10">
                 <a
-                  href={route('/contact')}
+                  href={routeHref('/contact')}
                   className="group/back inline-flex items-center gap-2 text-body-sm font-medium text-fg-secondary hover:text-accent transition-[color] duration-base ease-expressive"
                 >
                   <span>Wrong audience? Pick a different conversation</span>
