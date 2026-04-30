@@ -73,6 +73,7 @@ export function MobileSnapCarousel({
                  -mx-6 md:mx-0 px-6 md:px-0
                  py-8 md:py-0
                  [touch-action:pan-x_pan-y] md:[touch-action:auto]
+                 overscroll-x-contain md:overscroll-x-auto
                  [&::-webkit-scrollbar]:hidden
                  [scrollbar-width:none]"
     >

@@ -92,8 +92,8 @@ export default function MarketingLayout({ children }: { children: ReactNode }) {
       >
         <Nav
           primaryLinks={primaryLinks}
-          salesHref="/contact?audience=sales"
-          governmentHref="/contact?audience=government"
+          salesHref={`${base}/contact?audience=sales`}
+          governmentHref={`${base}/contact?audience=government`}
           brand={{
             mark: <SystemSpecsWordmark height={28} />,
             href: '/',

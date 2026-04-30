@@ -63,7 +63,7 @@ export function ProductCard({
                        transition-opacity duration-[320ms] [transition-timing-function:cubic-bezier(0.2,0,0,1)]
                        opacity-100
                        group-hover/prod:opacity-0
-                       group-data-[focused=true]/card:opacity-0
+                       max-md:group-data-[focused=true]/card:opacity-0
                        absolute"
           />
           {/* Color logo — fades in on hover (desktop) OR when the parent
@@ -78,7 +78,7 @@ export function ProductCard({
                        transition-opacity duration-[320ms] [transition-timing-function:cubic-bezier(0.2,0,0,1)]
                        opacity-0
                        group-hover/prod:opacity-100
-                       group-data-[focused=true]/card:opacity-100
+                       max-md:group-data-[focused=true]/card:opacity-100
                        absolute"
           />
         </div>
