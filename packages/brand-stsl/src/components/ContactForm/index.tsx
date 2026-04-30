@@ -87,10 +87,9 @@ const EXTRAS: Record<ContactAudience, FieldDef[]> = {
     { name: 'role',     label: 'Role of interest', placeholder: 'Engineering, Design, Sales…', required: true },
     { name: 'linkedin', label: 'LinkedIn URL',     placeholder: 'https://linkedin.com/in/…' },
   ],
-  support: [
-    { name: 'product',  label: 'Product or service', placeholder: 'Pouchii, FundACause, Banking integration…', required: true },
-    { name: 'accountId', label: 'Account / institution ID', placeholder: 'Optional — speeds up triage' },
-    { name: 'urgency',  label: 'Urgency',           placeholder: 'Low / Medium / High / Production-down' },
+  sales: [
+    { name: 'company',  label: 'Company', placeholder: 'Bank, fintech, MDA…', required: true },
+    { name: 'role',     label: 'Your role', placeholder: 'Title or function' },
   ],
 };
 
