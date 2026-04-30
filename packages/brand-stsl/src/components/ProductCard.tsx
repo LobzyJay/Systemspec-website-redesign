@@ -24,10 +24,10 @@ export function ProductCard({
     <a
       href={href}
       data-reveal-card
-      className="group/prod block h-full rounded-3xl overflow-hidden
-                 ring-1 ring-[color:var(--border-subtle)] shadow-e1
+      className="group/prod relative block h-full rounded-3xl overflow-hidden
+                 ring-1 ring-[color:var(--border-subtle)] shadow-e1 origin-center
                  transition-[transform,box-shadow,ring-color] duration-slow ease-expressive
-                 hover:-translate-y-1 hover:shadow-e3 hover:ring-[color:var(--border-default)]"
+                 hover:scale-[1.05] hover:shadow-e3 hover:ring-[color:var(--border-default)] hover:z-10"
     >
       {/* ── Top section: recessed muted surface so the logo frame reads
           as a distinct zone from the white content below. Using
