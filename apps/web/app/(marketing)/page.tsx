@@ -43,6 +43,26 @@ export const metadata: Metadata = {
     description:
       'Infrastructure for Africa’s payments, government, and finance. A SystemSpecs Holdings company since 1992.',
     url: '/',
+    // Re-state images here — Next.js shallow-merges metadata.openGraph,
+    // so any page that overrides it loses the parent's images.
+    images: [
+      {
+        url:
+          (process.env.GITHUB_PAGES === 'true'
+            ? 'https://lobzyjay.github.io/Systemspec-website-redesign'
+            : 'https://stsl.ng') + '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'SystemSpecs Technology Solutions',
+      },
+    ],
+  },
+  twitter: {
+    images: [
+      (process.env.GITHUB_PAGES === 'true'
+        ? 'https://lobzyjay.github.io/Systemspec-website-redesign'
+        : 'https://stsl.ng') + '/og-image.png',
+    ],
   },
 };
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';

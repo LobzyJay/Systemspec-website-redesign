@@ -41,7 +41,16 @@ const mono = JetBrains_Mono({
 // Root layout metadata = the STSL marketing site (root `/` is the homepage,
 // every (marketing)/* route inherits this). The /design route overrides
 // with its own metadata via apps/web/app/design/layout.tsx.
-const SITE_URL = 'https://stsl.ng';
+// SITE_URL is the absolute base used for canonical + OpenGraph URLs.
+// On the GitHub Pages preview build it points at the Pages subpath so
+// link previews (Slack, LinkedIn, etc.) load the OG image from the
+// deploy that actually serves it. Vercel + production stsl.ng builds
+// fall through to the canonical apex.
+const SITE_URL =
+  process.env.GITHUB_PAGES === 'true'
+    ? 'https://lobzyjay.github.io/Systemspec-website-redesign'
+    : 'https://stsl.ng';
+const OG_IMAGE_URL = `${SITE_URL}/og-image.png`;
 const SITE_NAME = 'SystemSpecs Technology Solutions';
 const DESCRIPTION =
   'The infrastructure behind Africa’s payment, government, and financial technology systems. A SystemSpecs Holdings company, building for Nigerian banks, federal MDAs, and fintech operators since 1992.';
@@ -87,7 +96,7 @@ export const metadata: Metadata = {
     locale: 'en_NG',
     images: [
       {
-        url: '/og-image.png',
+        url: OG_IMAGE_URL,
         width: 1200,
         height: 630,
         alt: SITE_NAME,
@@ -98,7 +107,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: TITLE.default,
     description: DESCRIPTION,
-    images: ['/og-image.png'],
+    images: [OG_IMAGE_URL],
   },
   robots: {
     index: true,

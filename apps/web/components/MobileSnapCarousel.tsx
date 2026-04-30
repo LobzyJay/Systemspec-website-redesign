@@ -67,11 +67,11 @@ export function MobileSnapCarousel({
     <ul
       ref={ref}
       className="mt-12 md:mt-16
-                 flex md:grid md:grid-cols-12 gap-4 md:gap-5
+                 flex items-stretch md:grid md:grid-cols-12 gap-4 md:gap-5
                  overflow-x-auto md:overflow-visible
                  snap-x snap-mandatory md:snap-none
                  -mx-6 md:mx-0 px-6 md:px-0
-                 py-4 md:py-0
+                 py-8 md:py-0
                  [touch-action:pan-x_pan-y] md:[touch-action:auto]
                  [&::-webkit-scrollbar]:hidden
                  [scrollbar-width:none]"
@@ -80,7 +80,10 @@ export function MobileSnapCarousel({
         <li
           key={i}
           data-focused={i === 0 ? 'true' : 'false'}
-          className={`group/card shrink-0 md:shrink ${mobileBasis} ${desktopItemClass} snap-center flex [&>*]:flex-1`}
+          className={`group/card shrink-0 md:shrink ${mobileBasis} ${desktopItemClass} snap-center flex [&>*]:flex-1
+                      origin-center transition-transform duration-300 ease-out
+                      data-[focused=true]:md:scale-100 data-[focused=false]:scale-95 data-[focused=true]:scale-100
+                      md:scale-100`}
         >
           {child}
         </li>
