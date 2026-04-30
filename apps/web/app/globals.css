@@ -37,6 +37,13 @@
    layout.tsx. */
 html, body {
   background-color: var(--paper-tint);
+  /* Prevent horizontal swipe-drift on mobile — any rogue element wider
+     than the viewport (canvas atmospheres, ring-1 utilities, long
+     code samples, etc.) used to let the user slide the page sideways
+     and reveal the green body bg. `overflow-x: clip` stops that
+     without creating a scroll container, so position:sticky on the
+     header still works (which `overflow-x: hidden` would have broken). */
+  overflow-x: clip;
 }
 
 /* Pre-splash bg lock — html[data-splash="active"] is set synchronously
@@ -146,15 +153,15 @@ body::before {
     opacity: 0;
     transform: translate3d(0, 10px, 0);
     filter: blur(3px);
-    /* Subtle, snappy 520ms settle. Delay tuned so reveals fire AFTER
-       the splash clip-path has fully resolved (data-splash drops at
-       ~120ms into the dismiss; splash visually gone at ~900ms; we wait
-       another ~140ms past that so the user sees an empty cream hero
-       for a beat before text + buttons fade in inside it). */
+    /* Material standard ease-in-out (0.4, 0, 0.2, 1) — accelerates in,
+       decelerates out, feels less "snapped on" than the previous
+       expressive ease-out. Delay trimmed to 400ms so text starts
+       moving while the splash clip-path is still resolving — the two
+       motions overlap briefly instead of waiting for a hard handoff. */
     transition:
-      opacity 520ms cubic-bezier(0.32, 0.72, 0, 1) 880ms,
-      transform 520ms cubic-bezier(0.32, 0.72, 0, 1) 880ms,
-      filter 520ms cubic-bezier(0.32, 0.72, 0, 1) 880ms;
+      opacity 600ms cubic-bezier(0.4, 0, 0.2, 1) 400ms,
+      transform 600ms cubic-bezier(0.4, 0, 0.2, 1) 400ms,
+      filter 600ms cubic-bezier(0.4, 0, 0.2, 1) 400ms;
     will-change: opacity, transform, filter;
   }
   [data-reveal][data-revealed="true"] {
@@ -195,13 +202,12 @@ body::before {
 [data-reveal-card] {
   opacity: 0;
   transform: translateY(8px);
-  /* Same subtle treatment as [data-reveal]. Base delay aligns with the
-     post-splash gap so above-the-fold cards land after the hero text;
-     per-child stagger cascades them in. */
+  /* Matching ease-in-out + trimmed base delay so cards land just
+     after the hero text settles. */
   transition:
-    opacity 520ms cubic-bezier(0.32, 0.72, 0, 1),
-    transform 520ms cubic-bezier(0.32, 0.72, 0, 1);
-  transition-delay: calc(880ms + var(--stagger, 0) * 70ms);
+    opacity 540ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 540ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(400ms + var(--stagger, 0) * 70ms);
   will-change: opacity, transform;
 }
 [data-reveal-card][data-revealed="true"] {
