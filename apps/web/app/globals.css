@@ -37,12 +37,14 @@
    layout.tsx. */
 html, body {
   background-color: var(--paper-tint);
-  /* Prevent horizontal swipe-drift on mobile — any rogue element wider
-     than the viewport (canvas atmospheres, ring-1 utilities, long
-     code samples, etc.) used to let the user slide the page sideways
-     and reveal the green body bg. `overflow-x: clip` stops that
-     without creating a scroll container, so position:sticky on the
-     header still works (which `overflow-x: hidden` would have broken). */
+}
+/* Prevent horizontal swipe-drift on mobile — any rogue element wider
+   than the viewport (canvas atmospheres, ring-1 utilities, long code
+   samples, etc.) used to let the user slide the page sideways and
+   reveal the green body bg. Applied to body only (not html) and via
+   `overflow-x: clip` which doesn't create a scroll container — so
+   position:sticky on the header still works in every browser. */
+body {
   overflow-x: clip;
 }
 

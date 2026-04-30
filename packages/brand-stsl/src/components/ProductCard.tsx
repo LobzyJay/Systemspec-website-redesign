@@ -26,7 +26,7 @@ export function ProductCard({
       data-reveal-card
       className="group/prod relative block h-full rounded-3xl overflow-hidden
                  ring-1 ring-[color:var(--border-subtle)] shadow-e1 origin-center
-                 transition-[transform,box-shadow,ring-color] duration-200 ease-out
+                 transition-[transform,box-shadow,ring-color] duration-150 ease-out
                  hover:scale-[1.05] hover:shadow-e3 hover:ring-[color:var(--border-default)] hover:z-10"
     >
       {/* ── Top section: recessed muted surface so the logo frame reads

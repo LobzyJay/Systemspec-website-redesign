@@ -20,7 +20,7 @@ export function SolutionCard({ icon, title, description, proof, href }: Solution
       className="group/sol relative block rounded-3xl p-1.5 ring-1 ring-[color:var(--border-subtle)]
                  bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
                  shadow-e1 origin-center
-                 transition-[transform,box-shadow] duration-200 ease-out
+                 transition-[transform,box-shadow] duration-150 ease-out
                  hover:scale-[1.05] hover:shadow-e3 hover:z-10"
     >
       <div className="relative flex flex-col h-full p-6 md:p-8 rounded-[calc(1.75rem-0.375rem)] bg-bg-surface shadow-inner-hi">
