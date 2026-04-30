@@ -29,7 +29,8 @@ export function InsightCard({ kind, publication, date, title, href, cover }: Ins
                  bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
                  shadow-e1 origin-center
                  transition-[transform,box-shadow] duration-150 ease-out
-                 hover:scale-[1.05] hover:shadow-e3 hover:z-10"
+                 hover:scale-[1.05] hover:shadow-e3 hover:z-10
+                 motion-safe:active:scale-[0.98] motion-safe:active:duration-100 active:shadow-e2"
     >
       <div className="relative flex flex-col h-full rounded-[calc(1.75rem-0.375rem)] overflow-hidden bg-bg-surface shadow-inner-hi">
         {cover ? (

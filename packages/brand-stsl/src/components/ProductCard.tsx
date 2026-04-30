@@ -27,7 +27,8 @@ export function ProductCard({
       className="group/prod relative block h-full rounded-3xl overflow-hidden
                  ring-1 ring-[color:var(--border-subtle)] shadow-e1 origin-center
                  transition-[transform,box-shadow,ring-color] duration-150 ease-out
-                 hover:scale-[1.05] hover:shadow-e3 hover:ring-[color:var(--border-default)] hover:z-10"
+                 hover:scale-[1.05] hover:shadow-e3 hover:ring-[color:var(--border-default)] hover:z-10
+                 motion-safe:active:scale-[0.98] motion-safe:active:duration-100 active:shadow-e2"
     >
       {/* ── Top section: recessed muted surface so the logo frame reads
           as a distinct zone from the white content below. Using

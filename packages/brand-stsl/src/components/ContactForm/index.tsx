@@ -229,7 +229,7 @@ export function ContactForm({ audience, onSubmit, submitLabel = 'Send request' }
       {/* Common row — full name + email side by side on md+. */}
       <Grid cols={12} gap={4} mdGap={5}>
         {COMMON.map((f) => (
-          <div key={f.name} className="col-span-12 md:col-span-6">
+          <div key={f.name} className="col-span-12 md:col-span-6 min-w-0">
             <FieldRow
               field={f}
               value={values[f.name] ?? ''}
@@ -244,7 +244,7 @@ export function ContactForm({ audience, onSubmit, submitLabel = 'Send request' }
       {/* Audience-specific extras. Pair tighter pairs on md+. */}
       <Grid cols={12} gap={4} mdGap={5}>
         {EXTRAS[audience].map((f) => (
-          <div key={f.name} className="col-span-12 md:col-span-6">
+          <div key={f.name} className="col-span-12 md:col-span-6 min-w-0">
             <FieldRow
               field={f}
               value={values[f.name] ?? ''}

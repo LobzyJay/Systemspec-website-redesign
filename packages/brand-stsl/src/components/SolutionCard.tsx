@@ -21,7 +21,8 @@ export function SolutionCard({ icon, title, description, proof, href }: Solution
                  bg-[color-mix(in_srgb,var(--bg-canvas)_55%,var(--bg-surface-muted)_45%)]
                  shadow-e1 origin-center
                  transition-[transform,box-shadow] duration-150 ease-out
-                 hover:scale-[1.05] hover:shadow-e3 hover:z-10"
+                 hover:scale-[1.05] hover:shadow-e3 hover:z-10
+                 motion-safe:active:scale-[0.98] motion-safe:active:duration-100 active:shadow-e2"
     >
       <div className="relative flex flex-col h-full p-6 md:p-8 rounded-[calc(1.75rem-0.375rem)] bg-bg-surface shadow-inner-hi">
         {/* Icon chip — micro Doppelrand. Tiny rotate + scale on parent
