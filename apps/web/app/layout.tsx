@@ -50,7 +50,7 @@ const SITE_URL =
   process.env.GITHUB_PAGES === 'true'
     ? 'https://lobzyjay.github.io/Systemspec-website-redesign'
     : 'https://stsl.ng';
-const OG_IMAGE_URL = `${SITE_URL}/og-image.png`;
+const OG_IMAGE_URL = `${SITE_URL}/og-image.jpg`;
 const SITE_NAME = 'SystemSpecs Technology Solutions';
 const DESCRIPTION =
   'The infrastructure behind Africa’s payment, government, and financial technology systems. A SystemSpecs Holdings company, building for Nigerian banks, federal MDAs, and fintech operators since 1992.';

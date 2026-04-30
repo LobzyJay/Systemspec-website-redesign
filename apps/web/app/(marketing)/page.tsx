@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url:
           (process.env.GITHUB_PAGES === 'true'
             ? 'https://lobzyjay.github.io/Systemspec-website-redesign'
-            : 'https://stsl.ng') + '/og-image.png',
+            : 'https://stsl.ng') + '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'SystemSpecs Technology Solutions',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     images: [
       (process.env.GITHUB_PAGES === 'true'
         ? 'https://lobzyjay.github.io/Systemspec-website-redesign'
-        : 'https://stsl.ng') + '/og-image.png',
+        : 'https://stsl.ng') + '/og-image.jpg',
     ],
   },
 };
