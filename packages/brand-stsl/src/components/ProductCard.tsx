@@ -61,10 +61,14 @@ export function ProductCard({
             alt={name}
             className="max-h-[69px] w-auto max-w-[68%] object-contain
                        transition-opacity duration-[320ms] [transition-timing-function:cubic-bezier(0.2,0,0,1)]
-                       opacity-100 group-hover/prod:opacity-0
+                       opacity-100
+                       group-hover/prod:opacity-0
+                       group-data-[focused=true]/card:opacity-0
                        absolute"
           />
-          {/* Color logo — fades in on hover */}
+          {/* Color logo — fades in on hover (desktop) OR when the parent
+              <li data-focused="true"> is the centered card in the mobile
+              snap-scroll carousel. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={asset(logoColor)}
@@ -72,7 +76,9 @@ export function ProductCard({
             aria-hidden="true"
             className="max-h-[69px] w-auto max-w-[68%] object-contain
                        transition-opacity duration-[320ms] [transition-timing-function:cubic-bezier(0.2,0,0,1)]
-                       opacity-0 group-hover/prod:opacity-100
+                       opacity-0
+                       group-hover/prod:opacity-100
+                       group-data-[focused=true]/card:opacity-100
                        absolute"
           />
         </div>

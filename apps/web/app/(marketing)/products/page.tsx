@@ -18,6 +18,7 @@ import {
   homepageCopy,
 } from '@systemspecs/brand-stsl';
 import { Container, Grid, Section } from '@systemspecs/foundations/layout';
+import { MobileSnapCarousel } from '../../../components/MobileSnapCarousel';
 
 export const metadata: Metadata = {
   title: 'Products',
@@ -53,24 +54,19 @@ export default function ProductsOverviewPage() {
             headline={c.products.headline}
             intro={c.products.lede}
           />
-          <Grid cols={12} gap={4} mdGap={5} className="mt-12 md:mt-16">
-            {c.products.cards.map((card, i) => (
-              <div
+          <MobileSnapCarousel desktopItemClass="md:basis-auto md:col-span-4">
+            {c.products.cards.map((card) => (
+              <ProductCard
                 key={card.slug}
-                style={{ '--stagger': Math.min(i, 5) } as React.CSSProperties}
-                className="col-span-12 md:col-span-4 flex [&>*]:flex-1"
-              >
-                <ProductCard
-                  name={card.title}
-                  positioning={card.positioning}
-                  proof={card.proofPoint}
-                  href={card.href}
-                  logoColor={`/products/${card.slug}-color.png`}
-                  logoBw={`/products/${card.slug}-bw.png`}
-                />
-              </div>
+                name={card.title}
+                positioning={card.positioning}
+                proof={card.proofPoint}
+                href={card.href}
+                logoColor={`/products/${card.slug}-color.png`}
+                logoBw={`/products/${card.slug}-bw.png`}
+              />
             ))}
-          </Grid>
+          </MobileSnapCarousel>
         </Container>
       </Section>
 
