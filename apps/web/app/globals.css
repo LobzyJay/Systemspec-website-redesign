@@ -49,9 +49,22 @@ html, body {
    child element is also visually clipped. */
 html {
   touch-action: pan-y pinch-zoom;
+  /* Kill the iOS rubber-band overscroll so the green marketing body
+     bg can't peek above the sticky header when the user pulls down
+     past scroll-top. `overscroll-behavior-y: none` stops the bounce
+     entirely on iOS 16+, Android Chrome, and desktop trackpads. */
+  overscroll-behavior-y: none;
+  /* Backup: paint the html element white instead of inheriting the
+     mint body bg — so if any browser still bounces (e.g. older iOS),
+     the surface revealed above the header reads as a continuation of
+     the white nav chrome rather than the green page floor. The body
+     itself keeps its mint paint via the marketing layout's inline
+     style. */
+  background-color: #fff;
 }
 body {
   overflow-x: clip;
+  overscroll-behavior-y: none;
 }
 
 /* Pre-splash bg lock — html[data-splash="active"] is set synchronously
