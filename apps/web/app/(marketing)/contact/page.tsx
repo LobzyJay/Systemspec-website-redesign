@@ -305,23 +305,62 @@ function FormView({ audience }: { audience: ContactAudience }) {
           `overflow-hidden` on the section guards against any stray overflow
           from the form grid bleeding into the page horizontally on mobile. */}
       <section
-        className="relative py-20 md:py-28 overflow-hidden"
+        className="relative py-20 md:py-28 overflow-x-hidden w-full max-w-[100vw]"
         style={{
           background:
             'linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 12%, var(--bg-canvas)) 0%, color-mix(in srgb, var(--accent-default) 18%, var(--bg-canvas)) 100%)',
         }}
       >
-        <Container size="wide">
+        {/* Mobile: stacked, full-bleed-respecting div stack with explicit
+            px so we don't depend on Container/Grid plumbing. lg+: Grid
+            12-col split for the editorial layout. */}
+        <div className="px-5 sm:px-6 lg:hidden flex flex-col gap-12 max-w-full">
+          <div className="rounded-[1.5rem] bg-bg-surface ring-1 ring-[color:var(--border-subtle)] p-4 sm:p-6 shadow-e1 max-w-full overflow-hidden">
+            <ContactForm
+              audience={audience}
+              onSubmit={handleSubmit}
+              submitLabel={route.ctaLabel}
+            />
+          </div>
+          <aside className="max-w-full">
+            <p className="text-overline uppercase text-accent mb-4">What happens next</p>
+            <p className="font-display font-medium text-heading-2 text-fg-primary tracking-[-0.01em] text-pretty break-words hyphens-auto max-w-full">
+              {route.successMessage}
+            </p>
+
+            <dl className="mt-8 border-t border-[color:var(--border-subtle)] pt-6 flex flex-col gap-5 max-w-full">
+              {c.channels.items.map((channel) => (
+                <div key={channel.label} className="flex flex-col gap-1 max-w-full">
+                  <dt className="text-[10px] font-mono uppercase tracking-[0.22em] text-fg-muted">
+                    {channel.label}
+                  </dt>
+                  <dd className="max-w-full">
+                    <a
+                      href={channel.href}
+                      className="text-body-sm font-medium text-fg-primary hover:text-accent transition-[color] duration-base ease-expressive break-all"
+                    >
+                      {channel.value}
+                    </a>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="mt-8">
+              <a
+                href={routeHref('/contact')}
+                className="inline-flex items-center gap-2 text-body-sm font-medium text-fg-secondary hover:text-accent transition-[color] duration-base ease-expressive"
+              >
+                <span>Wrong audience? Pick a different conversation</span>
+              </a>
+            </div>
+          </aside>
+        </div>
+
+        <Container size="wide" className="hidden lg:block">
           <Grid cols={12} gap={10} lgGap={16} className="items-start">
-            {/* Form — primary column, owns the wider rail. `min-w-0` lets
-                the inner inputs shrink to the column width on mobile rather
-                than push the grid out at intrinsic content width. */}
             <div className="col-span-12 lg:col-span-7 min-w-0">
-              {/* Inner padding tightened on mobile (p-5) so the form card
-                  doesn't eat the viewport — Container is already px-6, and
-                  p-7 (28px) inside that left input fields running right up
-                  against the right edge with the focus ring clipped. */}
-              <div className="rounded-[1.5rem] bg-bg-surface ring-1 ring-[color:var(--border-subtle)] p-5 sm:p-7 md:p-10 shadow-e1">
+              <div className="rounded-[1.5rem] bg-bg-surface ring-1 ring-[color:var(--border-subtle)] p-10 shadow-e1">
                 <ContactForm
                   audience={audience}
                   onSubmit={handleSubmit}
@@ -330,11 +369,6 @@ function FormView({ audience }: { audience: ContactAudience }) {
               </div>
             </div>
 
-            {/* Side note — what to expect after submission, plus standing
-                channels for visitors who want to bypass the form.
-                `min-w-0` here so long sentences in `successMessage` and long
-                channel values like the LinkedIn handle wrap cleanly instead
-                of pushing the grid track out to the right of the viewport. */}
             <aside className="col-span-12 lg:col-span-5 lg:pt-2 min-w-0">
               <p className="text-overline uppercase text-accent mb-4">What happens next</p>
               <p className="font-display font-medium text-heading-1 text-fg-primary tracking-[-0.01em] text-balance break-words">
