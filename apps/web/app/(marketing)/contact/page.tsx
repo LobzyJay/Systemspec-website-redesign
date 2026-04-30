@@ -23,15 +23,14 @@
 import { Suspense, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-// basePath is baked at build time (GITHUB_PAGES=true sets it). Client-rendered
-// hrefs that point at app routes need this prefix manually because the static
-// path-fix script only rewrites server-rendered HTML, not React-rendered nodes.
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
-const CONTACT_HREF = `${BASE_PATH}/contact`;
+// All client-rendered internal hrefs go through `route()` so they pick up
+// the deploy basePath. The post-build path-fix script only rewrites server-
+// rendered HTML, not React-rendered nodes — see packages/brand-stsl/src/utils/asset.ts
 import {
   Hero,
   ContactForm,
   SectionHeader,
+  route,
   ArrowUpRight,
   Mail,
   Phone,
@@ -276,7 +275,7 @@ function FormView({ audience }: { audience: ContactAudience }) {
         eyebrow={route.audience}
         headline={route.title}
         subhead={route.description}
-        primary={{ label: 'Back to all audiences', href: CONTACT_HREF }}
+        primary={{ label: 'Back to all audiences', href: route('/contact') }}
         atmosphereReactive
       />
 
@@ -342,7 +341,7 @@ function FormView({ audience }: { audience: ContactAudience }) {
 
               <div className="mt-10">
                 <a
-                  href={CONTACT_HREF}
+                  href={route('/contact')}
                   className="group/back inline-flex items-center gap-2 text-body-sm font-medium text-fg-secondary hover:text-accent transition-[color] duration-base ease-expressive"
                 >
                   <span>Wrong audience? Pick a different conversation</span>

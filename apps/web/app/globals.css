@@ -38,12 +38,18 @@
 html, body {
   background-color: var(--paper-tint);
 }
-/* Prevent horizontal swipe-drift on mobile — any rogue element wider
-   than the viewport (canvas atmospheres, ring-1 utilities, long code
-   samples, etc.) used to let the user slide the page sideways and
-   reveal the green body bg. Applied to body only (not html) and via
-   `overflow-x: clip` which doesn't create a scroll container — so
-   position:sticky on the header still works in every browser. */
+/* Hard-lock horizontal panning — only allow vertical scroll. This is
+   the load-bearing fix for "swiping left/right reveals the green page
+   bg" on mobile; `touch-action: pan-y` tells the browser to only
+   honour vertical pan gestures, so even if a child element is wider
+   than the viewport the user can't drag the whole page sideways.
+   Pinch-zoom (`pinch-zoom`) stays available so accessibility isn't
+   affected. Combined with `overflow-x: clip` on body (a non-scroll-
+   container clip that leaves position:sticky intact) so any wide
+   child element is also visually clipped. */
+html {
+  touch-action: pan-y pinch-zoom;
+}
 body {
   overflow-x: clip;
 }
