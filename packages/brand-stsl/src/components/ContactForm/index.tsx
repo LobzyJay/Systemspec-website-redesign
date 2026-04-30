@@ -6,6 +6,7 @@ import { Button } from '@systemspecs/foundations/primitives';
 import { ArrowUpRight, Check } from '../../icons';
 
 export type ContactAudience =
+  | 'sales'
   | 'banking'
   | 'government'
   | 'fintech'
@@ -13,8 +14,7 @@ export type ContactAudience =
   | 'enterprise'
   | 'partners'
   | 'press'
-  | 'careers'
-  | 'support';
+  | 'careers';
 
 export type ContactPayload = {
   audience: ContactAudience;

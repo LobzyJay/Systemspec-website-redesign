@@ -180,23 +180,6 @@ export const contactCopy = {
         { key: 'message', label: 'Anything else we should know', type: 'textarea', required: false },
       ],
     },
-    {
-      slug: 'support',
-      audience: 'Existing customer',
-      title: 'Customer support',
-      description:
-        'Live customers and operators get routed to the support team that owns their account.',
-      ctaLabel: 'Open a support request',
-      successMessage:
-        'Your ticket is with support. Response times follow your service agreement.',
-      fields: [
-        { key: 'name', label: 'Full name', type: 'text', required: true },
-        { key: 'workEmail', label: 'Work email', type: 'email', required: true },
-        { key: 'accountId', label: 'Account / institution ID', type: 'text', required: false },
-        { key: 'severity', label: 'Severity', type: 'select', required: true, options: ['P1 — production down', 'P2 — degraded', 'P3 — question', 'P4 — feature request'] },
-        { key: 'message', label: 'Describe the issue', type: 'textarea', required: true },
-      ],
-    },
   ],
 
   offices: {
