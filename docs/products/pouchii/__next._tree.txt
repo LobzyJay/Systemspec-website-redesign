@@ -7,4 +7,4 @@
 :HL["/Systemspec-website-redesign/brand/systemspec-official-logo-black.png","image"]
 :HL["/Systemspec-website-redesign/brand/systemspec-official-logo-white.png","image"]
 :HL["/Systemspec-website-redesign/products/pouchii-color.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"(marketing)","param":null,"prefetchHints":0,"slots":{"children":{"name":"products","param":null,"prefetchHints":0,"slots":{"children":{"name":"pouchii","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}}}},"staleTime":300,"buildId":"dC4VkDLwWoSElz-b54YIf"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"(marketing)","param":null,"prefetchHints":0,"slots":{"children":{"name":"products","param":null,"prefetchHints":0,"slots":{"children":{"name":"pouchii","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}}}},"staleTime":300,"buildId":"W4W2_jiVilKd0tzKj6KqX"}
