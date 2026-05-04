@@ -32,6 +32,8 @@ export function TeamMember({ name, role, photo, linkedin, department }: TeamMemb
           <img
             src={asset(photo)}
             alt={name}
+            loading="lazy"
+            decoding="async"
             // Frame matches portrait aspect (4:5) so object-cover fills
             // cleanly without cropping the head — no per-photo scale
             // overrides needed.

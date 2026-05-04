@@ -17,16 +17,23 @@ import {
 import {
   Hero, ProofBar, SolutionCard, ProductCard, CapabilityStrip,
   GroupBlock, InsightCard, SegmentedCTA,
+  Nav, Footer, SectionHeader, StatPill, CapabilityBlock,
+  CodeSample, Timeline,
+  HeroAtmosphere, HeroAtmosphereReactive, FooterAtmosphereReactive,
 } from '@systemspecs/brand-stsl/components';
 import { GlobeStatic, DottedGlobe } from '@systemspecs/brand-stsl/components/Globe';
 import {
   TeamMember,
-  WaveBackdrop, WaveStill, waveStills,
+  WaveBackdrop,
   WaveBackdrop2,
   WaveBackdrop3,
 } from '@systemspecs/brand-stsl/components';
 import { DocsGlobe } from './DocsGlobe';
 import { LeadershipCard } from '@systemspecs/brand-stsl/components';
+import {
+  DialogDemo, CheckboxDemo, RadioDemo, SelectDemo, TooltipDemo,
+  ContactFormDemo, NewsletterCTADemo, RevealReplay,
+} from './_demos';
 
 const accent = [
   { name: 'accent.default',       value: '#017A6A', cssVar: '--accent-default' },
@@ -114,7 +121,7 @@ export default function DesignPage() {
       {/* ============================================================ */}
       <SectionHeading id="foundations" number="01" title="Foundations." intro="Tokens — color, type, spacing, radius, motion." />
 
-      <SubHeading>Accent</SubHeading>
+      <SubHeading id="sub-color">Accent</SubHeading>
       <Stage>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
           {accent.map((s) => <Swatch key={s.name} {...s} />)}
@@ -158,7 +165,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Typography</SubHeading>
+      <SubHeading id="sub-type">Typography</SubHeading>
       <Stage>
         <div className="space-y-8">
           {typeScale.map((t) => (
@@ -178,7 +185,7 @@ export default function DesignPage() {
       </Stage>
       <Caption>Plus Jakarta Sans drives display; Geist drives body; Source Serif 4 carries editorial pull-quotes and lede passages.</Caption>
 
-      <SubHeading>Spacing</SubHeading>
+      <SubHeading id="sub-spacing">Spacing</SubHeading>
       <Stage>
         <div className="space-y-4">
           {spacing.map((s) => (
@@ -214,7 +221,7 @@ export default function DesignPage() {
       </Stage>
       <Caption>The PageHeading title clamps to display-md on mobile, display-xl on tablet, display-2xl on desktop. Sub-tier sizes scale similarly.</Caption>
 
-      <SubHeading>Radius</SubHeading>
+      <SubHeading id="sub-radius">Radius</SubHeading>
       <Stage>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-6">
           {radius.map((r) => (
@@ -226,7 +233,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Elevation</SubHeading>
+      <SubHeading id="sub-elevation">Elevation</SubHeading>
       <Stage>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
           {shadow.map((s) => (
@@ -238,7 +245,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Motion</SubHeading>
+      <SubHeading id="sub-motiontokens">Motion</SubHeading>
       <Stage>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-6 text-caption font-mono text-fg-muted">
           <div>duration-instant<br/>80ms</div>
@@ -254,7 +261,7 @@ export default function DesignPage() {
       {/* ============================================================ */}
       <SectionHeading id="brand" number="02" title="Brand." intro="Wordmark, mark, icons." />
 
-      <SubHeading>Wordmark</SubHeading>
+      <SubHeading id="sub-wordmark">Wordmark</SubHeading>
       <Stage>
         <div className="py-8 grid place-items-center">
           <SystemSpecsWordmark height={56} />
@@ -267,7 +274,7 @@ export default function DesignPage() {
         <Caption>Mono — uses the white asset so the dot motif keeps its teal hues.</Caption>
       </Stage>
 
-      <SubHeading>Dot mark</SubHeading>
+      <SubHeading id="sub-dotmark">Dot mark</SubHeading>
       <Stage>
         <div className="flex items-center justify-center gap-16 py-6 flex-wrap">
           <DotMark size={120} />
@@ -276,7 +283,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Icons</SubHeading>
+      <SubHeading id="sub-icons">Icons</SubHeading>
       <Stage>
         {/* Single-radius tile — no nested squircle. One rounded container,
             ring + bg, icon + label inside. */}
@@ -298,7 +305,7 @@ export default function DesignPage() {
       {/* ============================================================ */}
       <SectionHeading id="primitives" number="03" title="Primitives." intro="Buttons, fields, tabs, accordions, skeletons." />
 
-      <SubHeading>Button</SubHeading>
+      <SubHeading id="sub-button">Button</SubHeading>
       <Stage>
         <div className="flex flex-wrap items-center gap-4">
           <Button trailingIcon={<ArrowUpRight size={14} />}>Primary</Button>
@@ -316,7 +323,7 @@ export default function DesignPage() {
       <Caption>Trailing arrows live inside their own circular chip, flush with the right inner padding. On hover the chip translates diagonally and lifts — internal kinetic tension without disturbing the surrounding layout.</Caption>
       <CodeBlock>{`<Button trailingIcon={<ArrowUpRight size={14} />}>Talk to sales</Button>`}</CodeBlock>
 
-      <SubHeading>Link</SubHeading>
+      <SubHeading id="sub-link">Link</SubHeading>
       <Stage>
         <div className="flex flex-wrap items-center gap-10">
           <DSLink href="#">Default link</DSLink>
@@ -325,7 +332,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Card</SubHeading>
+      <SubHeading id="sub-card">Card</SubHeading>
       <Stage>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card surface="outline"><CardTitle>Outline</CardTitle><CardBody className="mt-3">Default surface.</CardBody></Card>
@@ -334,7 +341,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Field</SubHeading>
+      <SubHeading id="sub-field">Field</SubHeading>
       <Stage>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl">
           <Field label="Work email" htmlFor="email" hint="We only contact about this enquiry.">
@@ -351,7 +358,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Badge</SubHeading>
+      <SubHeading id="sub-badge">Badge</SubHeading>
       <Stage>
         <div className="flex flex-wrap items-center gap-3">
           <Badge tone="neutral">Neutral</Badge>
@@ -363,7 +370,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Tabs</SubHeading>
+      <SubHeading id="sub-tabs">Tabs</SubHeading>
       <Stage>
         <Tabs defaultValue="overview">
           <TabList>
@@ -377,7 +384,7 @@ export default function DesignPage() {
         </Tabs>
       </Stage>
 
-      <SubHeading>Accordion</SubHeading>
+      <SubHeading id="sub-accordion">Accordion</SubHeading>
       <Stage>
         <Accordion type="single" collapsible className="max-w-2xl">
           <AccordionItem value="a">
@@ -391,7 +398,7 @@ export default function DesignPage() {
         </Accordion>
       </Stage>
 
-      <SubHeading>Skeleton</SubHeading>
+      <SubHeading id="sub-skeleton">Skeleton</SubHeading>
       <Stage>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-3">
@@ -410,12 +417,39 @@ export default function DesignPage() {
         </div>
       </Stage>
 
+      <SubHeading id="sub-checkbox">Checkbox</SubHeading>
+      <Stage>
+        <CheckboxDemo />
+      </Stage>
+
+      <SubHeading id="sub-radio">Radio</SubHeading>
+      <Stage>
+        <RadioDemo />
+      </Stage>
+
+      <SubHeading id="sub-select">Select</SubHeading>
+      <Stage>
+        <SelectDemo />
+      </Stage>
+
+      <SubHeading id="sub-tooltip">Tooltip</SubHeading>
+      <Stage>
+        <TooltipDemo />
+      </Stage>
+      <Caption>Hover or focus a trigger to surface a 12px caption tooltip. Sides cycle top/bottom/right/left depending on viewport room.</Caption>
+
+      <SubHeading id="sub-dialog">Dialog</SubHeading>
+      <Stage>
+        <DialogDemo />
+      </Stage>
+      <Caption>Three sizes — 480/560/720px. Single 24px radius, no nested chrome. ESC + scrim-click + circular ghost close all dismiss.</Caption>
+
       {/* ============================================================ */}
       {/* 04 — PATTERNS                                                 */}
       {/* ============================================================ */}
       <SectionHeading id="patterns" number="04" title="Patterns." intro="Composed assemblies of the primitives." />
 
-      <SubHeading>Globe</SubHeading>
+      <SubHeading id="sub-globe">Globe</SubHeading>
       <Stage flush>
         <div className="mx-auto w-full max-w-md p-8">
           <DocsGlobe />
@@ -423,18 +457,18 @@ export default function DesignPage() {
         <Caption>Cobe-powered. Drag to rotate; auto-rotates when idle.</Caption>
       </Stage>
 
-      <SubHeading>Globe in context</SubHeading>
+      <SubHeading id="sub-globe-context">Globe in context</SubHeading>
       <Caption>Same asset, four surfaces. No backdrop pattern — the globe carries the visual itself.</Caption>
 
       <p className="text-overline uppercase text-fg-muted font-mono tracking-widest mt-6 mb-3">Web hero · 16:9</p>
       <Stage flush>
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-8 md:p-12 bg-bg-inverse text-fg-on-inverse rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 p-8 md:p-12 surface-frozen-dark rounded-lg">
           <div>
             <SystemSpecsWordmark height={28} tone="mono" />
-            <h3 className="mt-6 font-display text-heading-1 md:text-display-md text-fg-on-inverse text-balance">
-              Africa's payment, government, and financial infrastructure.
+            <h3 className="mt-6 font-display text-heading-1 md:text-display-md text-on-inverse-frozen text-balance">
+              Africa&rsquo;s payment, government, and financial infrastructure.
             </h3>
-            <p className="mt-3 text-body text-fg-on-inverse/70 max-w-md">Coverage across Nigerian financial centers.</p>
+            <p className="mt-3 text-body text-on-inverse-frozen-70 max-w-md">Coverage across Nigerian financial centers.</p>
           </div>
           <div className="mx-auto w-full max-w-xs"><DocsGlobe /></div>
         </div>
@@ -442,30 +476,28 @@ export default function DesignPage() {
 
       <p className="text-overline uppercase text-fg-muted font-mono tracking-widest mt-8 mb-3">Social card · 1.91:1</p>
       <Stage flush>
-        <div className="relative aspect-[1200/628] grid grid-cols-[1fr_auto] items-stretch gap-0 bg-bg-inverse text-fg-on-inverse overflow-hidden shadow-e2">
-          {/* Text column */}
+        <div className="relative aspect-[1200/628] grid grid-cols-[1fr_auto] items-stretch gap-0 surface-frozen-dark overflow-hidden shadow-e2">
           <div className="relative flex flex-col justify-between min-w-0 p-8 md:p-12 lg:p-14">
             <div className="flex items-center gap-3">
               <SystemSpecsWordmark height={26} tone="mono" />
               <span aria-hidden="true" className="inline-block h-3 w-px bg-white/20" />
-              <span className="inline-flex items-center h-6 px-2.5 rounded-pill ring-1 ring-white/15 text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-fg-on-inverse/80">
+              <span className="inline-flex items-center h-6 px-2.5 rounded-pill ring-1 ring-white/15 text-[10px] uppercase tracking-[0.22em] font-mono font-medium text-on-inverse-frozen-80">
                 Est. 1992
               </span>
             </div>
-            <h3 className="font-display text-heading-1 md:text-display-md leading-[1.05] tracking-[-0.012em] text-fg-on-inverse text-balance max-w-[28ch]">
-              Africa's payment, government &amp; financial infrastructure.
+            <h3 className="font-display text-heading-1 md:text-display-md leading-[1.05] tracking-[-0.012em] text-on-inverse-frozen text-balance max-w-[28ch]">
+              Africa&rsquo;s payment, government &amp; financial infrastructure.
             </h3>
             <div className="flex items-center justify-between gap-4">
-              <span className="text-caption font-mono uppercase tracking-[0.18em] text-fg-on-inverse/60">
+              <span className="text-caption font-mono uppercase tracking-[0.18em] text-on-inverse-frozen-60">
                 systemspecs.com.ng
               </span>
-              <span className="inline-flex items-center gap-2 text-caption font-mono uppercase tracking-[0.18em] text-fg-on-inverse/80">
+              <span className="inline-flex items-center gap-2 text-caption font-mono uppercase tracking-[0.18em] text-on-inverse-frozen-80">
                 Learn more
                 <ArrowUpRight size={14} />
               </span>
             </div>
           </div>
-          {/* Globe column — clipped bleed for editorial cropping */}
           <div className="relative w-[44%] self-stretch">
             <div
               className="absolute top-1/2 -translate-y-1/2 aspect-square"
@@ -477,29 +509,25 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <p className="text-overline uppercase text-fg-muted font-mono tracking-widest mt-8 mb-3">Banner · 728 × 90</p>
-      <Stage flush>
-        <div className="overflow-x-auto -mx-4 px-4 py-4">
+      <p className="text-overline uppercase text-fg-muted font-mono tracking-widest mt-8 mb-3">Banner &middot; 728 &times; 90</p>
+      <Stage flush width="scroll">
+        <div className="py-4">
           <div
-            className="group/banner relative mx-auto bg-bg-inverse text-fg-on-inverse grid grid-cols-[90px_1fr_auto] items-center gap-5 pr-3 shadow-e2"
+            className="group/banner relative mx-auto surface-frozen-dark grid grid-cols-[90px_1fr_auto] items-center gap-5 pr-3 shadow-e2"
             style={{ width: 728, height: 90 }}
           >
-            {/* Globe panel — static dotted variant for 90px clarity + perf */}
             <div className="relative h-full w-[90px] grid place-items-center bg-white/[0.03]">
               <div className="w-[74px] h-[74px]">
                 <DottedGlobe variant="filled" />
               </div>
-              {/* Editorial hairline accent on the right edge of the globe panel */}
               <span aria-hidden="true" className="absolute top-3 bottom-3 right-0 w-px bg-white/15" />
             </div>
-            {/* Wordmark + caption — proper leading, tucked just under */}
             <div className="min-w-0 flex flex-col justify-center gap-1.5">
               <SystemSpecsWordmark height={18} tone="mono" />
-              <p className="text-[11px] leading-[1.3] font-mono uppercase tracking-[0.16em] text-fg-on-inverse/65 truncate">
+              <p className="text-[11px] leading-[1.3] font-mono uppercase tracking-[0.16em] text-on-inverse-frozen-65 truncate">
                 Infrastructure that institutions trust
               </p>
             </div>
-            {/* Button-in-button CTA — pill with nested arrow chip */}
             <a
               href="#"
               className="shrink-0 inline-flex items-center gap-2 h-10 pl-4 pr-1.5 rounded-pill bg-accent !text-white text-[12px] font-medium tracking-tight whitespace-nowrap transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-px active:scale-[0.98]"
@@ -515,12 +543,12 @@ export default function DesignPage() {
           </div>
         </div>
       </Stage>
-      <Caption>Fixed 728×90 leaderboard. Static dotted globe for crisp rendering at 90px.</Caption>
+      <Caption>Fixed 728&times;90 leaderboard. Static dotted globe for crisp rendering at 90px.</Caption>
 
-      <p className="text-overline uppercase text-fg-muted font-mono tracking-widest mt-8 mb-3">Newsletter · 600 wide</p>
+      <p className="text-overline uppercase text-fg-muted font-mono tracking-widest mt-8 mb-3">Newsletter &middot; 600 wide</p>
       <Stage flush>
         <div className="mx-auto w-full rounded-lg overflow-hidden border border-border-subtle" style={{ maxWidth: 600 }}>
-          <div className="bg-bg-inverse p-8 grid place-items-center">
+          <div className="bg-[#0B0C0F] p-8 grid place-items-center">
             <div className="w-48 aspect-square">
               <DocsGlobe />
             </div>
@@ -542,7 +570,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Background patterns</SubHeading>
+      <SubHeading id="sub-bg">Background patterns</SubHeading>
       <Caption>Three motion loops. Loop 01 ships six frozen frames for static surfaces (banners, social exports, email). Loops 02 and 03 are live-only.</Caption>
 
       <Stage>
@@ -550,20 +578,10 @@ export default function DesignPage() {
           <p className="text-overline uppercase text-fg-muted font-mono tracking-widest">
             Loop 01 · Diagonal sweep
           </p>
-          <p className="text-caption text-fg-muted font-mono">live + 6 stills</p>
+          <p className="text-caption text-fg-muted font-mono">live</p>
         </div>
-        <div className="relative aspect-[16/6] overflow-hidden bg-bg-inverse text-accent">
+        <div className="relative aspect-[16/6] overflow-hidden bg-[#0B0C0F] text-accent">
           <WaveBackdrop />
-        </div>
-        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {waveStills.map((s, i) => (
-            <div key={`s1-${i}`} className="relative aspect-[4/3] overflow-hidden bg-bg-inverse text-accent">
-              <WaveStill progress={s.progress} />
-              <span className="absolute bottom-3 left-3 inline-flex items-center h-6 px-2.5 rounded-pill bg-white/10 backdrop-blur-md text-[10px] uppercase tracking-[0.18em] font-mono font-medium text-fg-on-inverse">
-                {s.label}
-              </span>
-            </div>
-          ))}
         </div>
       </Stage>
 
@@ -574,7 +592,7 @@ export default function DesignPage() {
           </p>
           <p className="text-caption text-fg-muted font-mono">live only</p>
         </div>
-        <div className="relative aspect-[16/6] overflow-hidden bg-bg-inverse text-accent">
+        <div className="relative aspect-[16/6] overflow-hidden bg-[#0B0C0F] text-accent">
           <WaveBackdrop2 />
         </div>
       </Stage>
@@ -586,52 +604,79 @@ export default function DesignPage() {
           </p>
           <p className="text-caption text-fg-muted font-mono">live only</p>
         </div>
-        <div className="relative aspect-[16/6] overflow-hidden bg-bg-inverse text-accent">
+        <div className="relative aspect-[16/6] overflow-hidden bg-[#0B0C0F] text-accent">
           <WaveBackdrop3 />
         </div>
       </Stage>
 
-      <SubHeading>Team grid</SubHeading>
+      <Stage>
+        <div className="flex items-baseline justify-between mb-4">
+          <p className="text-overline uppercase text-fg-muted font-mono tracking-widest">
+            Hero atmosphere · braille (reactive)
+          </p>
+          <p className="text-caption text-fg-muted font-mono">cursor-aware</p>
+        </div>
+        <div className="relative aspect-[16/9] overflow-hidden bg-bg-canvas">
+          <HeroAtmosphereReactive />
+        </div>
+      </Stage>
+      <Caption>The atmosphere that ships on the homepage hero. Move your cursor over the surface — the braille texture pushes away from the pointer.</Caption>
+
+      <Stage>
+        <div className="flex items-baseline justify-between mb-4">
+          <p className="text-overline uppercase text-fg-muted font-mono tracking-widest">
+            Footer atmosphere · Loop 1 (reactive)
+          </p>
+          <p className="text-caption text-fg-muted font-mono">cursor-aware</p>
+        </div>
+        <div className="relative aspect-[16/6] overflow-hidden bg-[#0B0C0F] text-accent rounded-2xl">
+          <FooterAtmosphereReactive />
+        </div>
+      </Stage>
+      <Caption>The reactive Loop 1 sweep used inside the marketing footer. Same canvas physics as the hero atmosphere but warped to the footer&rsquo;s espresso surface.</Caption>
+
+      <SubHeading id="sub-team">Team grid</SubHeading>
       <Caption>Compact card for full-team grids. Use when 15+ people would make the leadership card feel disorganized.</Caption>
       <Stage>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div className="docs-grid-5up">
           {[
-            { name: 'Aisha Bello',   role: 'Engineering',  dept: 'Eng',     id: 1 },
-            { name: 'Tunde Okafor',  role: 'Banking',       dept: 'Bank',    id: 2 },
-            { name: 'Chioma Eze',    role: 'Product',       dept: 'Product', id: 3 },
-            { name: 'David Adeleke', role: 'Design',        dept: 'Design',  id: 4 },
-            { name: 'Funmi Ige',     role: 'E-Government',  dept: 'Gov',     id: 5 },
-            { name: 'Kola Adigun',   role: 'Engineering',                    id: 6 },
-            { name: 'Halima Sani',   role: 'Compliance',                     id: 7 },
-            { name: 'Yetunde Bakare',role: 'Legal',                          id: 8 },
-            { name: 'Emeka Nwosu',   role: 'Operations',                     id: 9 },
-            { name: 'Bola Odetola',  role: 'Customer success',               id: 10 },
+            { name: 'Demola Igbalajobi', role: 'MD, STSL',           dept: 'STSL',    photo: '/teams/demola-igbalajobi.png' },
+            { name: '’Deremi Atanda',    role: 'MD, Remita',          dept: 'Remita',  photo: '/teams/deremi-atanda.jpg' },
+            { name: 'Udo Ngele',         role: 'MD, HumanManager',    dept: 'HM',      photo: '/teams/udo-ngele.jpg' },
+            { name: 'Fela Bank-Olemoh',  role: 'MD, WhataDeal',       dept: 'WAD',     photo: '/teams/fela-bank-olemoh.jpg' },
+            { name: 'Ahabue Borha',      role: 'Operations',          dept: 'Ops',     photo: '/teams/ahabue-borha.png' },
+            { name: 'Anu Oyeleye',       role: 'Engineering',         dept: 'Eng',     photo: '/teams/anu-oyeleye.png' },
+            { name: 'Etereigho Ozakpo',  role: 'Compliance',          dept: 'Risk',    photo: '/teams/etereigho-ozakpo.png' },
+            { name: 'Leke Ogunbanwo',    role: 'Product',             dept: 'Product', photo: '/teams/leke-ogunbanwo.png' },
+            { name: 'Uche Obiofuma',     role: 'Banking',             dept: 'Banking', photo: '/teams/uche-obiofuma.png' },
+            { name: 'Kehinde Lawanson',  role: 'Director (Board)',    dept: 'Board',   photo: '/teams/kehinde-lawanson.jpg' },
           ].map((m) => (
             <TeamMember
-              key={m.id}
+              key={m.name}
               name={m.name}
               role={m.role}
               department={m.dept}
               linkedin="#"
-              photo={`https://i.pravatar.cc/300?img=${m.id + 10}`}
+              photo={m.photo}
             />
           ))}
         </div>
       </Stage>
 
-      <SubHeading>Hero</SubHeading>
+      <SubHeading id="sub-hero">Hero</SubHeading>
       <Stage flush>
-        <Hero
-          eyebrow="Pattern"
-          headline="A headline that names the position."
-          subhead="One sentence of proof — group lineage and scale."
-          primary={{ label: 'Talk to sales', href: '#' }}
-          secondary={{ label: 'View solutions', href: '#' }}
-          visual={<DocsGlobe />}
-        />
+        <div className="[&>section]:!min-h-0 [&>section]:!justify-center [&_section>div]:!py-10 md:[&_section>div]:!py-14">
+          <Hero
+            headline="A headline that names the position."
+            subhead="One sentence of proof — group lineage and scale."
+            primary={{ label: 'Talk to sales', href: '#' }}
+            secondary={{ label: 'View solutions', href: '#' }}
+            visual={<DocsGlobe />}
+          />
+        </div>
       </Stage>
 
-      <SubHeading>Proof bar</SubHeading>
+      <SubHeading id="sub-proof">Proof bar</SubHeading>
       <Stage flush>
         <ProofBar
           intro="Proof, not promises"
@@ -644,9 +689,9 @@ export default function DesignPage() {
         />
       </Stage>
 
-      <SubHeading>Solution card</SubHeading>
+      <SubHeading id="sub-solution">Solution card</SubHeading>
       <Stage>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="docs-grid-2up">
           <SolutionCard icon={<Bank size={28} />} title="Banking" description="Integration patterns and payment infrastructure for tier-1 Nigerian banks." proof="Tier-1 bank deployments in production" href="#" />
           <SolutionCard icon={<Government size={28} />} title="E-Government" description="TSA-adjacent infrastructure deployed across federal MDAs since the early 2000s." proof="Federal MDA track record" href="#" />
           <SolutionCard icon={<Users size={28} />} title="Community" description="White-label wallet infrastructure for cooperatives and schemes." proof="Cooperatives across multiple states" href="#" />
@@ -654,12 +699,11 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Product card</SubHeading>
+      <SubHeading id="sub-product">Product card</SubHeading>
       <Stage>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="docs-grid-3up">
           <ProductCard
             name="Pouchii"
-            tag="Wallet + API"
             positioning="Digital wallet and aggregation API."
             proof="Live with integration partners"
             href="#"
@@ -668,7 +712,6 @@ export default function DesignPage() {
           />
           <ProductCard
             name="FundACause"
-            tag="Crowdfunding"
             positioning="Crowdfunding for Nigerian causes."
             proof="Best Crowdfunding Platform 2022"
             href="#"
@@ -677,7 +720,6 @@ export default function DesignPage() {
           />
           <ProductCard
             name="Monicenta"
-            tag="Cooperative SaaS"
             positioning="SaaS for cooperatives and contributory schemes."
             proof="Operating with multiple cooperatives"
             href="#"
@@ -687,7 +729,7 @@ export default function DesignPage() {
         </div>
       </Stage>
 
-      <SubHeading>Capability strip</SubHeading>
+      <SubHeading id="sub-capstrip">Capability strip</SubHeading>
       <Stage flush>
         <CapabilityStrip
           eyebrow="Capability"
@@ -704,7 +746,7 @@ export default function DesignPage() {
         />
       </Stage>
 
-      <SubHeading>Group block</SubHeading>
+      <SubHeading id="sub-group">Group block</SubHeading>
       <Stage flush>
         <GroupBlock
           intro="Part of SystemSpecs — operating since 1992."
@@ -734,50 +776,50 @@ export default function DesignPage() {
         />
       </Stage>
 
-      <SubHeading>Leadership card</SubHeading>
+      <SubHeading id="sub-leadership">Leadership card</SubHeading>
       <Stage>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="docs-grid-4up">
+          <LeadershipCard
+            name="Dr. Ernest Ndukwe, OFR"
+            role="Chairman, Board of Directors"
+            credentials={['OFR', 'Telecoms policy']}
+            linkedin="#"
+            photo="/teams/ernest-ndukwe.jpg"
+          />
           <LeadershipCard
             name="Dr. John Obaro"
-            role="Founder & CEO"
-            credentials={['Founder', '30 yrs in fintech']}
+            role="Founder & Group MD"
+            credentials={['Founder', '30+ yrs in fintech']}
             linkedin="#"
-            photo="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&h=750&q=70"
+            photo="/teams/john-obaro.jpg"
           />
           <LeadershipCard
             name="Demola Igbalajobi"
-            role="Group COO"
-            credentials={['Operations']}
+            role="MD, STSL"
+            credentials={['Chartered accountant', 'IBM-trained PM']}
             linkedin="#"
-            photo="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?auto=format&fit=crop&w=600&h=750&q=70"
+            photo="/teams/demola-igbalajobi.png"
           />
           <LeadershipCard
-            name="Aderonke Aderinoye"
-            role="Director, Banking"
-            credentials={['Banking']}
+            name="’Deremi Atanda"
+            role="MD, Remita Payment Services"
+            credentials={['25+ yrs digital finance']}
             linkedin="#"
-            photo="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&h=750&q=70"
-          />
-          <LeadershipCard
-            name="Ikenna Onuoha"
-            role="Director, E-Government"
-            credentials={['Public sector']}
-            linkedin="#"
-            photo="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&h=750&q=70"
+            photo="/teams/deremi-atanda.jpg"
           />
         </div>
       </Stage>
 
-      <SubHeading>Insight card</SubHeading>
+      <SubHeading id="sub-insight">Insight card</SubHeading>
       <Stage>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="docs-grid-3up">
           <InsightCard kind="press" publication="NECA" date="2024" title="SystemSpecs Technology Solutions receives NECA Excellence Award." href="#" />
           <InsightCard kind="press" publication="TechCabal" date="2026" title="The 30-year fintech group quietly powering Nigeria's payment stack." href="#" />
           <InsightCard kind="case-study" publication="Case study" date="2025" title="Integrating Pouchii's wallet API into a tier-1 bank in 9 weeks." href="#" />
         </div>
       </Stage>
 
-      <SubHeading>Segmented CTA</SubHeading>
+      <SubHeading id="sub-segmented">Segmented CTA</SubHeading>
       <Stage flush>
         <SegmentedCTA
           headline="Find the team that matches your buying motion."
@@ -788,6 +830,323 @@ export default function DesignPage() {
           ]}
         />
       </Stage>
+
+      <SubHeading id="sub-sectionheader">Section header</SubHeading>
+      <Stage flush>
+        <div className="pt-10 md:pt-14 pb-2">
+          <SectionHeader
+            eyebrow="What we build"
+            headline="Capability across rails, identity, and public sector."
+            intro="Thirty years inside Nigerian fintech and federal e-government. The patterns below are how subsequent sections of every marketing page introduce themselves."
+            link={{ label: 'See all capabilities', href: '#' }}
+          />
+        </div>
+      </Stage>
+
+      <SubHeading id="sub-statpill">Stat pill</SubHeading>
+      <Stage>
+        <div className="flex flex-wrap items-center gap-6">
+          <StatPill
+            label="Tier-1 banks"
+            value="14"
+            avatars={[
+              { src: 'https://i.pravatar.cc/64?img=11' },
+              { src: 'https://i.pravatar.cc/64?img=12' },
+              { src: 'https://i.pravatar.cc/64?img=13' },
+            ]}
+          />
+          <StatPill
+            label="Federal MDAs"
+            value="40+"
+            avatars={[
+              { initial: 'F' }, { initial: 'I' }, { initial: 'R' },
+            ]}
+          />
+          <StatPill label="Years live" value="32" className="pl-5" />
+        </div>
+      </Stage>
+
+      <SubHeading id="sub-capblock">Capability block</SubHeading>
+      <Stage>
+        <div className="docs-grid-2up">
+          <CapabilityBlock
+            icon={<Network size={28} />}
+            title="Real-time payment rails"
+            description="Direct integration with CBN-licensed switches and tier-1 commercial banks."
+            bullets={[
+              'NIP, NEFT, and instant transfer rails',
+              'Virtual account orchestration',
+              'mTLS over HTTPS, signed requests',
+            ]}
+            surface
+          />
+          <CapabilityBlock
+            icon={<Shield size={28} />}
+            title="Identity &amp; KYC"
+            description="Layered identity orchestration over BVN, NIN, and documentary KYC."
+            bullets={[
+              'BVN + NIN verification',
+              'Liveness + selfie match',
+              'Sanctions and PEP screening',
+            ]}
+            surface
+          />
+        </div>
+      </Stage>
+
+      <SubHeading id="sub-code">Code sample</SubHeading>
+      <Stage>
+        <CodeSample
+          language="ts"
+          filename="virtual-accounts.ts"
+          caption="Issue a CBN-aligned virtual account against a customer record."
+          code={`import { client } from '@systemspecs/payments';
+
+const account = await client.virtualAccounts.create({
+  customerId: 'cus_01HX9YZ',
+  bankCode: '011',
+  // Optional metadata flows through to settlement reports.
+  metadata: { reference: 'INV-2026-04-22' },
+});
+
+console.log(account.accountNumber); // → 9100000123`}
+        />
+      </Stage>
+
+      <SubHeading id="sub-timeline">Timeline</SubHeading>
+      <Stage>
+        <Timeline
+          items={[
+            { year: '1992', title: 'SystemSpecs founded.', description: 'Nigerian software house built around enterprise payroll.', tag: 'Origin' },
+            { year: '2003', title: 'Remita launches.', description: 'Payment platform that would later carry the federal Treasury Single Account.', tag: 'Payments' },
+            { year: '2012', title: 'TSA appointment.', description: 'Selected as the federal Treasury Single Account collection rail.', tag: 'TSA' },
+            { year: '2022', title: 'Group restructure.', description: 'Holding company formed; Technology Solutions Limited carved out as the build arm.', tag: 'Restructure' },
+            { year: 'Today', title: 'Three subsidiaries, one platform.', description: 'STSL builds. Remita runs. HumanManager and Whatadeal sit alongside as group ventures.' },
+          ]}
+        />
+      </Stage>
+
+      <SubHeading id="sub-newsletter">Newsletter CTA</SubHeading>
+      <Stage flush>
+        <div className="px-6 py-12 md:px-12 md:py-16">
+          <NewsletterCTADemo />
+        </div>
+      </Stage>
+      <Caption>Form lives borderless on the canvas. Inline validation; success state replaces the form with a confirming caption.</Caption>
+
+      <SubHeading id="sub-contact">Contact form</SubHeading>
+      <Stage>
+        <ContactFormDemo />
+      </Stage>
+      <Caption>Audience-aware: extras shift per route (banking, government, fintech, community, enterprise, partners, press, careers). Submit is a stub here — the success state appears after a 600ms delay.</Caption>
+
+      <SubHeading id="sub-nav">Marketing nav</SubHeading>
+      <Stage flush>
+        <div className="relative bg-bg-canvas">
+          <Nav
+            primaryLinks={[
+              { label: 'Solutions', href: '#nav-solutions' },
+              { label: 'Products', href: '#nav-products' },
+              { label: 'Developers', href: '#nav-developers' },
+              { label: 'Company', href: '#nav-company' },
+            ]}
+            salesHref="#nav-sales"
+            governmentHref="#nav-government"
+            brand={{
+              mark: <SystemSpecsWordmark height={28} />,
+              href: '#',
+              label: 'SystemSpecs Technology Solutions',
+            }}
+          />
+          {/* spacer so the sticky header has visual room inside the stage */}
+          <div className="h-24" />
+        </div>
+      </Stage>
+      <Caption>Live nav with the morphing hamburger, scroll-frost (tries to mount above 80px scroll), and pill-button right-rail.</Caption>
+
+      <SubHeading id="sub-footer">Marketing footer</SubHeading>
+      <Stage flush>
+        <div className="p-3 md:p-5">
+          <Footer
+            columns={[
+              {
+                title: 'Solutions',
+                links: [
+                  { label: 'Banking', href: '#fdemo-banking' },
+                  { label: 'E-Government', href: '#fdemo-egov' },
+                  { label: 'Community', href: '#fdemo-community' },
+                  { label: 'Enterprise Software', href: '#fdemo-enterprise' },
+                ],
+              },
+              {
+                title: 'Products',
+                links: [
+                  { label: 'Pouchii', href: '#fdemo-pouchii' },
+                  { label: 'FundACause', href: '#fdemo-fundacause' },
+                  { label: 'Monicenta', href: '#fdemo-monicenta' },
+                ],
+              },
+              {
+                title: 'Company',
+                links: [
+                  { label: 'About', href: '#fdemo-about' },
+                  { label: 'Teams', href: '#fdemo-teams' },
+                  { label: 'Group', href: '#fdemo-group' },
+                  { label: 'Press', href: '#fdemo-press' },
+                  { label: 'Careers', href: '#fdemo-careers' },
+                ],
+              },
+            ]}
+            groupCompanies={[
+              { label: 'Remita', href: '#fdemo-remita' },
+              { label: 'HumanManager', href: '#fdemo-hm' },
+              { label: 'WhataDeal', href: '#fdemo-wad' },
+            ]}
+            contact={{ email: 'hello@stsl.ng', phone: '+234 (0)1 271 0511' }}
+            legalLinks={[
+              { label: 'Privacy', href: '#fdemo-privacy' },
+              { label: 'Terms', href: '#fdemo-terms' },
+            ]}
+            socialLinks={[
+              { kind: 'linkedin', href: '#fdemo-linkedin' },
+              { kind: 'twitter', href: '#fdemo-twitter' },
+            ]}
+          />
+        </div>
+      </Stage>
+      <Caption>Squircle dark surface with the reactive Loop 1 atmosphere. Move your cursor inside the footer to push the sweep.</Caption>
+
+      {/* ============================================================ */}
+      {/* 05 — MOTION & INTERACTIONS                                   */}
+      {/* ============================================================ */}
+      <SectionHeading id="motion" number="05" title="Motion &amp; interactions." intro="Live animation surfaces — atmospheres, reveals, hover micro-motions." />
+
+      <SubHeading id="sub-reactive">Hero with reactive atmosphere</SubHeading>
+      <Stage flush>
+        <div className="relative [&>section]:!min-h-0 [&>section]:!justify-center [&_section>div]:!py-10 md:[&_section>div]:!py-14">
+          <Hero
+            headline="Cursor-aware atmosphere over the hero canvas."
+            subhead="Move the cursor across the hero. The braille texture pushes away from the pointer and the sweep tilts — same physics that ships on the live homepage."
+            primary={{ label: 'Talk to sales', href: '#' }}
+            secondary={{ label: 'Explore solutions', href: '#' }}
+            atmosphereReactive
+          />
+        </div>
+      </Stage>
+      <Caption>The default <code className="font-mono text-fg-primary">Hero</code> ships with <code className="font-mono text-fg-primary">atmosphere</code> on; <code className="font-mono text-fg-primary">atmosphereReactive</code> wires the canvas to the cursor. Pages with a globe leave reactivity off (the visual already responds).</Caption>
+
+      <SubHeading id="sub-reveal">Reveal system</SubHeading>
+      <Stage>
+        <div className="docs-grid-3up">
+          {[1, 2, 3].map((n) => (
+            <div
+              key={n}
+              data-reveal-card
+              style={{ ['--stagger' as string]: n }}
+              className="rounded-2xl ring-1 ring-[color:var(--border-subtle)] bg-bg-surface p-6"
+            >
+              <p className="text-overline uppercase font-mono tracking-widest text-accent">Card {n}</p>
+              <p className="mt-3 font-display text-heading-3 text-fg-primary">Cascading entry.</p>
+              <p className="mt-2 text-body-sm text-fg-secondary">
+                Each card carries a <code className="font-mono">--stagger</code> index — IntersectionObserver flips
+                <code className="font-mono">data-revealed</code> and the CSS transition fires with a 60ms-per-card delay.
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6">
+          <RevealReplay />
+        </div>
+      </Stage>
+      <Caption>Replay the reveals on this whole page without reloading. Useful for previewing entry choreography.</Caption>
+
+      <SubHeading id="sub-hover">Hover micro-motions</SubHeading>
+      <Stage>
+        <div className="docs-grid-3up">
+          <button className="group/h relative overflow-hidden rounded-2xl ring-1 ring-[color:var(--border-subtle)] bg-bg-surface p-6 text-left transition-transform duration-base ease-expressive hover:-translate-y-0.5">
+            <p className="text-overline uppercase font-mono tracking-widest text-accent">Lift</p>
+            <p className="mt-3 font-display text-heading-3 text-fg-primary">Hover lifts 2px.</p>
+            <p className="mt-2 text-body-sm text-fg-secondary">Used on solution / product cards.</p>
+          </button>
+          <button className="group/h relative overflow-hidden rounded-2xl ring-1 ring-[color:var(--border-subtle)] bg-bg-surface p-6 text-left transition-colors duration-base ease-expressive hover:bg-bg-surface-raised">
+            <p className="text-overline uppercase font-mono tracking-widest text-accent">Surface swap</p>
+            <p className="mt-3 font-display text-heading-3 text-fg-primary">Hover tints surface.</p>
+            <p className="mt-2 text-body-sm text-fg-secondary">Used on insight / press cards.</p>
+          </button>
+          <button className="group/h relative overflow-hidden rounded-2xl ring-1 ring-[color:var(--border-subtle)] bg-bg-surface p-6 text-left">
+            <p className="text-overline uppercase font-mono tracking-widest text-accent">Underline draw</p>
+            <p className="mt-3 font-display text-heading-3 text-fg-primary">
+              <span className="stsl-underline-draw">Hover here</span>
+            </p>
+            <p className="mt-2 text-body-sm text-fg-secondary">Used on footer + nav links.</p>
+          </button>
+        </div>
+      </Stage>
+
+      {/* ============================================================ */}
+      {/* 06 — PAGE COMPOSITIONS                                        */}
+      {/* ============================================================ */}
+      <SectionHeading id="compositions" number="06" title="Page compositions." intro="How the components assemble into the routes that ship — abbreviated previews." />
+
+      <SubHeading id="sub-developers">Developers strip</SubHeading>
+      <Stage flush>
+        <div className="px-6 py-10 md:px-12 md:py-16 space-y-8">
+          <SectionHeader
+            eyebrow="Developers"
+            headline="The API surface, in two minutes."
+            intro="Issue a virtual account, watch a webhook, reconcile against a settlement file."
+            link={{ label: 'Open the docs', href: '#' }}
+          />
+          <CodeSample
+            language="bash"
+            filename="terminal"
+            code={`curl -X POST https://api.stsl.ng/v1/accounts \\
+  -H "Authorization: Bearer $STSL_KEY" \\
+  -d '{"customerId":"cus_01HX9YZ","bankCode":"011"}'`}
+          />
+        </div>
+      </Stage>
+
+      <SubHeading id="sub-contactstrip">Contact strip</SubHeading>
+      <Stage flush>
+        <div className="px-6 py-10 md:px-12 md:py-14 grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 lg:gap-14 items-start">
+          <div className="space-y-8">
+            <div>
+              <p className="text-overline uppercase text-accent mb-4 font-mono tracking-widest">Contact</p>
+              <h3 className="font-display text-display-md text-fg-primary text-balance leading-[1.05] tracking-[-0.018em]">
+                Talk to the banking team.
+              </h3>
+              <p className="mt-4 text-body-lg text-fg-secondary max-w-md">
+                Tier-1 references, integration patterns, and procurement docs available after a short qualification.
+              </p>
+            </div>
+            <div className="border-t border-[color:var(--border-subtle)] pt-6 flex flex-col gap-3">
+              <a
+                href="mailto:hello@stsl.ng"
+                className="group/c inline-flex items-center gap-3 text-body text-fg-primary self-start"
+              >
+                <span className="inline-grid place-items-center h-9 w-9 rounded-full ring-1 ring-[color:var(--border-subtle)] bg-bg-surface-raised text-fg-secondary transition-colors duration-base ease-expressive group-hover/c:ring-accent group-hover/c:text-accent">
+                  <Mail size={14} />
+                </span>
+                <span className="stsl-underline-draw">hello@stsl.ng</span>
+              </a>
+              <a
+                href="tel:+23412710511"
+                className="group/c inline-flex items-center gap-3 text-body text-fg-primary self-start"
+              >
+                <span className="inline-grid place-items-center h-9 w-9 rounded-full ring-1 ring-[color:var(--border-subtle)] bg-bg-surface-raised text-fg-secondary transition-colors duration-base ease-expressive group-hover/c:ring-accent group-hover/c:text-accent">
+                  <Phone size={14} />
+                </span>
+                <span className="stsl-underline-draw">+234 (0)1 271 0511</span>
+              </a>
+            </div>
+          </div>
+          <div className="min-w-0">
+            <ContactFormDemo />
+          </div>
+        </div>
+      </Stage>
+
     </>
   );
 }

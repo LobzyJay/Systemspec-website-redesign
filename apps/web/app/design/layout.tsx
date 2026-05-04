@@ -3,7 +3,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@systemspecs/foundations/layout';
 import { SystemSpecsWordmark } from '@systemspecs/brand-stsl/brand';
-import { ThemeToggle, TableOfContents } from './_client';
+import { ThemeToggle, BleedAnchor, DocsRail } from './_client';
+import { RevealObserver } from '../../components/RevealObserver';
 
 // Per-route metadata override — /design keeps the design-system identity
 // while every other route inherits the STSL marketing metadata from the
@@ -34,11 +35,12 @@ const sections = [
     number: '01',
     href: '#foundations',
     items: [
-      { label: 'Color',       href: '#foundations' },
-      { label: 'Typography',  href: '#foundations' },
-      { label: 'Spacing',     href: '#foundations' },
-      { label: 'Radius',      href: '#foundations' },
-      { label: 'Motion',      href: '#foundations' },
+      { label: 'Color',           href: '#sub-color' },
+      { label: 'Typography',      href: '#sub-type' },
+      { label: 'Spacing',         href: '#sub-spacing' },
+      { label: 'Radius',          href: '#sub-radius' },
+      { label: 'Elevation',       href: '#sub-elevation' },
+      { label: 'Motion',          href: '#sub-motiontokens' },
     ],
   },
   {
@@ -46,9 +48,9 @@ const sections = [
     number: '02',
     href: '#brand',
     items: [
-      { label: 'Wordmark',  href: '#brand' },
-      { label: 'Dot mark',  href: '#brand' },
-      { label: 'Icons',     href: '#brand' },
+      { label: 'Wordmark',  href: '#sub-wordmark' },
+      { label: 'Dot mark',  href: '#sub-dotmark' },
+      { label: 'Icons',     href: '#sub-icons' },
     ],
   },
   {
@@ -56,12 +58,19 @@ const sections = [
     number: '03',
     href: '#primitives',
     items: [
-      { label: 'Button',     href: '#primitives' },
-      { label: 'Field',      href: '#primitives' },
-      { label: 'Card',       href: '#primitives' },
-      { label: 'Tabs',       href: '#primitives' },
-      { label: 'Accordion',  href: '#primitives' },
-      { label: 'Skeleton',   href: '#primitives' },
+      { label: 'Button',     href: '#sub-button' },
+      { label: 'Link',       href: '#sub-link' },
+      { label: 'Card',       href: '#sub-card' },
+      { label: 'Field',      href: '#sub-field' },
+      { label: 'Badge',      href: '#sub-badge' },
+      { label: 'Tabs',       href: '#sub-tabs' },
+      { label: 'Accordion',  href: '#sub-accordion' },
+      { label: 'Skeleton',   href: '#sub-skeleton' },
+      { label: 'Checkbox',   href: '#sub-checkbox' },
+      { label: 'Radio',      href: '#sub-radio' },
+      { label: 'Select',     href: '#sub-select' },
+      { label: 'Tooltip',    href: '#sub-tooltip' },
+      { label: 'Dialog',     href: '#sub-dialog' },
     ],
   },
   {
@@ -69,26 +78,55 @@ const sections = [
     number: '04',
     href: '#patterns',
     items: [
-      { label: 'Globe in context', href: '#patterns' },
-      { label: 'Hero',             href: '#patterns' },
-      { label: 'Proof bar',        href: '#patterns' },
-      { label: 'Solution card',    href: '#patterns' },
-      { label: 'Group block',      href: '#patterns' },
-      { label: 'Segmented CTA',    href: '#patterns' },
+      { label: 'Globe',            href: '#sub-globe' },
+      { label: 'Globe in context', href: '#sub-globe-context' },
+      { label: 'Backgrounds',      href: '#sub-bg' },
+      { label: 'Team grid',        href: '#sub-team' },
+      { label: 'Hero',             href: '#sub-hero' },
+      { label: 'Proof bar',        href: '#sub-proof' },
+      { label: 'Solution card',    href: '#sub-solution' },
+      { label: 'Product card',     href: '#sub-product' },
+      { label: 'Capability strip', href: '#sub-capstrip' },
+      { label: 'Group block',      href: '#sub-group' },
+      { label: 'Leadership',       href: '#sub-leadership' },
+      { label: 'Insight',          href: '#sub-insight' },
+      { label: 'Segmented CTA',    href: '#sub-segmented' },
+      { label: 'Section header',   href: '#sub-sectionheader' },
+      { label: 'Stat pill',        href: '#sub-statpill' },
+      { label: 'Capability block', href: '#sub-capblock' },
+      { label: 'Code sample',      href: '#sub-code' },
+      { label: 'Timeline',         href: '#sub-timeline' },
+      { label: 'Newsletter',       href: '#sub-newsletter' },
+      { label: 'Contact form',     href: '#sub-contact' },
+      { label: 'Nav',              href: '#sub-nav' },
+      { label: 'Footer',           href: '#sub-footer' },
+    ],
+  },
+  {
+    title: 'Motion',
+    number: '05',
+    href: '#motion',
+    items: [
+      { label: 'Reactive hero',     href: '#sub-reactive' },
+      { label: 'Reveal system',     href: '#sub-reveal' },
+      { label: 'Hover micromotion', href: '#sub-hover' },
+    ],
+  },
+  {
+    title: 'Compositions',
+    number: '06',
+    href: '#compositions',
+    items: [
+      { label: 'Developers',  href: '#sub-developers' },
+      { label: 'Contact',     href: '#sub-contactstrip' },
     ],
   },
 ];
 
-const tocItems = [
-  { id: 'foundations', label: '01 Foundations' },
-  { id: 'brand',       label: '02 Brand' },
-  { id: 'primitives',  label: '03 Primitives' },
-  { id: 'patterns',    label: '04 Patterns' },
-];
 
 export default function DesignLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" data-design-docs>
       {/* Sticky header — paper tint with backdrop-blur (skill: blur only on
           fixed/sticky chrome, never scrolling content). Hairline ring instead
           of a 1px border. */}
@@ -131,39 +169,13 @@ export default function DesignLayout({ children }: { children: ReactNode }) {
         </Container>
       </div>
 
-      <Container size="wide" className="grid grid-cols-1 lg:grid-cols-[15rem_minmax(0,1fr)_12rem] gap-8 md:gap-10 lg:gap-12 py-10 md:py-16 lg:py-24">
+      <RevealObserver />
+      <BleedAnchor />
+      <Container size="wide" className="grid grid-cols-1 lg:grid-cols-[16rem_minmax(0,1fr)] gap-10 lg:gap-16 py-10 md:py-16 lg:py-24">
         <aside className="hidden lg:block">
-          <nav aria-label="Sections" className="sticky top-24 flex flex-col gap-8">
-            {sections.map((s) => (
-              <div key={s.href}>
-                <a
-                  href={s.href}
-                  className="group/sec block transition-colors duration-base ease-expressive"
-                >
-                  <span className="block text-[10px] font-mono uppercase tracking-[0.22em] text-fg-muted mb-1">
-                    {s.number}
-                  </span>
-                  <span className="block text-body-sm font-display font-medium text-fg-primary group-hover/sec:text-accent transition-colors duration-base ease-expressive">
-                    {s.title}
-                  </span>
-                </a>
-                <ul className="mt-3 flex flex-col gap-1.5 border-l border-[color:var(--border-subtle)] pl-3">
-                  {s.items.map((it, i) => (
-                    <li key={i}>
-                      <a href={it.href} className="text-caption text-fg-muted hover:text-fg-primary transition-colors duration-base ease-expressive">
-                        {it.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
+          <DocsRail sections={sections} />
         </aside>
         <article className="min-w-0">{children}</article>
-        <aside className="hidden lg:block">
-          <TableOfContents items={tocItems} />
-        </aside>
       </Container>
     </div>
   );

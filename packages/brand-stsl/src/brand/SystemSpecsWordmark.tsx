@@ -6,15 +6,21 @@
 // Theme behavior:
 //   tone="brand" (default) → black asset on light theme, white asset on
 //                            dark theme. Auto-swaps via CSS data-theme.
-//   tone="mono"            → forces white (use on dark surfaces regardless
-//                            of theme — e.g. the GroupBlock forest band).
+//                            Use on canvas surfaces.
+//   tone="mono"            → forces white (use on always-dark surfaces
+//                            regardless of theme — e.g. the GroupBlock
+//                            forest band).
+//   tone="inverse"         → OPPOSITE of brand: white asset on light theme,
+//                            black asset on dark theme. Use on inverse
+//                            surfaces (Footer, SegmentedCTA) whose
+//                            background flips with theme.
 
 import type { ImgHTMLAttributes } from 'react';
 import { asset } from '../utils/asset';
 
 interface SystemSpecsWordmarkProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> {
   height?: number;
-  tone?: 'brand' | 'mono';
+  tone?: 'brand' | 'mono' | 'inverse';
   alt?: string;
 }
 
@@ -40,11 +46,16 @@ export function SystemSpecsWordmark({
 
   // Theme-aware: render both, hide one via CSS so the swap is instant on
   // theme toggle without a re-render or asset re-fetch.
+  // brand:    light → BLACK, dark → WHITE  (canvas surfaces)
+  // inverse:  light → WHITE, dark → BLACK  (inverse surfaces that flip)
+  const lightAsset = tone === 'inverse' ? WHITE : BLACK;
+  const darkAsset = tone === 'inverse' ? BLACK : WHITE;
+
   return (
     <span className="inline-block" style={{ height, width }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={asset(BLACK)}
+        src={asset(lightAsset)}
         alt={alt}
         height={height}
         width={width}
@@ -53,7 +64,7 @@ export function SystemSpecsWordmark({
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={asset(WHITE)}
+        src={asset(darkAsset)}
         alt=""
         aria-hidden="true"
         height={height}

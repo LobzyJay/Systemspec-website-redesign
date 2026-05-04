@@ -36,7 +36,7 @@ export function Footer({ columns, groupCompanies, contact, legalLinks, socialLin
           <Container size="wide" className="py-16 md:py-20">
             <Grid cols={1} mdCols={2} lgCols={6} gap={10}>
               <div className="lg:col-span-2">
-                <SystemSpecsWordmark tone="mono" height={26} />
+                <SystemSpecsWordmark tone="inverse" height={26} />
                 <p className="mt-5 font-display text-body-lg text-fg-on-inverse">
                   Technology Solutions Limited
                 </p>
@@ -148,7 +148,7 @@ export function Footer({ columns, groupCompanies, contact, legalLinks, socialLin
             doesn't end on a wall of text. */}
         <div className="md:hidden">
           <Container size="wide" className="py-10">
-            <SystemSpecsWordmark tone="mono" height={22} />
+            <SystemSpecsWordmark tone="inverse" height={22} />
             <p className="mt-3 font-display text-body text-fg-on-inverse">
               Technology Solutions Limited
             </p>

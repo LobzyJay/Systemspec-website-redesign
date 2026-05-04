@@ -101,9 +101,13 @@ export function SectionHeading({
   );
 }
 
-export function SubHeading({ children }: { children: ReactNode }) {
+export function SubHeading({ id, children }: { id?: string; children: ReactNode }) {
   return (
-    <div className="mt-12 md:mt-16 lg:mt-20 mb-6 md:mb-7 flex items-baseline gap-4" data-reveal>
+    <div
+      id={id}
+      className="scroll-mt-28 mt-12 md:mt-16 lg:mt-20 mb-6 md:mb-7 flex items-baseline gap-4"
+      data-reveal
+    >
       <span aria-hidden="true" className="inline-block h-px w-8 bg-[color:var(--border-default)]" />
       <h3 className="font-display font-medium text-heading-2 md:text-heading-1 text-fg-primary tracking-tight">
         {children}
@@ -112,16 +116,69 @@ export function SubHeading({ children }: { children: ReactNode }) {
   );
 }
 
+type StageWidth = 'default' | 'bleed' | 'scroll';
+
 export function Stage({
   children,
   dark,
   flush,
+  width = 'default',
 }: {
   children: ReactNode;
   dark?: boolean;
   // flush — drop the inner padding for visuals that supply their own frame.
   flush?: boolean;
+  // width:
+  //   • default — fits the article column (current behaviour)
+  //   • bleed   — breaks out to full viewport width so marketing components
+  //               (Nav, Footer, Hero) get real `md:`/`lg:` viewport queries
+  //   • scroll  — adds a horizontal scroll wrapper for fixed-pixel artifacts
+  //               (banners, social cards, anything wider than the article)
+  width?: StageWidth;
 }) {
+  // `dark` stages are always-dark showcases (e.g. mono wordmark, inverse
+  // surface previews). Hardcoded so they don't flip when the user toggles
+  // the docs to dark theme — `bg-inverse` is a *theme-flipping* token.
+  const surface = dark
+    ? 'bg-[#0B0C0F] text-[#F7F8F9]'
+    : 'bg-bg-surface text-fg-primary';
+  const padding = flush ? '' : 'p-6 md:p-10 lg:p-12 ';
+
+  if (width === 'bleed') {
+    // Full-bleed escape hatch. We measure the article column's left offset
+    // via BleedAnchor (mounted in layout) and pull this wrapper back to the
+    // viewport's left edge. width: 100vw extends to the right edge. Children
+    // with viewport-based media queries render at their intended breakpoint.
+    return (
+      <div className="docs-bleed mb-4" data-reveal>
+        <div
+          className={
+            'mx-4 md:mx-8 lg:mx-12 rounded-2xl ring-1 ring-[color:var(--border-subtle)] ' +
+            'overflow-hidden ' + padding + surface
+          }
+        >
+          {children}
+        </div>
+      </div>
+    );
+  }
+
+  if (width === 'scroll') {
+    // Scrollable stage — keeps the rounded shell in the article column but
+    // exposes a horizontal scroll for content wider than the column.
+    return (
+      <div
+        data-reveal
+        className={
+          'rounded-2xl mb-4 ring-1 ring-[color:var(--border-subtle)] ' +
+          'overflow-x-auto overflow-y-hidden ' + padding + surface
+        }
+      >
+        {children}
+      </div>
+    );
+  }
+
   // Single-radius stage — one rounded container, no inner core. Stops nested
   // rounding inside Stage children (color swatches, icon chips, etc.).
   return (
@@ -129,11 +186,7 @@ export function Stage({
       data-reveal
       className={
         'group/stage rounded-2xl mb-4 ring-1 ring-[color:var(--border-subtle)] ' +
-        'overflow-hidden ' +
-        (flush ? '' : 'p-6 md:p-10 lg:p-12 ') +
-        (dark
-          ? 'bg-bg-inverse text-fg-on-inverse'
-          : 'bg-bg-surface text-fg-primary')
+        'overflow-hidden ' + padding + surface
       }
     >
       {children}

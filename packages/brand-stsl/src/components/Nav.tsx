@@ -108,7 +108,7 @@ export function Nav({ primaryLinks, governmentHref, salesHref, brand }: NavProps
                   key={link.href}
                   href={link.href}
                   variant="subtle"
-                  className="stsl-underline-draw text-body-sm font-medium hover:text-accent"
+                  className="stsl-underline-draw text-body-sm font-medium text-fg-primary hover:text-accent"
                 >
                   {link.label}
                 </Link>

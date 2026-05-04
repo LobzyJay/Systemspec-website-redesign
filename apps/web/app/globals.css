@@ -50,7 +50,7 @@ html, body {
 html {
   touch-action: pan-y pinch-zoom;
   overscroll-behavior-y: none;
-  background-color: #fff;
+  background-color: var(--paper-tint);
   /* Hard width lock — explicit width + max-width: 100% prevents any
      descendant from making the document wider than the viewport.
      Some browsers (notably iMessage's preview webview and older iOS)
@@ -199,6 +199,129 @@ body::before {
       transition: none;
     }
   }
+}
+
+/* Faster reveal cadence inside the design docs surface. The marketing site
+   waits 400ms so the reveals choreograph behind the splash dismissal; the
+   /design route has no splash, so the long delay just reads as sluggish.
+   Scoped via [data-design-docs] on the design layout root. Curve aligned
+   with the foundations expressive cubic-bezier (0.32,0.72,0,1) for a tight
+   editorial settle. */
+[data-design-docs] [data-reveal] {
+  /* Lighter entrance — drop the blur entirely (perf cost + visually noisy
+     on a docs page) and tighten the slide. */
+  filter: none !important;
+  transform: translate3d(0, 6px, 0);
+  transition:
+    opacity 280ms cubic-bezier(0.32, 0.72, 0, 1),
+    transform 280ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+[data-design-docs] [data-reveal][data-revealed="true"] {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Smooth in-page anchor jumps for the design route. */
+html:has([data-design-docs]) {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has([data-design-docs]) {
+    scroll-behavior: auto;
+  }
+}
+[data-design-docs] [data-reveal-card] {
+  transition:
+    opacity 280ms cubic-bezier(0.32, 0.72, 0, 1),
+    transform 280ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition-delay: calc(var(--stagger, 0) * 40ms);
+}
+
+/* Frozen-dark showcase surface — used inside Stages where the content is
+   meant to always read as the marketing site's espresso "inverse" surface
+   regardless of the docs theme toggle. The surface variables flip with
+   theme; these intentionally do not. Pair with `.text-on-inverse-frozen`
+   for matching foreground colors. */
+.surface-frozen-dark {
+  background-color: #0B0C0F;
+  color: #F7F8F9;
+}
+.text-on-inverse-frozen { color: #F7F8F9; }
+.text-on-inverse-frozen-70 { color: rgb(247 248 249 / 0.70); }
+.text-on-inverse-frozen-65 { color: rgb(247 248 249 / 0.65); }
+.text-on-inverse-frozen-60 { color: rgb(247 248 249 / 0.60); }
+.text-on-inverse-frozen-80 { color: rgb(247 248 249 / 0.80); }
+
+/* Full-bleed Stage — pulls itself out of the article column to the
+   viewport's left edge using a CSS variable measured by BleedAnchor.
+   Needed because the article sits offset-right of viewport (left rail +
+   gap), so the standard `100vw + negative margin` pattern would clip the
+   right edge against `body { overflow-x: clip }`. */
+.docs-bleed {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-1 * var(--docs-article-x, 0px));
+  /* Match right-edge so the box ends exactly at viewport-right. */
+  margin-right: calc(var(--docs-article-x, 0px) + var(--docs-article-w, 0px) - 100vw);
+}
+
+/* Container-query scope — the article column is the size oracle for
+   in-Stage demo grids. Mid-width pattern showcases (cards, capability
+   blocks, hover demos) reflow against the article's actual width instead
+   of the global viewport, so a desktop browser at 1280px doesn't force
+   `md:grid-cols-2` while the article column itself is only ~700px wide. */
+[data-design-docs] article {
+  container-type: inline-size;
+  container-name: docs-col;
+}
+
+/* Two-up — single column under 38rem, two columns when the article column
+   has room. Used for SolutionCard / ProductCard / CapabilityBlock grids. */
+.docs-grid-2up {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@container docs-col (min-width: 38rem) {
+  .docs-grid-2up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Three-up — single column under 32rem, two between 32–52rem, three above. */
+.docs-grid-3up {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@container docs-col (min-width: 32rem) {
+  .docs-grid-3up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container docs-col (min-width: 52rem) {
+  .docs-grid-3up { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Four-up — used for leadership / icon-dense grids. */
+.docs-grid-4up {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@container docs-col (min-width: 28rem) {
+  .docs-grid-4up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container docs-col (min-width: 56rem) {
+  .docs-grid-4up { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Five-up — TeamMember dense grid. */
+.docs-grid-5up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+@container docs-col (min-width: 36rem) {
+  .docs-grid-5up { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@container docs-col (min-width: 60rem) {
+  .docs-grid-5up { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 
 /* Success-state swap for inline forms (ContactForm, NewsletterCTA).

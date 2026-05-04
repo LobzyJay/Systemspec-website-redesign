@@ -4,6 +4,12 @@
 //   GITHUB_PAGES=true  → sets basePath so assets resolve at the Pages subpath
 //   (default)          → basePath '' so local dev + standalone export work
 
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const monorepoRoot = path.resolve(__dirname, '../..');
+
 const isGhPages = process.env.GITHUB_PAGES === 'true';
 const basePath = isGhPages ? '/Systemspec-website-redesign' : '';
 
@@ -14,6 +20,9 @@ const nextConfig = {
   basePath,
   assetPrefix: basePath,
   reactStrictMode: true,
+  turbopack: {
+    root: monorepoRoot,
+  },
   transpilePackages: ['@systemspecs/foundations', '@systemspecs/brand-stsl'],
   experimental: {
     optimizePackageImports: [

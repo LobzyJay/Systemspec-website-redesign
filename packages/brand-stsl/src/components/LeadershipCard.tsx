@@ -42,6 +42,8 @@ export function LeadershipCard({
           <img
             src={asset(photo)}
             alt={name}
+            loading="lazy"
+            decoding="async"
             // 4:5 frame matches the portrait aspect so object-cover
             // fills the frame cleanly. object-top keeps the head in
             // view if any portrait is taller than 4:5.
