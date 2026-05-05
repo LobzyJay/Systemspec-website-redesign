@@ -96,7 +96,7 @@ export default function MarketingLayout({ children }: { children: ReactNode }) {
           governmentHref={`${base}/contact?audience=government`}
           brand={{
             mark: <SystemSpecsWordmark height={28} />,
-            href: '/',
+            href: `${base}/`,
             label: 'SystemSpecs Technology Solutions',
           }}
         />
