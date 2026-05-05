@@ -43,18 +43,15 @@ export function ProductCard({
         {/* Four-edge fades — all sides dissolve into the muted surface so the
             braille field reads as floating in the frame rather than tiled.
             Top + bottom are slightly deeper; left + right are slimmer so
-            the logos stay centered with breathing room. Gradients mix the
-            actual surface token so the fade matches in light + dark modes
-            (was previously a hardcoded white halo that read as bright
-            ringing on a dark surface). */}
+            the logos stay centered with breathing room. */}
         <div aria-hidden="true" className="absolute inset-x-0 top-0 h-14 z-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, color-mix(in srgb, var(--bg-surface-muted) 95%, transparent) 0%, transparent 100%)' }} />
+          style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, transparent 100%)' }} />
         <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-16 z-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, color-mix(in srgb, var(--bg-surface-muted) 95%, transparent) 0%, transparent 100%)' }} />
+          style={{ background: 'linear-gradient(to top, rgba(255,255,255,0.95) 0%, transparent 100%)' }} />
         <div aria-hidden="true" className="absolute inset-y-0 left-0 w-10 z-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, color-mix(in srgb, var(--bg-surface-muted) 95%, transparent) 0%, transparent 100%)' }} />
+          style={{ background: 'linear-gradient(to right, rgba(255,255,255,0.95) 0%, transparent 100%)' }} />
         <div aria-hidden="true" className="absolute inset-y-0 right-0 w-10 z-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to left, color-mix(in srgb, var(--bg-surface-muted) 95%, transparent) 0%, transparent 100%)' }} />
+          style={{ background: 'linear-gradient(to left, rgba(255,255,255,0.95) 0%, transparent 100%)' }} />
 
         {/* B/W logo — fades out on hover */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -88,9 +85,8 @@ export function ProductCard({
       </div>
 
 
-      {/* ── Content section: theme-aware surface (was hardcoded `bg-white`,
-          which left a bright panel on a dark card in dark mode). */}
-      <div className="flex flex-col flex-1 bg-bg-surface px-6 pb-6 pt-2 md:px-8 md:pb-8">
+      {/* ── Content section: white bg ── */}
+      <div className="flex flex-col flex-1 bg-white px-6 pb-6 pt-2 md:px-8 md:pb-8">
         <div className="flex items-baseline justify-between gap-3">
           <h3
             className="font-display font-medium leading-tight tracking-[-0.005em] text-fg-primary"
