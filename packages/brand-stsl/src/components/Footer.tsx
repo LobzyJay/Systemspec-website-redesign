@@ -27,7 +27,7 @@ interface FooterProps {
 // makes the whole footer read as a floating dark card.
 export function Footer({ columns, groupCompanies, contact, legalLinks, socialLinks }: FooterProps) {
   return (
-    <footer className="relative overflow-hidden bg-bg-inverse text-fg-on-inverse isolate rounded-[32px]">
+    <footer id="footer" className="relative overflow-hidden bg-bg-inverse text-fg-on-inverse isolate rounded-[32px]">
       <FooterAtmosphereReactive />
 
       <div className="relative z-10">

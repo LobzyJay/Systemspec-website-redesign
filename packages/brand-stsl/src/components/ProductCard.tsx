@@ -28,14 +28,17 @@ export function ProductCard({
                  ring-1 ring-[color:var(--border-subtle)] shadow-e1 origin-center
                  transition-[transform,box-shadow,ring-color] duration-150 ease-out
                  hover:scale-[1.05] hover:shadow-e3 hover:ring-[color:var(--border-default)] hover:z-10
-                 motion-safe:active:scale-[0.98] motion-safe:active:duration-100 active:shadow-e2"
+                 motion-safe:active:scale-[0.98] motion-safe:active:duration-100 active:shadow-e2
+                 dark:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.5)] dark:ring-black/10"
     >
-      {/* ── Top section: recessed muted surface so the logo frame reads
-          as a distinct zone from the white content below. Using
-          bg-bg-surface-muted gives a slightly deeper off-white that
-          makes the card feel structured without needing a hard border. ── */}
+      {/* ── Top section: cream "well" in light mode (bg-surface-muted = #ECE6D7)
+          provides the tonal frame the designer intended against the cream page.
+          In dark mode we override to white so the black B/W logo stays readable
+          (the bottom panel is also white via its bg-white literal, so the card
+          reads as a single white island on the dark page). The subtle structure
+          between halves comes from the wave + edge-fade gradients. ── */}
       <div
-        className="relative overflow-hidden bg-bg-surface-muted h-40 md:h-[200px]"
+        className="relative overflow-hidden bg-bg-surface-muted dark:bg-white h-40 md:h-[200px]"
       >
         {/* Canvas wave — absolutely positioned behind logo */}
         <ProductCardWave />
@@ -89,31 +92,31 @@ export function ProductCard({
       <div className="flex flex-col flex-1 bg-white px-6 pb-6 pt-2 md:px-8 md:pb-8">
         <div className="flex items-baseline justify-between gap-3">
           <h3
-            className="font-display font-medium leading-tight tracking-[-0.005em] text-fg-primary"
+            className="font-display font-medium leading-tight tracking-[-0.005em] text-fg-primary dark:text-[#16181c]"
             style={{ fontSize: '22px' }}
           >
             {name}
           </h3>
           {tag ? (
-            <span className="shrink-0 font-mono uppercase tracking-[0.16em] text-fg-muted"
+            <span className="shrink-0 font-mono uppercase tracking-[0.16em] text-fg-muted dark:text-[#7a828d]"
               style={{ fontSize: '9.5px' }}>
               {tag}
             </span>
           ) : null}
         </div>
 
-        <p className="mt-3 text-fg-secondary text-pretty" style={{ fontSize: '14px' }}>
+        <p className="mt-3 text-fg-secondary dark:text-[#41464e] text-pretty" style={{ fontSize: '14px' }}>
           {positioning}
         </p>
 
         <div className="mt-6">
           <p
-            className="font-mono uppercase tracking-[0.22em] text-fg-muted"
+            className="font-mono uppercase tracking-[0.22em] text-fg-muted dark:text-[#7a828d]"
             style={{ fontSize: '9.5px' }}
           >
             PROOF
           </p>
-          <p className="mt-1.5 text-body-sm text-fg-primary">{proof}</p>
+          <p className="mt-1.5 text-body-sm text-fg-primary dark:text-[#16181c]">{proof}</p>
         </div>
 
         {/* CTA — text link with arrow, pinned to bottom via mt-auto */}

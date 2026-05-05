@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Plus_Jakarta_Sans, Geist, Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { CookieConsent } from '../components/CookieConsent';
+import { EmbeddedGuard } from '../components/EmbeddedGuard';
 
 // Type system — three faces, each with a job:
 //   Display  · Plus Jakarta Sans (medium 500)  — wordmark sibling, editorial headlines
@@ -210,6 +211,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
+        <EmbeddedGuard />
         {children}
         <CookieConsent />
       </body>
