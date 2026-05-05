@@ -194,7 +194,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){if(!/\\/design(\\/|$)/.test(location.pathname)){document.documentElement.setAttribute('data-splash','active');}try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}window.scrollTo(0,0);})();`,
+            __html: `(function(){if(!/^\\/(design|footer-atmosphere|footer-demo)(\\/|$)/.test(location.pathname)){document.documentElement.setAttribute('data-splash','active');}try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}window.scrollTo(0,0);})();`,
           }}
         />
       </head>
