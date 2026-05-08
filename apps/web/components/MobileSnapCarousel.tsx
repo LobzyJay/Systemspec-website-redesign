@@ -71,6 +71,7 @@ export function MobileSnapCarousel({
                  overflow-x-auto md:overflow-visible
                  snap-x snap-mandatory md:snap-none
                  -mx-6 md:mx-0 px-6 md:px-0
+                 max-w-[100vw] md:max-w-none
                  py-8 md:py-0
                  [touch-action:pan-x_pan-y] md:[touch-action:auto]
                  overscroll-x-contain md:overscroll-x-auto
