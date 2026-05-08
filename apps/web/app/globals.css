@@ -43,12 +43,18 @@ html, body {
    bg" on mobile; `touch-action: pan-y` tells the browser to only
    honour vertical pan gestures, so even if a child element is wider
    than the viewport the user can't drag the whole page sideways.
-   Pinch-zoom (`pinch-zoom`) stays available so accessibility isn't
-   affected. Combined with `overflow-x: clip` on body (a non-scroll-
-   container clip that leaves position:sticky intact) so any wide
-   child element is also visually clipped. */
+   Pinch-zoom is also dropped (was `pan-y pinch-zoom`) — pinch-out was
+   exposing the marketing layout's mint body bg around the shrunken
+   page UI. Belt-and-suspenders with the layout.tsx viewport meta's
+   `maximumScale: 1, userScalable: false`: the meta tag covers Safari/
+   Chrome viewport-level handling, this rule covers gesture-level
+   handling for any browser that ignored the meta. Combined with
+   `overflow-x: clip` on body (a non-scroll-container clip that leaves
+   position:sticky intact) so any wide child element is also visually
+   clipped. iOS system "Page Zoom" accessibility setting still works
+   regardless of either lock. */
 html {
-  touch-action: pan-y pinch-zoom;
+  touch-action: pan-y;
   overscroll-behavior-y: none;
   background-color: var(--paper-tint);
   /* Hard width lock — explicit width + max-width: 100% prevents any
