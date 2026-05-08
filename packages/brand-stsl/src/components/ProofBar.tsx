@@ -232,7 +232,7 @@ export function ProofBar({ intro, metrics, logos }: ProofBarProps) {
                 edge dissolve the logos into the muted surface — uses a CSS
                 mask so the gradient is true alpha, not an overlay tint. */}
             <div
-              className="proofbar-marquee group/marquee relative overflow-hidden"
+              className="proofbar-marquee group/marquee relative overflow-hidden max-w-full"
               style={{
                 WebkitMaskImage:
                   'linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%)',

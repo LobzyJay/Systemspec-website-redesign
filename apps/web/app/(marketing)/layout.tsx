@@ -103,7 +103,15 @@ export default function MarketingLayout({ children }: { children: ReactNode }) {
         <SplashScreen />
         <RevealObserver />
         <RouteTransitions />
-        <main className="flex-1">{children}</main>
+        {/* overflow-x-clip — defense-in-depth catch-all. The body-level
+            clip in globals.css is the load-bearing fix, but on pinch-zoom
+            iOS Safari occasionally exposes child overflow that escaped
+            through a nested scroll container (e.g. carousel `-mx-6` rebleed
+            or marquee `w-max` track). Clipping at <main> contains anything
+            that would otherwise become visible when the visual viewport
+            shrinks below the layout viewport. `clip` (not `hidden`) so we
+            don't create a scroll container — sticky header still works. */}
+        <main className="flex-1 overflow-x-clip">{children}</main>
         {/* Footer wrapper — inset padding creates the visible breathing
             space between the section above and the floating squircle.
             The black surface peeks through this gap on all four sides.
