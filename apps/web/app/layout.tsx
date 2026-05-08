@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Plus_Jakarta_Sans, Geist, Source_Serif_4, JetBrains_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { CookieConsent } from '../components/CookieConsent';
 import { EmbeddedGuard } from '../components/EmbeddedGuard';
@@ -214,6 +215,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <EmbeddedGuard />
         {children}
         <CookieConsent />
+        <Analytics />
       </body>
     </html>
   );

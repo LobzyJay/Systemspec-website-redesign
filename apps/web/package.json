@@ -11,6 +11,7 @@
   "dependencies": {
     "@systemspecs/brand-stsl": "*",
     "@systemspecs/foundations": "*",
+    "@vercel/analytics": "^2.0.1",
     "next": "^16.2.4",
     "preact": "^10.29.1",
     "preact-render-to-string": "^6.6.7",
