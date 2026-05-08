@@ -73,9 +73,20 @@ const TITLE = {
 // transparent gap above itself on iPhone 15 Pro Max. themeColor matches
 // the page bg so the iOS dynamic status-bar tint reads in-tone instead
 // of flashing white when the bar transitions.
+//
+// maximumScale=1 + userScalable=false: pinch-to-zoom is intentionally
+// disabled. When the user pinch-zoomed OUT on the marketing pages, the
+// layout's mint body bg appeared around the shrunken UI — the designed-
+// in body bg becoming visible as a framing margin. Disabling zoom locks
+// the rendering at the design's intended scale. iOS Safari still
+// honors the system "Page Zoom" accessibility setting (Settings →
+// Accessibility → Per-App Settings → Safari → Page Zoom) so users who
+// need magnification retain access via the OS-level control.
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   viewportFit: 'cover',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#E8F2EE' },
